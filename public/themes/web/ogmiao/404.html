@@ -1,0 +1,61 @@
+{include file="common/header" /}
+<link rel="stylesheet" href="{$setting.web_view}/assets/css/404.css">
+<div class="error-page">
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+    <div class="floating-shape shape-4"></div>
+    <div class="geometric-shape triangle"></div>
+    <div class="geometric-shape square"></div>
+    <div class="geometric-shape circle"></div>
+    <div class="error-code-container">
+        <h1 class="error-code">404</h1>
+        <div class="error-icon">⚠️</div>
+    </div>
+    <h2 class="error-title">页面未找到</h2>
+    <p class="error-message">很抱歉，您访问的页面不存在或已被移动。请检查您输入的网址是否正确，或返回上一页继续浏览。</p>
+    <div class="error-actions">
+        <a href="javascript:history.back()" class="error-btn">返回上一页</a>
+    </div>
+    <div class="help-options">
+       <h3 class="help-title">需要帮助？</h3>
+       <p class="help-description">我们提供多种方式帮助您找到所需内容</p>
+       <div class="help-grid">
+           <a href="/" class="help-card">
+               <div class="help-icon">🏠</div>
+               <div class="help-content">
+                   <h4>返回首页</h4>
+                   <p>浏览我们的主页查找服务</p>
+               </div>
+           </a>
+           <a href="https://cloud.ogmiao.com/cart" class="help-card">
+               <div class="help-icon">🛒</div>
+               <div class="help-content">
+                   <h4>浏览产品</h4>
+                   <p>查看我们的产品和服务</p>
+               </div>
+           </a>
+           <a href="https://cloud.ogmiao.com/submitticket" class="help-card">
+               <div class="help-icon">🎫</div>
+               <div class="help-content">
+                   <h4>提交工单</h4>
+                   <p>获取技术支持和帮助</p>
+               </div>
+           </a>
+           <a href="mailto:ogmiao@outlook.com" class="help-card">
+               <div class="help-icon">📧</div>
+               <div class="help-content">
+                   <h4>发送邮件</h4>
+                   <p>ogmiao@outlook.com</p>
+               </div>
+           </a>
+       </div>
+    </div>
+    <div class="wave-container">
+        <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
+            <path d="M0,50 C150,100 350,0 500,50 C650,100 850,0 1000,50 C1150,100 1350,0 1440,50 L1440,100 L0,100 Z"></path>
+        </svg>
+    </div>
+</div>
+<script src="{$setting.web_view}/assets/js/404.js"></script>
+{include file="common/footer" /}
