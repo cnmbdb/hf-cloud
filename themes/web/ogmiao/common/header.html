@@ -35,7 +35,11 @@
 <div class="container">
   <nav>
       <a href="{$setting.web_url|default='/'}" class="logo-container nav-item-animate" style="animation-delay: 0.3s; text-decoration: none;" aria-label="{$setting.company_name}首页">
+          {if condition="$setting.logo_url_home"}
           <img src="{$setting.logo_url_home}" alt="{$setting.company_name}logo" class="logo-img" width="36" height="36">
+          {else /}
+          <img src="{$setting.web_view}/img/hfcloud-logo.png" alt="{$setting.company_name}logo" class="logo-img" width="36" height="36">
+          {/if}
       </a>
       <div class="nav-container responsive-nav">
           <ul class="nav-links">
