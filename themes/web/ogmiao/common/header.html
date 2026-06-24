@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://cloud.hfz.pw/themes/web/ogmiao/img/1.webp" as="image">
+<link rel="icon" href="https://cloud.hfz.pw/themes/web/ogmiao/img/1.ico">
+<link rel="apple-touch-icon" href="https://cloud.hfz.pw/themes/web/ogmiao/img/1.ico">
+<link rel="shortcut icon" href="https://cloud.hfz.pw/themes/web/ogmiao/img/1.ico">
+<link href="{$setting.web_view}/fonts/Poppins-Regular-Medium-SemiBold-Bold.css" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript>
+<link href="{$setting.web_view}/fonts/Poppins-Regular-Medium-SemiBold-Bold.css" rel="stylesheet">
+</noscript>
+<meta charset="UTF-8">
+<link rel="robots" href="https://cloud.hfz.pw/themes/web/ogmiao/robots.txt" type="text/plain">
+<meta name="author" content="HFCloud">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="{$canonical|default='https://cloud.hfz.pw/'}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="{$setting.web_view}/fonts/Poppins-Regular-Medium-SemiBold-Bold-ExtraBold.css" rel="stylesheet">
+<link rel="stylesheet" href="{$setting.web_view}/assets/css/header.css">
+{$head|raw|default=''}
+</head>
+<body>
+<div class="scroll-progress-container">
+<div class="scroll-progress-bar"></div>
+</div>
+<div class="page-transition"></div>
+<header class="header-animate">
+<div class="container">
+  <nav>
+      <a href="{$setting.web_url|default='/'}" class="logo-container nav-item-animate" style="animation-delay: 0.3s; text-decoration: none;" aria-label="{$setting.company_name}首页">
+          <img src="{$setting.logo_url_home}" alt="{$setting.company_name}logo" class="logo-img" width="36" height="36">
+      </a>
+      <div class="nav-container responsive-nav">
+          <ul class="nav-links">
+              <li class="nav-item-animate" style="animation-delay: 0.4s;"><a href="/" aria-current="page">首页</a></li>
+              <li class="nav-item-animate" style="animation-delay: 0.5s;"><a href="/cart" aria-label="查看产品列表">产品服务</a></li>
+              <li class="nav-item-animate" style="animation-delay: 0.6s;"><a href="/solutions.html">解决方案</a></li>
+              <li class="nav-item-animate" style="animation-delay: 0.7s;"><a href="/bt.html">宝塔面板</a></li>
+              <li class="nav-item-animate" style="animation-delay: 0.8s;"><a href="/partner.html">合作伙伴</a></li>
+              <li class="nav-item-animate" style="animation-delay: 0.9s;"><a href="/activity.html">活动中心</a></li>
+              <li class="nav-item-animate" style="animation-delay: 1.0s;"><a href="https://hfz.pw">关于我们</a></li>
+              {$nav_links|raw|default=''}
+          </ul>
+      </div>
+      <div class="nav-buttons nav-item-animate" style="animation-delay: 0.8s;">
+          <div class="nav-buttons-container">
+              <a href="/clientarea" class="btn-nav btn-login">用户中心</a>
+              <a href="/register" class="btn-nav btn-register">注册</a>
+          </div>
+      </div>
+      <div class="header-right-controls">
+          <button class="mobile-menu-btn nav-item-animate" style="animation-delay: 0.9s;" aria-expanded="false" aria-label="打开菜单">☰</button>
+      </div>
+  </nav>
+</div>
+<script src="{$setting.web_view}/assets/js/header.js"></script>
+</header>
+</body>
+</html>

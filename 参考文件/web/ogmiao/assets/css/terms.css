@@ -1,0 +1,125 @@
+.terms-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+  color: var(--dark);
+  line-height: 1.8;
+}
+.terms-header {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+.terms-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--primary);
+}
+.terms-header p {
+  font-size: 1.1rem;
+  color: var(--gray);
+  max-width: 700px;
+  margin: 0 auto;
+}
+.terms-header::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 3px;
+}
+.terms-section {
+  margin-bottom: 40px;
+}
+.terms-section h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--primary);
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(240, 138, 93, 0.2);
+}
+.terms-section h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 25px 0 15px;
+  color: var(--dark);
+}
+.terms-section p {
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+.terms-section ul,
+.terms-section ol {
+  margin-bottom: 20px;
+  padding-left: 25px;
+}
+.terms-section li {
+  margin-bottom: 10px;
+}
+.terms-section strong {
+  font-weight: 600;
+}
+.terms-section a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.terms-section a:hover {
+  text-decoration: underline;
+}
+.terms-footer {
+  text-align: center;
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.terms-footer p {
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+.terms-updated {
+  font-style: italic;
+  margin-top: 10px;
+}
+@media (max-width: 768px) {
+  .terms-header h1 {
+    font-size: 2rem;
+  }
+  .terms-header p {
+    font-size: 1rem;
+  }
+  .terms-section h2 {
+    font-size: 1.5rem;
+  }
+  .terms-section h3 {
+    font-size: 1.2rem;
+  }
+  .terms-section p,
+  .terms-section li {
+    font-size: 0.95rem;
+  }
+}
+@media (max-width: 480px) {
+  .terms-header h1 {
+    font-size: 1.8rem;
+  }
+  .terms-header p {
+    font-size: 0.9rem;
+  }
+  .terms-section h2 {
+    font-size: 1.3rem;
+  }
+  .terms-section h3 {
+    font-size: 1.1rem;
+  }
+  .terms-section p,
+  .terms-section li {
+    font-size: 0.9rem;
+  }
+}
