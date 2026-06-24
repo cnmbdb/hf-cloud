@@ -1,4 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("img[data-fallback-src]").forEach((img) => {
+    const fallbackSrc = img.getAttribute("data-fallback-src")
+    const applyFallback = () => {
+      if (fallbackSrc && img.getAttribute("src") !== fallbackSrc) {
+        img.setAttribute("src", fallbackSrc)
+      }
+    }
+
+    img.addEventListener("error", applyFallback, { once: true })
+
+    if (!img.getAttribute("src")) {
+      applyFallback()
+    }
+  })
+
   const pageTransition = document.querySelector(".page-transition")
   if (pageTransition) {
     requestAnimationFrame(() => {
