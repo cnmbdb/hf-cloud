@@ -337,10 +337,6 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
 <div class="auth-wrapper">
-	{if $Setting.login_header}
-	<div class="text-center w-100 mb-3">{$Setting.login_header}</div>
-	{/if}
-
 	<div class="auth-shell">
 		<section class="auth-card auth-animate-in">
 			<div class="auth-card-header">
@@ -472,10 +468,6 @@
 			</div>
 		</section>
 	</div>
-
-	{if $Setting.login_footer}
-	<div class="text-center w-100 mt-3">{$Setting.login_footer}</div>
-	{/if}
 </div>
 
 {if $Login.second_verify_action_home_login==1}
