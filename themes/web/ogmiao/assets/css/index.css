@@ -2562,13 +2562,13 @@ body.ogm-home .language-switcher {
 }
 
 body.ogm-home .language-toggle {
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   display: inline-grid;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.035);
   color: var(--color-pearl);
   cursor: pointer;
   transition: border-color 0.18s ease, background-color 0.18s ease, transform 0.18s ease;
@@ -2576,41 +2576,27 @@ body.ogm-home .language-toggle {
 
 body.ogm-home .language-toggle:hover,
 body.ogm-home .language-switcher.is-open .language-toggle {
-  border-color: rgba(255, 255, 255, 0.42);
-  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-body.ogm-home .language-globe {
-  position: relative;
-  width: 18px;
-  height: 18px;
+body.ogm-home .language-icon {
+  width: 19px;
+  height: 19px;
   display: block;
-  border: 1.8px solid currentColor;
-  border-radius: 50%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.86;
+  transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
-body.ogm-home .language-globe::before,
-body.ogm-home .language-globe::after {
-  content: "";
-  position: absolute;
-  inset: 3px;
-  border: 1.4px solid currentColor;
-  border-top: 0;
-  border-bottom: 0;
-  border-radius: 50%;
-}
-
-body.ogm-home .language-globe::after {
-  left: 2px;
-  right: 2px;
-  top: 50%;
-  bottom: auto;
-  height: 0;
-  border-left: 0;
-  border-right: 0;
-  border-top: 1.4px solid currentColor;
-  border-radius: 0;
-  transform: translateY(-50%);
+body.ogm-home .language-toggle:hover .language-icon,
+body.ogm-home .language-switcher.is-open .language-icon {
+  opacity: 1;
+  transform: scale(1.04);
 }
 
 body.ogm-home .language-menu {
