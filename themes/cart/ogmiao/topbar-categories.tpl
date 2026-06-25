@@ -1309,7 +1309,6 @@ to {
   </div>
 </div>
 <div class="firstgroup_box og-filter-section mb-3">
-<div class="firstgroup_box_prov mr-2">一级目录</div>
 <div class="firstgroup_box_group">
   {foreach $Cart.product_groups as $index=>$first} 
   {if $first.id==$Think.get.fid || (!$Think.get.fid && $index==0)}
@@ -1324,7 +1323,9 @@ to {
 </div>
 
 <div class="secondgroup_box og-filter-section mb-3">
-<div class="secondgroup_box_area mr-2">搜索产品</div>
+<button type="button" class="og-subcategory-toggle" aria-expanded="true">
+  <span>收起子类</span>
+</button>
 
 <div class="secondgroup_box_group">
 {foreach $cart_second as $index=>$secondItem}
@@ -1470,6 +1471,20 @@ to {
 $(function() {
 var webViewUrl = "/themes/cart/ogmiao";
 $('.secondgroup_box').insertAfter($('.firstgroup_item.active').first());
+$('.firstgroup_item.active').first().addClass('is-open');
+$('.firstgroup_item.active > a').on('click', function(event) {
+  event.preventDefault();
+  const $panel = $('.secondgroup_box');
+  const isClosed = $panel.hasClass('is-collapsed');
+  $panel.toggleClass('is-collapsed', !isClosed);
+  $(this).parent().toggleClass('is-open', isClosed);
+});
+$('.secondgroup_box').on('click', '.og-subcategory-toggle', function() {
+  const $panel = $(this).closest('.secondgroup_box');
+  const isClosed = !$panel.hasClass('children-collapsed');
+  $panel.toggleClass('children-collapsed', isClosed);
+  $(this).attr('aria-expanded', !isClosed).find('span').text(isClosed ? '展开子类' : '收起子类');
+});
 $('.firstgroup_box').append('<div class="toggle-btn"><i class="iconfont icon-arrow-down"></i></div>');
 $('.secondgroup_box').append('<div class="toggle-btn"><i class="iconfont icon-arrow-down"></i></div>');
 function optimizeCategoryItems() {

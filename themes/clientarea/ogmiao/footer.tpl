@@ -11,7 +11,6 @@
 			    <a href="#" id="hitokoto_text">获取一言中...</a><br>
 			    {/if}
 				&copy; {$Setting.company_name}.
-				{/if}
 			</div>
 			<div class="col-sm-6">
 				<div class="text-sm-right d-none d-sm-block">
@@ -21,6 +20,7 @@
 		</div>
 	</div>
 </footer>
+{/if}
 
 <script src="/themes/clientarea/default/assets/js/app.js?v={$Ver}"></script>
 {php}$hooks=hook('client_area_footer_output');{/php}
@@ -41,7 +41,6 @@ fetch('{if $CustomDepot.yangcube_hitokotoapi}{$CustomDepot.yangcube_hitokotoapi}
 })
 .catch(console.error)
 </script>
-{/if}
 {/if}
 </body>
 
