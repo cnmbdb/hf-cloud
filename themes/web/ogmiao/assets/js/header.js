@@ -43,6 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const pageTransition = document.querySelector(".page-transition")
+  const systemFlowContainer = document.querySelector("#system-flow .container")
+  if (systemFlowContainer) {
+    systemFlowContainer.scrollLeft = 0
+  }
+
   if (pageTransition) {
     requestAnimationFrame(() => {
       setTimeout(() => {
