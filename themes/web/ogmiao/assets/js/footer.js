@@ -42,7 +42,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initMobileNav()
   initBackToTop()
+  initFooterAccordions()
 })
+
+function initFooterAccordions() {
+  const groups = document.querySelectorAll(".hf-footer-group")
+  if (!groups.length) return
+
+  groups.forEach((group, index) => {
+    const heading = group.querySelector("h3")
+    if (!heading) return
+    heading.setAttribute("role", "button")
+    heading.setAttribute("tabindex", "0")
+    heading.setAttribute("aria-expanded", "false")
+
+    const toggleGroup = () => {
+      const isOpen = group.classList.toggle("is-open")
+      heading.setAttribute("aria-expanded", isOpen ? "true" : "false")
+    }
+
+    heading.addEventListener("click", toggleGroup)
+    heading.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault()
+        toggleGroup()
+      }
+    })
+  })
+}
 
 function initMobileNav() {
   const mobileNav = document.getElementById("mobileNav")

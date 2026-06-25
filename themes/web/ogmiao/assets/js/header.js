@@ -14,6 +14,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
 
+  const languageSwitcher = document.querySelector(".language-switcher")
+  const languageToggle = document.querySelector(".language-toggle")
+  if (languageSwitcher && languageToggle) {
+    languageToggle.addEventListener("click", (event) => {
+      event.preventDefault()
+      event.stopPropagation()
+      const isOpen = languageSwitcher.classList.toggle("is-open")
+      languageToggle.setAttribute("aria-expanded", isOpen ? "true" : "false")
+    })
+
+    languageSwitcher.querySelectorAll(".language-menu a").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        if (link.getAttribute("href") === "#") {
+          event.preventDefault()
+        }
+        languageSwitcher.classList.remove("is-open")
+        languageToggle.setAttribute("aria-expanded", "false")
+      })
+    })
+
+    document.addEventListener("click", (event) => {
+      if (!languageSwitcher.contains(event.target)) {
+        languageSwitcher.classList.remove("is-open")
+        languageToggle.setAttribute("aria-expanded", "false")
+      }
+    })
+  }
+
   const pageTransition = document.querySelector(".page-transition")
   if (pageTransition) {
     requestAnimationFrame(() => {
