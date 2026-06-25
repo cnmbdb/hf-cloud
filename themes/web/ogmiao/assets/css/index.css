@@ -2489,16 +2489,20 @@ body.ogm-home header nav {
     font-size: clamp(38px, 14vw, 54px);
   }
 
-  body.ogm-home .vc-actions {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  body.ogm-home .vc-hero .vc-actions {
+    width: auto;
+    display: flex;
+    justify-content: center;
     gap: 10px;
+    flex-wrap: nowrap;
   }
 
-  body.ogm-home .vc-btn {
-    width: 100%;
+  body.ogm-home .vc-hero .vc-btn {
+    width: auto;
     min-width: 0;
+    min-height: 36px;
+    padding: 9px 18px;
+    font-size: 14px;
     white-space: nowrap;
   }
 
@@ -2543,8 +2547,11 @@ body.ogm-home header nav {
 }
 
 @media (max-width: 390px) {
-  body.ogm-home .vc-actions {
-    grid-template-columns: 1fr;
+  body.ogm-home .vc-hero .vc-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
   }
 
   body.ogm-home .vc-hero h1 {
