@@ -1240,9 +1240,76 @@ to {
   </div>
 </div>
 
+<link rel="stylesheet" href="/themes/web/ogmiao/assets/css/header.css?v={$Ver}">
 <link rel="stylesheet" href="/themes/cart/ogmiao/assets/css/cart-shadcn.css?v={$Ver}">
-<div class="firstgroup_box mb-3">
-<div class="firstgroup_box_prov mr-2">{$Lang.select_ogmiao}</div>
+<header class="og-cart-header header-animate">
+  <div class="container">
+    <nav>
+      <a href="/" class="logo-container nav-item-animate" aria-label="{$Setting.company_name}首页">
+        {if $Setting.web_logo_home}
+        <img src="{$Setting.web_logo_home}" alt="{$Setting.company_name}logo" class="logo-img" onerror="this.onerror=null;this.src='/themes/web/ogmiao/img/hfcloud-logo.png';">
+        {else}
+        <span class="logo">{$Setting.company_name}</span>
+        {/if}
+      </a>
+      <div class="nav-container responsive-nav">
+        <ul class="nav-links">
+          <li><a href="/">首页</a></li>
+          <li><a href="/cart" aria-current="page">产品服务</a></li>
+          <li><a href="/solutions.html">解决方案</a></li>
+          <li><a href="/bt.html">宝塔面板</a></li>
+          <li><a href="/partner.html">合作伙伴</a></li>
+          <li><a href="/activity.html">活动中心</a></li>
+        </ul>
+      </div>
+      <div class="nav-buttons">
+        <div class="nav-buttons-container">
+          <div class="og-language-switcher">
+            <button type="button" class="og-language-toggle" aria-label="选择语言" aria-expanded="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="8.5"></circle>
+                <path d="M3.5 12h17"></path>
+                <path d="M12 3.5c2.4 2.35 3.55 5.18 3.55 8.5S14.4 18.15 12 20.5"></path>
+                <path d="M12 3.5C9.6 5.85 8.45 8.68 8.45 12S9.6 18.15 12 20.5"></path>
+              </svg>
+            </button>
+            <div class="og-language-menu" role="menu">
+              {php}
+                $parse = parse_url(request()->url());
+                $query = isset($parse['query']) ? $parse['query'] : '';
+                $query = preg_replace('/&?language=[a-zA-Z0-9_-]+/','',$query);
+                $query = trim($query, '&');
+              {/php}
+              {foreach $Language as $key=>$list}
+              <a href="?{if $query}{$query}&{/if}language={$key}" role="menuitem">
+                <span>{$list.display_name}</span>
+              </a>
+              {/foreach}
+            </div>
+          </div>
+          <a href="/clientarea" class="btn-nav btn-login">用户中心</a>
+          {if $Userinfo}
+          <a href="/logout" class="btn-nav btn-register">退出</a>
+          {else}
+          <a href="/login" class="btn-nav btn-register">登录</a>
+          {/if}
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<div class="og-cart-page">
+<aside class="og-cart-sidebar">
+<div class="og-sidebar-card">
+<div class="og-sidebar-head">
+  <span>产品目录</span>
+  <div class="search-bar og-sidebar-search">
+    <input type="text" class="form-control" id="area-search" placeholder="搜索产品...">
+    <i class="fas fa-search"></i>
+  </div>
+</div>
+<div class="firstgroup_box og-filter-section mb-3">
+<div class="firstgroup_box_prov mr-2">一级目录</div>
 <div class="firstgroup_box_group">
   {foreach $Cart.product_groups as $index=>$first} 
   {if $first.id==$Think.get.fid || (!$Think.get.fid && $index==0)}
@@ -1256,22 +1323,8 @@ to {
 </div>
 </div>
 
-<!-- 新设计标签筛选板块 -->
-<div class="tag-filter_box mb-3" style="width:100%;display:flex;align-items:flex-start;gap:10px;position:relative;overflow:visible;z-index:2;background:#fff;box-shadow:0 4px 15px 1px rgba(240,138,93,0.1);border-radius:10px;padding:12px 15px;border:1px solid #ececec;">
-  <span class="tag-filter-title" style="font-weight:600;color:var(--primary);font-size:14px;white-space:nowrap;flex-shrink:0;min-width:80px;display:inline-block;margin-right:10px;">标签筛选</span>
-  <div class="tag-filter-group" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;width:100%;"></div>
-</div>
-
-<div class="secondgroup_box mb-3">
-<div class="secondgroup_box_area mr-2">{$Lang.select_area}</div>
-
-<!-- 添加搜索框 -->
-<div class="search-bar mb-2" style="width:100%;position:relative;">
-  <input type="text" class="form-control" id="area-search" 
-         placeholder="搜索地区..." 
-         style="padding-right:30px;border-radius:6px;border:1px solid #ced1e2;">
-  <i class="fas fa-search" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--gray);"></i>
-</div>
+<div class="secondgroup_box og-filter-section mb-3">
+<div class="secondgroup_box_area mr-2">搜索产品</div>
 
 <div class="secondgroup_box_group">
 {foreach $cart_second as $index=>$secondItem}
@@ -1410,10 +1463,13 @@ to {
 {/foreach}
 </div>
 </div>
+</div>
+</aside>
 
 <script>
 $(function() {
 var webViewUrl = "/themes/cart/ogmiao";
+$('.secondgroup_box').insertAfter($('.firstgroup_item.active').first());
 $('.firstgroup_box').append('<div class="toggle-btn"><i class="iconfont icon-arrow-down"></i></div>');
 $('.secondgroup_box').append('<div class="toggle-btn"><i class="iconfont icon-arrow-down"></i></div>');
 function optimizeCategoryItems() {

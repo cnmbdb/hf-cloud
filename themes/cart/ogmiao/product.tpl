@@ -1,5 +1,15 @@
 {include file="cart/ogmiao/topbar-categories"}
-<div class="firstgroup_box product-headline mb-3">
+<section class="og-cart-main">
+<div class="og-cart-notice-card">
+  <div class="og-notice-icon"><i class="fas fa-exclamation-triangle"></i></div>
+  <div class="og-notice-copy">
+    <h2>重要服务使用须知</h2>
+    <p><strong>禁止用途：</strong>本服务严禁用于任何非法活动，包括但不限于垃圾邮件发送、未授权扫描、分布式拒绝服务攻击、挖矿等。</p>
+    <p><strong>退款政策：</strong>不同产品有不同退款要求和计算方式，建议打开商品标题中的链接或发工单咨询。</p>
+    <a href="{$Setting.web_tos_url}" target="_blank">查看完整用户条款</a>
+  </div>
+</div>
+<div class="product-headline mb-3">
 <div class="firstgroup_box_prov mr-2">商品标题</div>
 <div class="firstgroup_box_group">
   {if $Get.keywords /}
@@ -739,6 +749,8 @@ animation: productAppear 0.6s forwards;
   </div>
   {/if}
 </div>
+</div>
+</section>
 </div>
 
 <script>
