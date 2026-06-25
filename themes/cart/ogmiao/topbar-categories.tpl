@@ -1240,6 +1240,7 @@ to {
   </div>
 </div>
 
+<link rel="stylesheet" href="/themes/cart/ogmiao/assets/css/cart-shadcn.css?v={$Ver}">
 <div class="firstgroup_box mb-3">
 <div class="firstgroup_box_prov mr-2">{$Lang.select_ogmiao}</div>
 <div class="firstgroup_box_group">
