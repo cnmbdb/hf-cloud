@@ -2241,8 +2241,9 @@ body.ogm-home header nav {
   body.ogm-home header nav {
     width: 100% !important;
     max-width: 100% !important;
+    position: relative !important;
     min-height: 64px !important;
-    grid-template-columns: max-content minmax(0, 1fr) 0 max-content;
+    grid-template-columns: max-content minmax(0, 1fr);
     gap: 14px;
     padding-top: 6px !important;
     padding-bottom: 6px !important;
@@ -2271,11 +2272,17 @@ body.ogm-home header nav {
   }
 
   body.ogm-home .header-right-controls {
+    position: absolute !important;
+    top: 50% !important;
+    right: 0 !important;
+    z-index: 140;
+    width: 40px;
+    height: 40px;
     display: flex !important;
-    justify-content: flex-end;
-    align-items: center;
-    justify-self: end;
+    align-items: center !important;
+    justify-content: center !important;
     min-width: 40px;
+    transform: translateY(-50%) !important;
   }
 
   body.ogm-home .mobile-menu-btn {
@@ -2287,11 +2294,11 @@ body.ogm-home header nav {
     background: rgba(255, 255, 255, 0.06);
     color: #fff;
     line-height: 1;
-    transform: translateY(4px) !important;
+    transform: none !important;
   }
 
   body.ogm-home .mobile-menu-btn.active {
-    transform: translateY(4px) rotate(90deg) !important;
+    transform: rotate(90deg) !important;
     border-color: rgba(255, 255, 255, 0.34);
     background: rgba(255, 255, 255, 0.1);
   }
