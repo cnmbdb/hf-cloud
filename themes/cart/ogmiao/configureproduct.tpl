@@ -640,6 +640,72 @@
 	}
 
 </style>
+<link rel="stylesheet" href="/themes/web/ogmiao/assets/css/header.css?v={$Ver}">
+<link rel="stylesheet" href="/themes/cart/ogmiao/assets/css/cart-shadcn.css?v={$Ver}">
+<header class="og-cart-header header-animate">
+  <div class="container">
+    <nav>
+      <a href="/" class="logo-container nav-item-animate" aria-label="{$Setting.company_name}首页">
+        {if $Setting.web_logo_home}
+        <img src="{$Setting.web_logo_home}" alt="{$Setting.company_name}logo" class="logo-img" onerror="this.onerror=null;this.src='/themes/web/ogmiao/img/hfcloud-logo.png';">
+        {else}
+        <span class="logo">{$Setting.company_name}</span>
+        {/if}
+      </a>
+      <div class="nav-container responsive-nav">
+        <ul class="nav-links">
+          <li><a href="/">首页</a></li>
+          <li><a href="/cart" aria-current="page">产品服务</a></li>
+          <li><a href="/solutions.html">解决方案</a></li>
+          <li><a href="/bt.html">宝塔面板</a></li>
+          <li><a href="/partner.html">合作伙伴</a></li>
+          <li><a href="/activity.html">活动中心</a></li>
+        </ul>
+      </div>
+      <div class="nav-buttons">
+        <div class="nav-buttons-container">
+          <div class="og-language-switcher">
+            <button type="button" class="og-language-toggle" aria-label="选择语言" aria-expanded="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="8.5"></circle>
+                <path d="M3.5 12h17"></path>
+                <path d="M12 3.5c2.4 2.35 3.55 5.18 3.55 8.5S14.4 18.15 12 20.5"></path>
+                <path d="M12 3.5C9.6 5.85 8.45 8.68 8.45 12S9.6 18.15 12 20.5"></path>
+              </svg>
+            </button>
+            <div class="og-language-menu" role="menu">
+              {php}
+                $parse = parse_url(request()->url());
+                $query = isset($parse['query']) ? $parse['query'] : '';
+                $query = preg_replace('/&?language=[a-zA-Z0-9_-]+/','',$query);
+                $query = trim($query, '&');
+              {/php}
+              {foreach $Language as $key=>$list}
+              <a href="?{if $query}{$query}&{/if}language={$key}" role="menuitem">
+                <span>{$list.display_name}</span>
+              </a>
+              {/foreach}
+            </div>
+          </div>
+          <a href="/clientarea" class="btn-nav btn-login">用户中心</a>
+          {if $Userinfo}
+          <a href="/logout" class="btn-nav btn-register">退出</a>
+          {else}
+          <a href="/login" class="btn-nav btn-register">登录</a>
+          {/if}
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<div class="og-config-page">
+  <div class="og-config-head">
+    <a href="/cart{if $Get.site}?site={$Get.site}{/if}" class="og-config-back">返回产品</a>
+    <div>
+      <h1>产品配置</h1>
+      <p>{$CartConfig.product.name}</p>
+    </div>
+  </div>
 {if isset($Get.i)}
 <form id="addCartForm" method="post" class="needs-validation configoption_form" novalidate
 	action="?action=configureproduct&pid={$CartConfig.product.id}&pos[]={$Think.get.i}">
@@ -1110,6 +1176,7 @@
 			</div>
 		</div>
 	</form>
+</div>
 
 	<!-- 移动端抽屉 -->
 	<div class="drawer-backdrop"></div>
