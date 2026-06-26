@@ -1099,7 +1099,7 @@ body,
   border-radius: 10px !important;
   box-shadow: none !important;
   color: var(--og-foreground) !important;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .og-config-page .card + .card {
@@ -1174,6 +1174,7 @@ body,
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  overflow: visible !important;
 }
 
 .og-config-page .btn-group-toggle .btn,
@@ -1191,6 +1192,8 @@ body,
   color: var(--og-foreground) !important;
   box-shadow: none !important;
   transform: none !important;
+  position: relative;
+  overflow: visible !important;
 }
 
 .og-config-page .btn-group-toggle .btn:hover,
@@ -1215,10 +1218,18 @@ body,
 }
 
 .cycle-select-discount {
-  top: -8px !important;
-  right: -6px !important;
+  top: -12px !important;
+  right: -8px !important;
+  z-index: 5;
+  min-width: 38px;
+  height: 18px !important;
+  padding: 0 7px !important;
   background: var(--og-destructive) !important;
   border-radius: 999px !important;
+  color: #fff !important;
+  line-height: 18px !important;
+  white-space: nowrap;
+  box-shadow: 0 0 0 2px var(--og-card);
 }
 
 .og-config-page input[type='range'] {
@@ -1249,12 +1260,45 @@ body,
 
 .summary-card .card-body,
 .summary-drawer .card-body {
+  background: #000 !important;
   color: var(--og-muted-foreground);
 }
 
 .configoption_total,
 .configoption_total * {
   color: inherit;
+}
+
+.summary-card .configoption_total,
+.summary-card .configoption_total .table,
+.summary-card .configoption_total table,
+.summary-card .configoption_total thead,
+.summary-card .configoption_total tbody,
+.summary-card .configoption_total tr,
+.summary-card .configoption_total td,
+.summary-card .configoption_total th,
+.summary-drawer .configoption_total,
+.summary-drawer .configoption_total .table,
+.summary-drawer .configoption_total table,
+.summary-drawer .configoption_total thead,
+.summary-drawer .configoption_total tbody,
+.summary-drawer .configoption_total tr,
+.summary-drawer .configoption_total td,
+.summary-drawer .configoption_total th {
+  background: #000 !important;
+  border-color: var(--og-border) !important;
+}
+
+.summary-card .configoption_total,
+.summary-drawer .configoption_total {
+  padding: 0 !important;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.summary-card .configoption_total table,
+.summary-drawer .configoption_total table {
+  margin-bottom: 0 !important;
 }
 
 .summary-card .btn,
