@@ -142,7 +142,7 @@ body[data-topbar="dark"] .user-center_header {
 
 /* ===== Left sidebar (shadcn Sidebar) ===== */
 body[data-sidebar="dark"] .vertical-menu {
-  background-color: hsl(var(--card));
+  background-color: hsl(var(--card)) !important;
   border-right: 1px solid hsl(var(--border));
   width: 250px;
   transition: width .25s ease;
@@ -156,7 +156,7 @@ body[data-sidebar="dark"] #side-menu > li { margin-bottom: 2px; }
 
 body[data-sidebar="dark"] #side-menu a,
 body[data-sidebar="dark"] .metismenu a {
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--muted-foreground)) !important;
   border-radius: calc(var(--radius) - 2px);
   padding: 9px 12px;
   font-size: 14px;
@@ -166,8 +166,14 @@ body[data-sidebar="dark"] .metismenu a {
 
 body[data-sidebar="dark"] #side-menu a:hover,
 body[data-sidebar="dark"] .metismenu a:hover {
-  background-color: hsl(var(--accent));
-  color: hsl(var(--foreground));
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+body[data-sidebar="dark"] #side-menu a.active,
+body[data-sidebar="dark"] .metismenu a.active {
+  background-color: hsl(var(--secondary)) !important;
+  color: hsl(var(--primary)) !important;
 }
 
 body[data-sidebar="dark"] #side-menu a.mm-active,
