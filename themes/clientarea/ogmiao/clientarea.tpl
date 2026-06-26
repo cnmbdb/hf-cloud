@@ -2389,6 +2389,207 @@ thead th {
   min-height: 190px;
 }
 
+/* Header and sidebar refinements: keep navigation as dark ghost controls, not primary buttons. */
+#page-topbar {
+  background: #000 !important;
+  border-bottom: 1px solid #18181b !important;
+  box-shadow: none !important;
+  min-height: 64px !important;
+}
+
+#page-topbar .navbar-header {
+  align-items: center !important;
+  background: #000 !important;
+  min-height: 64px !important;
+  padding: 0 16px !important;
+}
+
+#page-topbar .btn.header-item,
+#page-topbar .header-item,
+#page-topbar .noti-icon {
+  align-items: center !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  color: #d4d4d8 !important;
+  display: inline-flex !important;
+  height: 40px !important;
+  justify-content: center !important;
+  margin: 0 4px !important;
+  min-width: 40px !important;
+  padding: 0 10px !important;
+  width: auto !important;
+}
+
+#page-topbar .btn.header-item:hover,
+#page-topbar .header-item:hover,
+#page-topbar .noti-icon:hover {
+  background: #09090b !important;
+  border-color: #27272a !important;
+  color: #fafafa !important;
+}
+
+#vertical-menu-btn {
+  background: #09090b !important;
+  border-color: #27272a !important;
+  color: #fafafa !important;
+  width: 40px !important;
+}
+
+#page-topbar .noti-icon i,
+#page-topbar .header-item i,
+#page-topbar .header-item a,
+#page-topbar .header-item span {
+  color: #d4d4d8 !important;
+  line-height: 1 !important;
+}
+
+#page-topbar .noti-icon i {
+  margin-top: 0 !important;
+}
+
+#page-header-user-dropdown {
+  gap: 8px !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+#page-header-user-dropdown .user-center_header {
+  background: #18181b !important;
+  border: 1px solid #27272a !important;
+  box-shadow: none !important;
+  color: #fafafa !important;
+}
+
+#header-lang-img {
+  display: block;
+}
+
+#page-topbar .dropdown-menu {
+  background: #09090b !important;
+  border: 1px solid #27272a !important;
+  border-radius: 8px !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35) !important;
+  padding: 6px !important;
+}
+
+#page-topbar .dropdown-item {
+  border-radius: 6px !important;
+  color: #d4d4d8 !important;
+}
+
+#page-topbar .dropdown-item:hover {
+  background: #18181b !important;
+  color: #fafafa !important;
+}
+
+.vertical-menu {
+  background: #000 !important;
+  border-right: 1px solid #18181b !important;
+}
+
+#sidebar-menu {
+  padding-top: 12px !important;
+}
+
+#sidebar-menu ul li a {
+  border-radius: 0 !important;
+  color: #a1a1aa !important;
+  margin: 0 !important;
+}
+
+#sidebar-menu ul li a i {
+  color: #71717a !important;
+}
+
+#sidebar-menu ul li a:hover,
+#sidebar-menu ul li.mm-active > a,
+#sidebar-menu ul li a.active {
+  background: #09090b !important;
+  color: #fafafa !important;
+}
+
+#sidebar-menu ul li a:hover i,
+#sidebar-menu ul li.mm-active > a i,
+#sidebar-menu ul li a.active i {
+  color: #fafafa !important;
+}
+
+/* Resource table footer and dynamic list fragments. */
+#sourceListBox .table-responsive,
+#sourceListBox .table-container,
+#sourceListBox .table-footer,
+#sourceListBox .table-tools,
+#sourceListBox .table-pagination,
+#sourceListBox .table-pageinfo,
+#sourceListBox .pagination,
+.table-footer,
+.table-tools,
+.table-pagination,
+.table-pageinfo {
+  background: #09090b !important;
+  border-color: #27272a !important;
+  color: #a1a1aa !important;
+}
+
+#sourceListBox .table-footer,
+.table-footer {
+  align-items: center !important;
+  border-top: 1px solid #27272a !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  padding: 12px !important;
+}
+
+#sourceListBox .table-pageinfo span,
+.table-pageinfo span {
+  color: #a1a1aa !important;
+}
+
+#limitSel,
+.table-pageinfo select {
+  background: #000 !important;
+  border: 1px solid #27272a !important;
+  border-radius: 6px !important;
+  color: #fafafa !important;
+  height: 36px !important;
+  min-width: 56px !important;
+  padding: 0 8px !important;
+}
+
+#sourceListBox .page-link,
+#sourceListBox .pagination .page-link,
+.pagination.pagination-sm .page-link {
+  align-items: center !important;
+  background: #09090b !important;
+  border: 1px solid #27272a !important;
+  border-radius: 6px !important;
+  color: #fafafa !important;
+  display: inline-flex !important;
+  height: 34px !important;
+  justify-content: center !important;
+  margin-left: 6px !important;
+  min-width: 34px !important;
+  padding: 0 10px !important;
+}
+
+#sourceListBox .page-item.active .page-link,
+.pagination.pagination-sm .page-item.active .page-link {
+  background: #fafafa !important;
+  border-color: #fafafa !important;
+  color: #09090b !important;
+}
+
+.welcome-card [style*="background-color: white"],
+.welcome-card [style*="background-color: #fff"],
+.welcome-card [style*="background-color:#fff"] {
+  background: #09090b !important;
+  border: 1px solid #27272a !important;
+  box-shadow: none !important;
+  color: #fafafa !important;
+}
+
 @media (max-width: 767px) {
   html,
   body {
@@ -2466,6 +2667,37 @@ thead th {
   .btn-primary,
   .view-more-link {
     justify-content: center !important;
+    width: 100% !important;
+  }
+
+  #page-topbar .navbar-header {
+    padding: 0 10px !important;
+  }
+
+  #page-topbar .btn.header-item,
+  #page-topbar .header-item,
+  #page-topbar .noti-icon {
+    height: 38px !important;
+    min-width: 38px !important;
+    padding: 0 8px !important;
+  }
+
+  #page-header-user-dropdown {
+    max-width: 130px !important;
+  }
+
+  #sourceListBox .table-footer,
+  .table-footer {
+    align-items: stretch !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  #sourceListBox .table-pagination,
+  .table-pagination {
+    align-items: center !important;
+    display: flex !important;
+    justify-content: space-between !important;
     width: 100% !important;
   }
 }
