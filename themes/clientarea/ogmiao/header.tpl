@@ -162,56 +162,10 @@
 					</a>
 				</div>
 
-				<!-- 个人中心 -->
-				{if $Userinfo}
-				<div class="dropdown d-inline-block">
-					<button type="button" class="btn header-item waves-effect d-inline-flex align-items-center"
-						id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						{if $Userinfo.user.qq}
-						<img src="https://q1.qlogo.cn/g?b=qq&nk={$Userinfo.user.qq}&s=640" class="user-center_header d-inline-flex" style="display: inline-block;width: 30px;height: 30px;font-size: 16px;" alt="user qq avatar">
-						{else}
-						<div class="user-center_header d-inline-flex align-items-center justify-content-center"
-							style="display: inline-block;width: 30px;height: 30px;font-size: 16px;">
-							{if preg_match("/^[0-9]*[A-Za-z]+$/is", substr($Userinfo.user.username,0,1))} 
-							  {$Userinfo.user.username|substr=0,1|upper} 
-							{elseif preg_match("/^[\x7f-\xff]*$/", substr($Userinfo.user.username,0,3))} 
-							  {$Userinfo.user.username|substr=0,3}
-							{else}
-							  {$Userinfo.user.username|substr=0,1|upper} 
-							{/if}
-						</div>
-						{/if}
-						<span class="d-none d-xl-inline-block ml-1" key="t-henry">{$Userinfo.user.username}</span>
-						<i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
-					</button>
-					<div class="dropdown-menu dropdown-menu-right">
-						<!-- item-->
-						<a class="dropdown-item" href="details">
-							<i class="bx bxs-user-detail font-size-16 align-middle mr-1"></i>
-							<span key="t-profile">{$Lang.personal_information}</span>
-						</a>
-						<a class="dropdown-item" href="security">
-							<i class="bx bx-cog font-size-16 align-middle mr-1"></i>
-							<span key="t-profile">{$Lang.security_center}</span>
-						</a>
-						<a class="dropdown-item" href="message">
-							<i class="bx bxl-messenger font-size-16 align-middle mr-1"></i>
-							<span key="t-profile">{$Lang.message_center}</span>
-						</a>
-						{if $Setting.certifi_open==1}
-						<a class="dropdown-item" href="verified"> 
-							<i class="bx bxs-id-card font-size-16 align-middle mr-1"></i>
-							<span key="t-profile">{$Lang.real_name_authentications}</span>
-						</a>
-						{/if}
-						<a class="dropdown-item text-danger" href="logout"><i
-								class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> <span
-								key="t-logout">{$Lang.log_out}</span></a>
-					</div>
-				</div>
-				{else}
-				<div class="pointer d-flex align-items-center">
-					<a href="/login" class="text-dark">{$Lang.please_login}</a>
+				<!-- 登录提示 (仅限未登录用户) -->
+				{if !$Userinfo}
+				<div class="pointer d-flex align-items-center ml-2">
+					<a href="/login" class="btn btn-sm btn-outline-primary header-login-btn">{$Lang.please_login|default='请登录'}</a>
 				</div>
 				{/if}
 
