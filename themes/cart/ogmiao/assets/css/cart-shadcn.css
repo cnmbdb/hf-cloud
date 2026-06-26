@@ -1671,10 +1671,115 @@ body,
   color: var(--og-foreground);
 }
 
-.og-checkout-page .modal-content {
-  background: var(--og-card);
-  border: 1px solid var(--og-border);
-  color: var(--og-foreground);
+.modal-backdrop.show {
+  opacity: .78 !important;
+  background: #000 !important;
+}
+
+#customModal .modal-dialog {
+  max-width: 520px;
+}
+
+#customModal .modal-content {
+  background: var(--og-card) !important;
+  border: 1px solid var(--og-border) !important;
+  border-radius: 10px !important;
+  color: var(--og-foreground) !important;
+  box-shadow: 0 24px 80px rgba(0,0,0,.58) !important;
+  overflow: hidden;
+}
+
+#customModal .modal-header,
+#customModal .modal-footer {
+  background: var(--og-card) !important;
+  border-color: var(--og-border) !important;
+  padding: 18px 20px !important;
+}
+
+#customModal .modal-title {
+  color: var(--og-foreground) !important;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+#customModal .close {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: -5px -7px -5px auto !important;
+  padding: 0 !important;
+  border: 1px solid transparent !important;
+  border-radius: 6px;
+  color: var(--og-muted-foreground) !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+  transition: background-color .16s ease, color .16s ease, border-color .16s ease;
+}
+
+#customModal .close:hover {
+  background: rgba(255,255,255,.08) !important;
+  border-color: var(--og-border) !important;
+  color: var(--og-foreground) !important;
+}
+
+#customModal .modal-body {
+  min-height: 86px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px !important;
+  background: #000 !important;
+  color: var(--og-foreground) !important;
+  border-top: 1px solid var(--og-border);
+  border-bottom: 1px solid var(--og-border);
+}
+
+#customModal .modal-body,
+#customModal .modal-body * {
+  color: var(--og-foreground) !important;
+}
+
+#customModal .modal-body .fa,
+#customModal .modal-body .fas,
+#customModal .modal-body .mdi,
+#customModal .modal-body i {
+  color: #f59e0b !important;
+}
+
+#customModal .modal-footer {
+  gap: 10px;
+}
+
+#customModal .modal-footer .btn {
+  min-width: 74px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 !important;
+  border-radius: 6px !important;
+  font-weight: 800;
+  box-shadow: none !important;
+}
+
+#customModal .btn-outline-light {
+  background: transparent !important;
+  border: 1px solid var(--og-border) !important;
+  color: var(--og-foreground) !important;
+}
+
+#customModal .btn-outline-light:hover {
+  background: rgba(255,255,255,.08) !important;
+}
+
+#customModal .btn-primary,
+#customModal #customSureBtn {
+  background: var(--og-foreground) !important;
+  border-color: var(--og-foreground) !important;
+  color: var(--og-background) !important;
 }
 
 @media (max-width: 1199px) {
