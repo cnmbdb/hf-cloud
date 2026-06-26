@@ -28,7 +28,8 @@
     }
 </style>
 </head>
-<body>
+
+<body data-topbar="dark" data-sidebar="dark">
 	{if $TplName != 'login' && $TplName != 'register' && $TplName != 'pwreset' && $TplName != 'bind' && $TplName != 'loginaccesstoken' }
 	<header id="page-topbar">
 		<div class="navbar-header">
