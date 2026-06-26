@@ -229,13 +229,13 @@ function initBalanceChart() {
         rich: {
           a: {
             fontSize: 16,
-            color: '#f08a5d',
+            color: '#fafafa',
             fontWeight: 600,
             padding: [0, 0, 5, 0]
           },
           c: {
             fontSize: 12,
-            color: '#2d3436',
+            color: '#a1a1aa',
             padding: [5, 0]
           }
         }
@@ -260,9 +260,9 @@ function initBalanceChart() {
           show: true,
           lineStyle: {
             color: [
-              [0, '#f08a5d'],
-              [percentage, '#f08a5d'],
-              [1, '#efefef']
+              [0, '#fafafa'],
+              [percentage, '#fafafa'],
+              [1, '#27272a']
             ],
             width: 9
           }
@@ -2129,5 +2129,344 @@ weight: 600; padding: 4px 10px; border-radius: 12px; transition: all 0.3s ease; 
 .dark .mobile-quick-nav {
   background-color: #1a1a1a !important;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* shadcn-style dark clientarea overrides */
+:root {
+  --primary: #fafafa;
+  --primary-dark: #e5e5e5;
+  --secondary: #a1a1aa;
+  --muted: #18181b;
+  --border: #27272a;
+  --background: #000;
+  --foreground: #fafafa;
+}
+
+html,
+body,
+.main-content,
+.page-content,
+.container-fluid {
+  background: #000 !important;
+  color: #fafafa !important;
+}
+
+.page-content {
+  min-height: 100vh;
+}
+
+#page-topbar,
+.navbar-header,
+.vertical-menu,
+.navbar-brand-box,
+.mm-active,
+#sidebar-menu,
+#sidebar-menu ul li a {
+  background: #000 !important;
+  color: #d4d4d8 !important;
+  border-color: #27272a !important;
+}
+
+#sidebar-menu ul li a:hover,
+#sidebar-menu ul li.mm-active > a,
+#sidebar-menu ul li a.active {
+  background: #09090b !important;
+  color: #fafafa !important;
+}
+
+.card,
+.welcome-card,
+.asset-card,
+.todo-card,
+#sourceListBox,
+.user-center_product,
+.news-card,
+.empty-news,
+.empty-instances,
+.todo-item,
+.todo-status,
+.todo-status-completed,
+.todo-status-pending {
+  background: #09090b !important;
+  border: 1px solid #27272a !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  color: #fafafa !important;
+}
+
+.card-body {
+  background: transparent !important;
+  color: #fafafa !important;
+}
+
+.decoration,
+.news-hover-effect,
+.welcome-card img[alt="橘喵云吉祥物"] {
+  display: none !important;
+}
+
+.card-title,
+.instances-title,
+h1,
+h2,
+h3,
+h4,
+h5,
+.product-name,
+.news-title,
+.todo-title,
+.todo-status-text,
+.text-black-80,
+.text-dark,
+[style*="color: #2d3436"],
+[style*="color:#2d3436"] {
+  color: #fafafa !important;
+}
+
+p,
+span,
+label,
+.product-count,
+.news-category,
+.news-time,
+.todo-description,
+.text-black-50,
+[style*="color: #636e72"],
+[style*="color:#636e72"],
+[style*="color: #888"],
+[style*="color:#888"] {
+  color: #a1a1aa !important;
+}
+
+.card-title::after,
+.instances-title::after {
+  background: #fafafa !important;
+}
+
+.btn,
+.btn-primary,
+.view-more-link {
+  background: #fafafa !important;
+  border: 1px solid #fafafa !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  color: #09090b !important;
+  font-weight: 500 !important;
+}
+
+.btn:hover,
+.btn-primary:hover,
+.view-more-link:hover {
+  background: #e5e5e5 !important;
+  border-color: #e5e5e5 !important;
+  color: #09090b !important;
+  transform: none !important;
+}
+
+a,
+a:hover,
+.quick-nav-item:hover,
+.news-read-more,
+[style*="color: #f08a5d"],
+[style*="color:#f08a5d"] {
+  color: #fafafa !important;
+}
+
+.product-icon,
+.product-arrow,
+.todo-icon,
+.todo-arrow,
+.todo-check,
+.news-date,
+.badge,
+[style*="background-color: rgba(240, 138, 93"],
+[style*="background-color:#f08a5d"],
+[style*="background-color: #f08a5d"],
+[style*="background: linear-gradient(135deg, #f08a5d"] {
+  background: #18181b !important;
+  border: 1px solid #27272a !important;
+  box-shadow: none !important;
+  color: #fafafa !important;
+}
+
+.badge-success,
+.todo-completed .todo-icon,
+.todo-status-completed,
+.todo-check {
+  background: rgba(34, 197, 94, 0.12) !important;
+  border-color: rgba(34, 197, 94, 0.32) !important;
+  color: #86efac !important;
+}
+
+.badge-dark,
+.todo-warning,
+.todo-status-pending,
+.todo-warning .todo-icon,
+.todo-warning .todo-arrow {
+  background: rgba(250, 204, 21, 0.10) !important;
+  border-color: rgba(250, 204, 21, 0.28) !important;
+  color: #fde68a !important;
+}
+
+.product-count,
+.todo-count {
+  background: #18181b !important;
+  border: 1px solid #27272a !important;
+  border-radius: 9999px !important;
+  color: #fafafa !important;
+}
+
+.form-control,
+.custom-select,
+input,
+select {
+  background: #000 !important;
+  border: 1px solid #27272a !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  color: #fafafa !important;
+}
+
+.form-control::placeholder,
+input::placeholder {
+  color: #71717a !important;
+}
+
+.table,
+table,
+thead,
+tbody,
+tr,
+td,
+th {
+  background: #09090b !important;
+  border-color: #27272a !important;
+  color: #fafafa !important;
+}
+
+.table thead th,
+thead th {
+  background: #18181b !important;
+  color: #d4d4d8 !important;
+}
+
+.pagination .page-link,
+.page-link {
+  background: #09090b !important;
+  border-color: #27272a !important;
+  color: #fafafa !important;
+}
+
+.pagination .active .page-link,
+.page-item.active .page-link {
+  background: #fafafa !important;
+  border-color: #fafafa !important;
+  color: #09090b !important;
+}
+
+.mobile-quick-nav {
+  background: #09090b !important;
+  border-top: 1px solid #27272a !important;
+  box-shadow: none !important;
+}
+
+.quick-nav-item,
+.quick-nav-item i,
+.quick-nav-item span {
+  color: #d4d4d8 !important;
+}
+
+.card:hover,
+.user-center_product:hover,
+.news-card:hover,
+.todo-warning:hover {
+  background: #18181b !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+#balanceCharts {
+  min-height: 190px;
+}
+
+@media (max-width: 767px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .page-content {
+    padding: 12px 0 76px !important;
+  }
+
+  .container-fluid {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .row {
+    margin-left: -6px !important;
+    margin-right: -6px !important;
+  }
+
+  .row > [class*="col-"],
+  .row > section {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+
+  .card,
+  .welcome-card,
+  .asset-card,
+  .todo-card {
+    margin-bottom: 12px !important;
+  }
+
+  .card-body {
+    padding: 16px !important;
+  }
+
+  .user-center_product_grid,
+  .news-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .user-center_product,
+  .news-card,
+  .todo-item {
+    padding: 12px !important;
+  }
+
+  .empty-instances-content,
+  .asset-card .d-flex.h100p,
+  .welcome-card [style*="justify-content: space-around"] {
+    align-items: stretch !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .asset-card .d-flex.h100p .flex1,
+  .welcome-card [style*="justify-content: space-around"] > * {
+    width: 100% !important;
+  }
+
+  .todo-description,
+  .product-name,
+  .news-title {
+    height: auto !important;
+    overflow-wrap: anywhere !important;
+    white-space: normal !important;
+  }
+
+  .btn,
+  .btn-primary,
+  .view-more-link {
+    justify-content: center !important;
+    width: 100% !important;
+  }
 }
 </style>
