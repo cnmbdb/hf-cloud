@@ -1,137 +1,309 @@
-/* shadcn-style dark theme tokens for ogmiao clientarea navigation */
+/* === shadcn sidebar dark theme — ogmiao clientarea === */
+/* tokens ref: https://ui.shadcn.com/docs/components/sidebar */
+
 :root {
   --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
+  --foreground: 240 5.9% 10%;
   --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
+  --card-foreground: 240 5.9% 10%;
   --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-  --primary: 0 0% 9%;
+  --popover-foreground: 240 5.9% 10%;
+  --primary: 240 5.9% 10%;
   --primary-foreground: 0 0% 98%;
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
-  --accent: 210 40% 90%;
-  --accent-foreground: 222.2 47.4% 11.2%;
+  --secondary: 240 4.8% 96%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 96%;
+  --muted-foreground: 240 3.8% 46%;
+  --accent: 240 4.8% 96%;
+  --accent-foreground: 240 5.9% 10%;
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 98%;
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 0 0% 9%;
-  --radius: 0.6rem;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 240 5.9% 10%;
+  --radius: 0.5rem;
+  /* sidebar-specific tokens (shadcn spec) */
+  --sidebar-background: 0 0% 98%;
+  --sidebar-foreground: 240 5.3% 26%;
+  --sidebar-primary: 240 5.9% 10%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 240 4.8% 96%;
+  --sidebar-accent-foreground: 240 5.9% 10%;
+  --sidebar-border: 220 13% 91%;
+  --sidebar-ring: 240 5% 65%;
+  --sidebar-width: 16rem;
 }
 
 body[data-topbar="dark"][data-sidebar="dark"] {
-  --background: 0 0% 4%;
+  --background: 240 6% 6%;
   --foreground: 0 0% 98%;
-  --card: 222.2 47% 6%;
+  --card: 240 5.5% 10%;
   --card-foreground: 0 0% 98%;
-  --popover: 222.2 47% 8%;
+  --popover: 240 5.5% 10%;
   --popover-foreground: 0 0% 98%;
-  --primary: 0 0% 90%;
-  --primary-foreground: 222.2 47% 6%;
-  --secondary: 217.2 32.9% 12%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 240 5.9% 10%;
+  --secondary: 240 3.7% 16%;
   --secondary-foreground: 0 0% 98%;
-  --muted: 217.2 32.9% 12%;
-  --muted-foreground: 215 14% 60%;
-  --accent: 217.2 32.9% 15%;
+  --muted: 240 3.7% 16%;
+  --muted-foreground: 240 5% 65%;
+  --accent: 240 3.7% 16%;
   --accent-foreground: 0 0% 98%;
-  --destructive: 0 62.8% 45%;
+  --destructive: 0 63% 45%;
   --destructive-foreground: 0 0% 98%;
-  --border: 217.2 32.9% 15%;
-  --input: 217.2 32.9% 15%;
-  --ring: 0 0% 90%;
+  --border: 240 3.7% 16%;
+  --input: 240 3.7% 16%;
+  --ring: 240 5% 65%;
+  --sidebar-background: 240 5.9% 10%;
+  --sidebar-foreground: 240 4.8% 96%;
+  --sidebar-primary: 0 0% 98%;
+  --sidebar-primary-foreground: 240 5.9% 10%;
+  --sidebar-accent: 240 3.7% 16%;
+  --sidebar-accent-foreground: 240 4.8% 96%;
+  --sidebar-border: 240 3.7% 16%;
+  --sidebar-ring: 240 5% 65%;
   color: hsl(var(--foreground));
 }
 
-/* ===== Top bar ===== */
+/* ========== Sidebar container ========== */
+body[data-sidebar="dark"] .vertical-menu {
+  background-color: hsl(var(--sidebar-background)) !important;
+  border-right: 1px solid hsl(var(--sidebar-border)) !important;
+  width: var(--sidebar-width) !important;
+}
+
+/* scrollbar track */
+body[data-sidebar="dark"] .vertical-menu .simplebar-content-wrapper {
+  background: transparent;
+}
+body[data-sidebar="dark"] .simplebar-scrollbar::before {
+  background-color: hsl(var(--sidebar-border));
+}
+
+/* ========== Sidebar group ========== */
+body[data-sidebar="dark"] .sh-sidebar-group {
+  padding: 12px 8px;
+}
+body[data-sidebar="dark"] .sh-sidebar-group + .sh-sidebar-group {
+  border-top: 1px solid hsl(var(--sidebar-border));
+}
+
+/* group label */
+body[data-sidebar="dark"] .sh-sidebar-group-label {
+  color: hsl(var(--muted-foreground));
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0 12px 8px;
+  display: block;
+}
+
+/* ========== Sidebar menu (= ul) ========== */
+body[data-sidebar="dark"] .sh-sidebar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+
+/* ========== Sidebar menu item ========== */
+body[data-sidebar="dark"] .sh-sidebar-menu-item {
+  position: relative;
+}
+
+/* ========== Sidebar menu button (the clickable a/button) ========== */
+body[data-sidebar="dark"] .sh-sidebar-menu-button {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  color: hsl(var(--sidebar-foreground));
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  text-align: left;
+  line-height: 1;
+  transition: background-color .15s ease, color .15s ease;
+  font-family: inherit;
+}
+body[data-sidebar="dark"] .sh-sidebar-menu-button:hover {
+  background-color: hsl(var(--sidebar-accent));
+  color: hsl(var(--sidebar-accent-foreground));
+}
+body[data-sidebar="dark"] .sh-sidebar-menu-button[data-active="true"],
+body[data-sidebar="dark"] .sh-sidebar-menu-item.mm-active > .sh-sidebar-menu-button {
+  background-color: hsl(var(--sidebar-accent));
+  color: hsl(var(--sidebar-primary));
+  font-weight: 500;
+}
+
+/* icon inside button */
+body[data-sidebar="dark"] .sh-sidebar-menu-button .s-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+  flex-shrink: 0;
+  color: hsl(var(--muted-foreground));
+}
+body[data-sidebar="dark"] .sh-sidebar-menu-button:hover .s-icon,
+body[data-sidebar="dark"] .sh-sidebar-menu-button[data-active="true"] .s-icon,
+body[data-sidebar="dark"] .sh-sidebar-menu-item.mm-active > .sh-sidebar-menu-button .s-icon {
+  color: hsl(var(--sidebar-primary));
+}
+
+/* chevron for expandable items */
+body[data-sidebar="dark"] .sh-sidebar-menu-button .s-chevron {
+  margin-left: auto;
+  font-size: 12px;
+  transition: transform .2s ease;
+  color: hsl(var(--muted-foreground));
+}
+body[data-sidebar="dark"] .sh-sidebar-menu-item.mm-active > .sh-sidebar-menu-button .s-chevron {
+  transform: rotate(180deg);
+}
+
+/* ========== Sub menu ========== */
+body[data-sidebar="dark"] .sh-sidebar-menu-sub {
+  list-style: none;
+  margin: 2px 0 4px;
+  padding: 0 0 0 32px;
+  display: none; /* metismenu toggles via mm-collapse */
+  border-left: 1px solid hsl(var(--sidebar-border));
+}
+body[data-sidebar="dark"] .sh-sidebar-menu-sub.mm-collapse {
+  display: none;
+}
+body[data-sidebar="dark"] .sh-sidebar-menu-sub.mm-show {
+  display: block;
+}
+
+body[data-sidebar="dark"] .sh-sidebar-menu-sub-button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  color: hsl(var(--muted-foreground));
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color .15s ease, color .15s ease;
+}
+body[data-sidebar="dark"] .sh-sidebar-menu-sub-button:hover {
+  background-color: hsl(var(--sidebar-accent));
+  color: hsl(var(--sidebar-accent-foreground));
+}
+body[data-sidebar="dark"] .sh-sidebar-menu-sub-item.mm-active .sh-sidebar-menu-sub-button,
+body[data-sidebar="dark"] .sh-sidebar-menu-sub-button[data-active="true"] {
+  color: hsl(var(--sidebar-primary));
+  font-weight: 500;
+}
+
+/* ========== Badge in menu ========== */
+body[data-sidebar="dark"] .sh-sidebar-menu-badge {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background-color: hsl(var(--sidebar-primary));
+  color: hsl(var(--sidebar-primary-foreground));
+  line-height: 1.3;
+}
+
+/* ========== Top bar (minimal override) ========== */
 body[data-topbar="dark"] #page-topbar {
   background-color: hsl(var(--card));
   border-bottom: 1px solid hsl(var(--border));
-  box-shadow: none;
 }
-
 body[data-topbar="dark"] .navbar-header {
   background-color: hsl(var(--card));
   border-bottom: 1px solid hsl(var(--border));
-  height: 64px;
-  padding: 0 1.25rem;
+  height: 56px;
+  padding: 0 1rem;
 }
-
 body[data-topbar="dark"] .navbar-brand-box {
   background-color: transparent;
   border-right: 1px solid hsl(var(--border));
-  width: 250px;
-  padding: 0 1.25rem;
+  width: var(--sidebar-width);
+  padding: 0 1rem;
 }
-
-.logo-lg img { width: 150px; height: auto; }
+.logo-lg img { width: 130px; height: auto; }
 
 body[data-topbar="dark"] .header-item,
 body[data-topbar="dark"] .noti-icon {
   color: hsl(var(--muted-foreground));
   border-radius: var(--radius);
-  transition: background-color .2s ease, color .2s ease;
+  transition: background-color .15s ease, color .15s ease;
 }
-
-body[data-topbar="dark"] .header-item:hover,
-body[data-topbar="dark"] .btn.header-item:hover {
+body[data-topbar="dark"] .header-item:hover {
   background-color: hsl(var(--accent));
   color: hsl(var(--foreground));
 }
-
 body[data-topbar="dark"] #vertical-menu-btn {
   color: hsl(var(--foreground));
   background-color: transparent;
 }
-
 body[data-topbar="dark"] #vertical-menu-btn:hover {
   background-color: hsl(var(--accent));
 }
 
-/* badge (shadcn Badge) */
+/* badge */
 body[data-topbar="dark"] .badge-danger {
   background-color: hsl(var(--destructive));
   color: hsl(var(--destructive-foreground));
   border: none;
   font-weight: 500;
-  font-size: 11px;
+  font-size: 10px;
   min-width: 18px;
   height: 18px;
   padding: 0 5px;
   border-radius: 999px;
+  line-height: 18px;
 }
 
-/* dropdown menu (shadcn DropdownMenu) */
+/* dropdown */
 body[data-topbar="dark"] .dropdown-menu {
   background-color: hsl(var(--popover));
   border: 1px solid hsl(var(--border));
   border-radius: var(--radius);
-  box-shadow: 0 10px 30px rgba(0,0,0,.5);
-  padding: 6px;
-  min-width: 220px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.6);
+  padding: 4px;
+  min-width: 200px;
 }
-
 body[data-topbar="dark"] .dropdown-item {
   color: hsl(var(--popover-foreground));
-  border-radius: calc(var(--radius) - 4px);
-  padding: 8px 12px;
-  font-size: 14px;
-  font-weight: 400;
+  border-radius: calc(var(--radius) - 2px);
+  padding: 7px 10px;
+  font-size: 13px;
   transition: background-color .15s ease, color .15s ease;
 }
-
 body[data-topbar="dark"] .dropdown-item:hover,
 body[data-topbar="dark"] .dropdown-item:focus {
   background-color: hsl(var(--accent));
   color: hsl(var(--foreground));
 }
-
 body[data-topbar="dark"] .dropdown-item.text-danger,
-body[data-topbar="dark"] .dropdown-item.text-danger i { color: hsl(var(--destructive)) !important; }
+body[data-topbar="dark"] .dropdown-divider {
+  border-color: hsl(var(--border));
+}
 
-/* avatar (shadcn Avatar) */
+/* avatar */
 body[data-topbar="dark"] .user-center_header {
   border-radius: 999px;
   border: 1px solid hsl(var(--border));
@@ -140,87 +312,14 @@ body[data-topbar="dark"] .user-center_header {
   object-fit: cover;
 }
 
-/* ===== Left sidebar (shadcn Sidebar) ===== */
-body[data-sidebar="dark"] .vertical-menu {
-  background-color: hsl(var(--card)) !important;
-  border-right: 1px solid hsl(var(--border));
-  width: 250px;
-  transition: width .25s ease;
-}
-
-body[data-sidebar="dark"] .vertical-menu .simplebar-content { padding: 12px 10px; }
-
-body[data-sidebar="dark"] #sidebar-menu { padding: 8px 0; }
-
-body[data-sidebar="dark"] #side-menu > li { margin-bottom: 2px; }
-
-body[data-sidebar="dark"] #side-menu a,
-body[data-sidebar="dark"] .metismenu a {
-  color: hsl(var(--muted-foreground)) !important;
-  border-radius: calc(var(--radius) - 2px);
-  padding: 9px 12px;
-  font-size: 14px;
-  font-weight: 500;
-  transition: background-color .15s ease, color .15s ease;
-}
-
-body[data-sidebar="dark"] #side-menu a:hover,
-body[data-sidebar="dark"] .metismenu a:hover {
-  background-color: hsl(var(--accent)) !important;
-  color: hsl(var(--foreground)) !important;
-}
-
-body[data-sidebar="dark"] #side-menu a.active,
-body[data-sidebar="dark"] .metismenu a.active {
-  background-color: hsl(var(--secondary)) !important;
-  color: hsl(var(--primary)) !important;
-}
-
-body[data-sidebar="dark"] #side-menu a.mm-active,
-body[data-sidebar="dark"] .metismenu a.mm-active {
-  background-color: hsl(var(--secondary));
-  color: hsl(var(--foreground));
-  font-weight: 600;
-  box-shadow: inset 2px 0 0 0 hsl(var(--primary));
-}
-
-body[data-sidebar="dark"] #side-menu a.has-arrow::after { color: hsl(var(--muted-foreground)); }
-
-body[data-sidebar="dark"] .sub-menu,
-body[data-sidebar="dark"] .metismenu .sub-menu {
-  background-color: transparent;
-  border: none;
-  margin: 4px 0 6px 10px;
-  padding-left: 8px;
-  border-left: 1px solid hsl(var(--border));
-}
-
-body[data-sidebar="dark"] .sub-menu a { padding-left: 14px; font-size: 13px; }
-
-body[data-sidebar="dark"] #side-menu i,
-body[data-sidebar="dark"] .metismenu i {
-  color: hsl(var(--muted-foreground));
-  font-size: 16px;
-  width: 20px;
-  text-align: center;
-}
-
-body[data-sidebar="dark"] #side-menu a:hover i,
-body[data-sidebar="dark"] #side-menu a.mm-active i { color: hsl(var(--primary)); }
-
-/* scrollbar */
-body[data-sidebar="dark"] .simplebar-scrollbar::before {
-  background-color: hsl(var(--border));
-}
-
-/* top inline nav (web-style) */
-.ca-top-nav { margin-left: 1.25rem; gap: .15rem; }
+/* inline nav */
+.ca-top-nav { margin-left: 1rem; gap: 2px; }
 .ca-top-nav a {
   color: hsl(var(--muted-foreground));
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   text-decoration: none;
-  padding: 6px 12px;
+  padding: 5px 10px;
   border-radius: var(--radius);
   transition: background-color .15s ease, color .15s ease;
 }
