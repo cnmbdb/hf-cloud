@@ -1,0 +1,231 @@
+/* shadcn-style dark theme tokens for ogmiao clientarea navigation */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 18 84% 66%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 18 84% 66%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 18 84% 66%;
+  --radius: 0.6rem;
+}
+
+body[data-topbar="dark"][data-sidebar="dark"] {
+  --background: 222.2 47% 6%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 47% 8%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 47% 8%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 18 84% 66%;
+  --primary-foreground: 222.2 47.2% 11.2%;
+  --secondary: 217.2 32.9% 14%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.9% 14%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.9% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 45%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 217.2 32.9% 17.5%;
+  --input: 217.2 32.9% 17.5%;
+  --ring: 18 84% 66%;
+  color: hsl(var(--foreground));
+}
+
+/* ===== Top bar ===== */
+body[data-topbar="dark"] #page-topbar {
+  background-color: hsl(var(--card));
+  border-bottom: 1px solid hsl(var(--border));
+  box-shadow: none;
+}
+
+body[data-topbar="dark"] .navbar-header {
+  background-color: hsl(var(--card));
+  border-bottom: 1px solid hsl(var(--border));
+  height: 64px;
+  padding: 0 1.25rem;
+}
+
+body[data-topbar="dark"] .navbar-brand-box {
+  background-color: transparent;
+  border-right: 1px solid hsl(var(--border));
+  width: 250px;
+  padding: 0 1.25rem;
+}
+
+.logo-lg img { width: 150px; height: auto; }
+
+body[data-topbar="dark"] .header-item,
+body[data-topbar="dark"] .noti-icon {
+  color: hsl(var(--muted-foreground));
+  border-radius: var(--radius);
+  transition: background-color .2s ease, color .2s ease;
+}
+
+body[data-topbar="dark"] .header-item:hover,
+body[data-topbar="dark"] .btn.header-item:hover {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--foreground));
+}
+
+body[data-topbar="dark"] #vertical-menu-btn {
+  color: hsl(var(--foreground));
+  background-color: transparent;
+}
+
+body[data-topbar="dark"] #vertical-menu-btn:hover {
+  background-color: hsl(var(--accent));
+}
+
+/* badge (shadcn Badge) */
+body[data-topbar="dark"] .badge-danger {
+  background-color: hsl(var(--destructive));
+  color: hsl(var(--destructive-foreground));
+  border: none;
+  font-weight: 500;
+  font-size: 11px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+}
+
+/* dropdown menu (shadcn DropdownMenu) */
+body[data-topbar="dark"] .dropdown-menu {
+  background-color: hsl(var(--popover));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(0,0,0,.5);
+  padding: 6px;
+  min-width: 220px;
+}
+
+body[data-topbar="dark"] .dropdown-item {
+  color: hsl(var(--popover-foreground));
+  border-radius: calc(var(--radius) - 4px);
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  transition: background-color .15s ease, color .15s ease;
+}
+
+body[data-topbar="dark"] .dropdown-item:hover,
+body[data-topbar="dark"] .dropdown-item:focus {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--foreground));
+}
+
+body[data-topbar="dark"] .dropdown-item.text-danger,
+body[data-topbar="dark"] .dropdown-item.text-danger i { color: hsl(var(--destructive)) !important; }
+
+/* avatar (shadcn Avatar) */
+body[data-topbar="dark"] .user-center_header {
+  border-radius: 999px;
+  border: 1px solid hsl(var(--border));
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--foreground));
+  object-fit: cover;
+}
+
+/* ===== Left sidebar (shadcn Sidebar) ===== */
+body[data-sidebar="dark"] .vertical-menu {
+  background-color: hsl(var(--card));
+  border-right: 1px solid hsl(var(--border));
+  width: 250px;
+  transition: width .25s ease;
+}
+
+body[data-sidebar="dark"] .vertical-menu .simplebar-content { padding: 12px 10px; }
+
+body[data-sidebar="dark"] #sidebar-menu { padding: 8px 0; }
+
+body[data-sidebar="dark"] #side-menu > li { margin-bottom: 2px; }
+
+body[data-sidebar="dark"] #side-menu a,
+body[data-sidebar="dark"] .metismenu a {
+  color: hsl(var(--muted-foreground));
+  border-radius: calc(var(--radius) - 2px);
+  padding: 9px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color .15s ease, color .15s ease;
+}
+
+body[data-sidebar="dark"] #side-menu a:hover,
+body[data-sidebar="dark"] .metismenu a:hover {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--foreground));
+}
+
+body[data-sidebar="dark"] #side-menu a.mm-active,
+body[data-sidebar="dark"] .metismenu a.mm-active {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--foreground));
+  font-weight: 600;
+  box-shadow: inset 2px 0 0 0 hsl(var(--primary));
+}
+
+body[data-sidebar="dark"] #side-menu a.has-arrow::after { color: hsl(var(--muted-foreground)); }
+
+body[data-sidebar="dark"] .sub-menu,
+body[data-sidebar="dark"] .metismenu .sub-menu {
+  background-color: transparent;
+  border: none;
+  margin: 4px 0 6px 10px;
+  padding-left: 8px;
+  border-left: 1px solid hsl(var(--border));
+}
+
+body[data-sidebar="dark"] .sub-menu a { padding-left: 14px; font-size: 13px; }
+
+body[data-sidebar="dark"] #side-menu i,
+body[data-sidebar="dark"] .metismenu i {
+  color: hsl(var(--muted-foreground));
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+body[data-sidebar="dark"] #side-menu a:hover i,
+body[data-sidebar="dark"] #side-menu a.mm-active i { color: hsl(var(--primary)); }
+
+/* scrollbar */
+body[data-sidebar="dark"] .simplebar-scrollbar::before {
+  background-color: hsl(var(--border));
+}
+
+/* top inline nav (web-style) */
+.ca-top-nav { margin-left: 1.25rem; gap: .15rem; }
+.ca-top-nav a {
+  color: hsl(var(--muted-foreground));
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  transition: background-color .15s ease, color .15s ease;
+}
+.ca-top-nav a:hover {
+  color: hsl(var(--foreground));
+  background-color: hsl(var(--accent));
+}
+
+/* footer */
+body[data-topbar="dark"] .footer {
+  background-color: hsl(var(--card));
+  border-top: 1px solid hsl(var(--border));
+  color: hsl(var(--muted-foreground));
+}
