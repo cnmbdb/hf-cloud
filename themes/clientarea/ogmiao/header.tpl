@@ -69,12 +69,12 @@
 
 				<!-- 顶部导航(参考 web 页面) -->
 				<nav class="ca-top-nav d-none d-lg-flex align-items-center">
-					<a href="{$Setting.web_jump_url|default:'/'}">{$Lang.home|default:'首页'}</a>
-					<a href="{$Setting.web_cart_url|default:'/cart'}">{$Lang.products|default:'产品服务'}</a>
-					<a href="{$Setting.web_solutions_url|default:'/solutions.html'}">{$Lang.solutions|default:'解决方案'}</a>
-					<a href="{$Setting.web_partner_url|default:'/partner.html'}">{$Lang.partner|default:'合作伙伴'}</a>
-					<a href="{$Setting.web_activity_url|default:'/activity.html'}">{$Lang.activity|default:'活动中心'}</a>
-					<a href="{$Setting.web_about_url|default:$Setting.web_jump_url}">{$Lang.about_us|default:'关于我们'}</a>
+					<a href="{$Setting.web_jump_url|default='/'}">{$Lang.home|default='首页'}</a>
+					<a href="{$Setting.web_cart_url|default='/cart'}">{$Lang.products|default='产品服务'}</a>
+					<a href="{$Setting.web_solutions_url|default='/solutions.html'}">{$Lang.solutions|default='解决方案'}</a>
+					<a href="{$Setting.web_partner_url|default='/partner.html'}">{$Lang.partner|default='合作伙伴'}</a>
+					<a href="{$Setting.web_activity_url|default='/activity.html'}">{$Lang.activity|default='活动中心'}</a>
+					<a href="{$Setting.web_about_url|default='/'}">{$Lang.about_us|default='关于我们'}</a>
 				</nav>
 			</div>
 
