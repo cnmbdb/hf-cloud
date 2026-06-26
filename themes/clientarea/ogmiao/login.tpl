@@ -367,7 +367,7 @@
 				<div class="tab-content">
 					{if $Login.allow_login_email || $Login.allow_id}
 					<div id="email" class="tab-pane {if ($Login.allow_login_phone==0 && ($Login.allow_login_email == 1  || $Login.allow_id == 1)) || $Get.action=="email"}active{/if}" role="tabpanel">
-						<form method="post" action="/login?action=email" onsubmit="return encryptPass('emailPwdInp');">
+						<form method="post" action="/login?action=email">
 							<div class="form-group">
 								<label for="emailInp">{if $Login.allow_login_email}{$Lang.mailbox}{else}ID{/if}</label>
 								<input type="text" class="form-control" id="emailInp" name="email" value="{$Post.email}" placeholder="{$Lang.please_enter_your}{if $Login.allow_login_email}{$Lang.mailbox}{if $Login.allow_id==1}{$Lang.ors}{/if}{/if}{if $Login.allow_id==1}ID{/if}">
@@ -396,7 +396,7 @@
 
 					{if $Login.allow_login_phone}
 					<div id="phone" class="tab-pane {if $Get.action=="phone" || $Get.action=="phone_code" || !$Get.action}active{/if}" role="tabpanel">
-						<form method="post" action="/login?action=phone" onsubmit="return encryptPass('phonePwdInp');">
+						<form method="post" action="/login?action=phone">
 							<div class="form-group">
 								<label for="phoneInp">{$Lang.phone_number}</label>
 								<div class="input-group">
