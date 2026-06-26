@@ -620,8 +620,498 @@ box-shadow: inset 0 0 0 10px var(--primary), inset 0 0 0 20px var(--secondary);
 /* Replace #4677fb with var(--primary) or #f08a5d */
 /* Replace #527ef5 with var(--secondary) or #f9b384 */
 
-/* If there are any specific instances of box-shadow with blue colors that aren't visible in the provided code snippet, 
+/* If there are any specific instances of box-shadow with blue colors that aren't visible in the provided code snippet,
    they should be replaced with the theme's primary colors */
+
+/* shadcn-style dark security page overrides */
+:root {
+ --primary: #fafafa;
+ --primary-dark: #e5e5e5;
+ --primary-light: #262626;
+ --secondary: #a3a3a3;
+ --accent: #22c55e;
+ --dark: #fafafa;
+ --light: #09090b;
+ --gray: #a1a1aa;
+ --gray-light: #18181b;
+ --card-shadow: none;
+ --card-hover-shadow: none;
+}
+
+html,
+body,
+.main-content,
+.page-content,
+.container-fluid {
+ background: #000 !important;
+ color: #fafafa;
+}
+
+.page-content {
+ min-height: 100vh;
+}
+
+.card,
+.modal-content,
+.dropdown-menu {
+ background: #09090b !important;
+ border: 1px solid #27272a !important;
+ border-radius: 8px !important;
+ box-shadow: none !important;
+ color: #fafafa;
+}
+
+.card:hover,
+.security-item:hover,
+.btn:hover,
+.form-control:hover {
+ transform: none !important;
+ box-shadow: none !important;
+}
+
+.card-body {
+ padding: 24px;
+}
+
+.decoration,
+.security-header::before,
+.security-header::after,
+.btn-primary::after {
+ display: none !important;
+}
+
+.security-header {
+ background: #09090b !important;
+ border: 1px solid #27272a !important;
+}
+
+.security-logo {
+ width: 64px;
+ height: 64px;
+ background: #18181b !important;
+ border: 1px solid #27272a;
+ border-radius: 9999px !important;
+ box-shadow: none !important;
+ color: #fafafa;
+ font-size: 22px;
+}
+
+.security-info {
+ padding: 0;
+}
+
+.security-username {
+ color: #fafafa;
+ font-size: 24px;
+ line-height: 1.2;
+}
+
+.security-label,
+.security-meta,
+.security-meta label,
+.security-item-desc {
+ color: #a1a1aa !important;
+}
+
+.security-meta ul {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 10px 18px;
+}
+
+.security-meta .list-inline-item {
+ margin-right: 0;
+}
+
+.progress {
+ height: 8px;
+ background: #18181b !important;
+ border: 1px solid #27272a;
+}
+
+.progress-bar {
+ background: #fafafa !important;
+}
+
+.security-items {
+ gap: 12px;
+}
+
+.security-item {
+ background: #09090b !important;
+ border: 1px solid #27272a;
+ border-radius: 8px;
+ box-shadow: none;
+ gap: 16px;
+ padding: 18px;
+}
+
+.security-item-icon,
+.security-item-icon.bg-primary,
+.security-item-icon.bg-info,
+.bg-primary,
+.bg-info {
+ background: #18181b !important;
+ border: 1px solid #27272a;
+ border-radius: 8px;
+ box-shadow: none !important;
+ color: #fafafa;
+}
+
+.security-item-info {
+ gap: 16px;
+}
+
+.security-item-title,
+.card-title,
+.modal-title,
+.col-form-label {
+ color: #fafafa;
+}
+
+.security-item-title small {
+ color: #22c55e;
+}
+
+.badge {
+ border-radius: 9999px;
+ border: 1px solid #27272a;
+ box-shadow: none !important;
+}
+
+.badge-success {
+ background: rgba(34, 197, 94, 0.12);
+ color: #86efac;
+}
+
+.badge-light,
+.novalid {
+ background: #18181b !important;
+ color: #a1a1aa !important;
+ border-color: #27272a;
+ box-shadow: none;
+}
+
+.btn,
+.btn-primary,
+.btn-outline-primary,
+.btn-outline-light,
+.btn-secondary,
+.btn-default {
+ border-radius: 6px !important;
+ font-weight: 500;
+ padding: 0.55rem 0.9rem;
+ transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-primary {
+ background: #fafafa !important;
+ border-color: #fafafa !important;
+ color: #09090b !important;
+}
+
+.btn-primary:hover {
+ background: #e5e5e5 !important;
+ border-color: #e5e5e5 !important;
+ color: #09090b !important;
+}
+
+.btn-outline-primary,
+.btn-outline-light,
+.btn-secondary,
+.btn-default {
+ background: #09090b !important;
+ border: 1px solid #27272a !important;
+ color: #fafafa !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-light:hover,
+.btn-secondary:hover,
+.btn-default:hover {
+ background: #18181b !important;
+ border-color: #3f3f46 !important;
+ color: #fafafa !important;
+}
+
+.btn:disabled,
+.btn[disabled] {
+ background: #18181b !important;
+ border-color: #27272a !important;
+ color: #71717a !important;
+ cursor: not-allowed;
+}
+
+.form-control,
+.custom-select {
+ background: #000 !important;
+ border: 1px solid #27272a !important;
+ border-radius: 6px !important;
+ box-shadow: none !important;
+ color: #fafafa !important;
+ height: calc(1.5em + 1rem + 2px);
+}
+
+.form-control:focus,
+.custom-select:focus {
+ border-color: #fafafa !important;
+ box-shadow: 0 0 0 2px rgba(250, 250, 250, 0.16) !important;
+ color: #fafafa;
+}
+
+.form-control::placeholder {
+ color: #71717a;
+}
+
+.form-control[readonly] {
+ background: #18181b !important;
+ color: #a1a1aa !important;
+}
+
+.input-group-append .btn {
+ border-top-left-radius: 0 !important;
+ border-bottom-left-radius: 0 !important;
+}
+
+.modal-header,
+.modal-footer {
+ background: #09090b !important;
+ border-color: #27272a !important;
+}
+
+.modal-header .close,
+.modal-header .close span {
+ color: #fafafa;
+ text-shadow: none;
+}
+
+.modal-body {
+ background: #09090b;
+ color: #fafafa;
+}
+
+.is-valid {
+ border-color: #22c55e !important;
+}
+
+.is-invalid {
+ border-color: #ef4444 !important;
+}
+
+@media (max-width: 768px) {
+ html,
+ body {
+   overflow-x: hidden;
+ }
+
+ .main-content,
+ .page-content,
+ .container-fluid {
+   width: 100% !important;
+   max-width: 100% !important;
+ }
+
+ .page-content {
+   padding: 16px 0 78px !important;
+ }
+
+ .container-fluid {
+   padding-left: 12px !important;
+   padding-right: 12px !important;
+ }
+
+ .row {
+   margin-left: -6px !important;
+   margin-right: -6px !important;
+ }
+
+ .row > [class*="col-"],
+ .row > .col-sm-2,
+ .row > .col-sm-3,
+ .row > .col-sm-4,
+ .row > .col-sm-5,
+ .row > .col-sm-8,
+ .row > .col-sm-9,
+ .row > .col-md-1 {
+   flex: 0 0 100% !important;
+   max-width: 100% !important;
+   width: 100% !important;
+   padding-left: 6px !important;
+   padding-right: 6px !important;
+ }
+
+ .card-body {
+   padding: 18px !important;
+ }
+
+ .security-header .row {
+   gap: 14px;
+ }
+
+ .security-header .ml-3 {
+   margin-left: 0 !important;
+ }
+
+ .security-header {
+   margin-bottom: 12px !important;
+ }
+
+ .security-avatar {
+   justify-content: flex-start;
+ }
+
+ .security-username {
+   align-items: flex-start;
+   flex-direction: column;
+   font-size: 20px;
+   gap: 8px;
+   overflow-wrap: anywhere;
+ }
+
+ .security-meta {
+   font-size: 13px;
+ }
+
+ .security-meta ul,
+ .security-meta ul ul {
+   display: grid;
+   gap: 8px;
+   padding-left: 0;
+   width: 100%;
+ }
+
+ .security-meta .list-inline-item {
+   display: block;
+   max-width: 100%;
+   overflow-wrap: anywhere;
+ }
+
+ .security-item {
+   align-items: stretch;
+   gap: 12px;
+   padding: 14px;
+ }
+
+ .security-item-icon {
+   flex: 0 0 42px;
+   height: 42px;
+   width: 42px;
+ }
+
+ .security-item-info {
+   align-items: stretch;
+   flex-direction: column;
+   width: 100%;
+ }
+
+ .security-item-title {
+   align-items: flex-start;
+   flex-direction: column;
+   font-size: 16px;
+   gap: 6px;
+   line-height: 1.35;
+ }
+
+ .security-item-title small,
+ .security-item-title .phonehide,
+ .security-item-desc {
+   max-width: 100%;
+   overflow-wrap: anywhere;
+   white-space: normal !important;
+ }
+
+ .security-item-desc {
+   font-size: 13px;
+   line-height: 1.55;
+ }
+
+ .security-item .btn,
+ .security-item button {
+   width: 100%;
+ }
+
+ .modal-dialog {
+   margin: 10px;
+   max-width: calc(100% - 20px);
+ }
+
+ .modal-body,
+ .modal-header,
+ .modal-footer {
+   padding: 16px !important;
+ }
+
+ .modal-body .form-group.row {
+   display: block;
+   margin-left: 0 !important;
+   margin-right: 0 !important;
+ }
+
+ .modal-body .col-form-label {
+   display: block;
+   padding: 0 0 8px !important;
+   text-align: left !important;
+   width: 100%;
+ }
+
+ .modal-body .form-group [class*="col-sm-"] {
+   max-width: 100% !important;
+   padding-left: 0 !important;
+   padding-right: 0 !important;
+   width: 100% !important;
+ }
+
+ .modal-footer {
+   display: grid;
+   gap: 8px;
+ }
+
+ .modal-footer .btn {
+   margin: 0 !important;
+   width: 100%;
+ }
+
+ .input-group {
+   flex-wrap: nowrap;
+   width: 100%;
+ }
+
+ .input-group .form-control {
+   min-width: 0;
+ }
+
+ .input-group-append .btn {
+   padding-left: 0.7rem;
+   padding-right: 0.7rem;
+   white-space: nowrap;
+ }
+}
+
+@media (max-width: 420px) {
+ .security-item {
+   flex-direction: column;
+ }
+
+ .security-logo {
+   height: 52px;
+   width: 52px;
+ }
+
+ .security-username {
+   font-size: 18px;
+ }
+
+ .btn,
+ .btn-primary,
+ .btn-outline-primary,
+ .btn-outline-light,
+ .btn-secondary,
+ .btn-default {
+   min-height: 40px;
+   padding-left: 0.75rem;
+   padding-right: 0.75rem;
+ }
+}
 </style>
 <div class="card mb-4 security-header">
 	<div class="card-body">
@@ -1607,7 +2097,7 @@ box-shadow: inset 0 0 0 10px var(--primary), inset 0 0 0 20px var(--secondary);
 	</div>
 </div>
 <!-- start: 邮箱提醒 关闭 -->
-<div class="modal fade id="loginEmailReminderModal" tabindex="-1" role="dialog"
+<div class="modal fade" id="loginEmailReminderModal" tabindex="-1" role="dialog"
 	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
