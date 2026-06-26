@@ -181,4 +181,14 @@
 			{include file="includes/pageheader"}
 			{/if}
 			<div class="container-fluid">
+				<script>
+				$(function() {
+					var currentUrl = window.location.href.split(/[?#]/)[0];
+					$('.ca-top-nav a').each(function() {
+						if (this.href === currentUrl) {
+							$(this).addClass('active');
+						}
+					});
+				});
+				</script>
 				{/if}
