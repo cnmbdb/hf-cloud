@@ -2356,6 +2356,149 @@ thead th {
 
 #balanceCharts { min-height: 190px; }
 
+/* clientarea dark refinement: remove legacy orange accents from selected modules */
+.empty-instances,
+.empty-instances.enhanced,
+.empty-instances .empty-instances-content {
+  background: #09090b !important;
+  border-color: #27272a !important;
+  box-shadow: none !important;
+}
+
+.empty-instances .bx,
+.empty-instances .bx-server,
+.empty-instances i,
+.empty-instances .server-icon {
+  color: #fafafa !important;
+}
+
+.empty-instances span,
+.empty-instances p,
+.empty-instances .empty-text,
+.empty-instances .text-muted {
+  color: #d4d4d8 !important;
+}
+
+#sourceListBox,
+#sourceListBox .card,
+#sourceListBox .card-body,
+#sourceListBox .dataTables_wrapper,
+#sourceListBox .table-responsive,
+#sourceListBox .custom-styled-table,
+#sourceListBox .table,
+#sourceListBox table {
+  background: #09090b !important;
+  border-color: #27272a !important;
+  box-shadow: none !important;
+}
+
+#sourceListBox .custom-styled-table,
+#sourceListBox .table,
+#sourceListBox table {
+  border: 1px solid #27272a !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+#sourceListBox thead,
+#sourceListBox thead tr,
+#sourceListBox thead th {
+  background: #18181b !important;
+  border-color: #27272a !important;
+  color: #fafafa !important;
+  box-shadow: none !important;
+}
+
+#sourceListBox tbody,
+#sourceListBox tbody tr,
+#sourceListBox tbody td,
+#sourceListBox .dataTables_empty {
+  background: #09090b !important;
+  border-color: #27272a !important;
+  color: #a1a1aa !important;
+}
+
+#sourceListBox .dataTables_wrapper .row,
+#sourceListBox .pagination-container,
+#sourceListBox .dataTables_info,
+#sourceListBox .dataTables_length,
+#sourceListBox .dataTables_paginate {
+  background: transparent !important;
+  border-color: #27272a !important;
+  color: #d4d4d8 !important;
+  box-shadow: none !important;
+}
+
+#sourceListBox .dataTables_info span,
+#sourceListBox .dataTables_length span,
+#sourceListBox .dataTables_paginate span {
+  color: #fafafa !important;
+}
+
+#sourceListBox .dataTables_length select,
+#sourceListBox select,
+#sourceListBox .custom-select,
+#resourceSearch {
+  background: #000 !important;
+  border-color: #27272a !important;
+  color: #fafafa !important;
+  box-shadow: none !important;
+}
+
+#resourceSearch:focus,
+#sourceListBox .dataTables_length select:focus,
+#sourceListBox select:focus {
+  border-color: #fafafa !important;
+  box-shadow: 0 0 0 2px rgba(250, 250, 250, 0.12) !important;
+}
+
+#resourceSearch::placeholder {
+  color: #a1a1aa !important;
+}
+
+#sourceListBox .bx-search,
+#sourceListBox .fa-search,
+#sourceListBox .input-group-text,
+#sourceListBox [class*="search"] i {
+  color: #fafafa !important;
+}
+
+.news-read-more,
+.news-read-more i,
+.news-card:hover .news-read-more,
+.news-card:hover .news-read-more i,
+.card-title a[href="news"],
+.card-title a[href="news"] i {
+  color: #fafafa !important;
+}
+
+.news-date,
+.news-card .news-date,
+.news-card .news-date i {
+  background: #18181b !important;
+  border-color: #27272a !important;
+  color: #fafafa !important;
+}
+
+.news-card .news-hover-effect {
+  background: #fafafa !important;
+}
+
+.welcome-card a[href="security"] {
+  background: #27272a !important;
+  border: 1px solid #3f3f46 !important;
+  color: #fafafa !important;
+  box-shadow: none !important;
+}
+
+.welcome-card a[href="security"] i {
+  color: #fafafa !important;
+}
+
+.welcome-card a[href="security"] + div {
+  color: #d4d4d8 !important;
+}
+
 @media (max-width: 767px) {
   .page-content { padding: 12px 0 76px !important; }
   .container-fluid { padding-left: 12px !important; padding-right: 12px !important; }
