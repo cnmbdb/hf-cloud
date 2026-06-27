@@ -1,11 +1,11 @@
 <!-- ========== Left Sidebar Start ========== -->
 {if $Userinfo}
-<div class="vertical-menu">
+<div class="vertical-menu og-sidebar">
 	<div data-simplebar class="h-100">
 		<!--- Sidemenu -->
 		<div id="sidebar-menu" class="menu-js">
 			<!-- Left Menu Start -->
-			<ul class="metismenu list-unstyled" id="side-menu">
+			<ul class="metismenu list-unstyled og-sidebar-menu" id="side-menu">
 			
 				<!-- 临时菜单 -->
 				<!-- <li>
@@ -16,37 +16,37 @@
 				</li> -->
 				<!-- 临时菜单 -->
 				{foreach $Nav as $nv}
-				<li>
-					<a href="{if $nv.child}javascript: ;{else}{$nv.url}{/if}" class="{if $nv.child}has-arrow{/if} waves-effect">
-						{if $nv.fa_icon}<i class="{$nv.fa_icon}"></i>{/if}
+				<li class="og-sidebar-item og-sidebar-item-level-1 {if $nv.child}og-sidebar-collapsible{/if}">
+					<a href="{if $nv.child}javascript: ;{else}{$nv.url}{/if}" class="og-sidebar-link og-sidebar-link-level-1 {if $nv.child}has-arrow{/if} waves-effect" data-menu-level="1" {if $nv.child}aria-expanded="false"{/if}>
+						{if $nv.fa_icon}<i class="{$nv.fa_icon}"></i>{else}<i class="bx bx-circle og-sidebar-fallback-icon"></i>{/if}
 						{if (isset($nv.tag))}
 							{$nv.tag}
 						{/if}
-						<span>{$nv.name}</span>
+						<span class="og-sidebar-title">{$nv.name}</span>
 					</a>
 					{if $nv.child}
-					<ul class="sub-menu mm-collapse" aria-expanded="false">
+					<ul class="sub-menu mm-collapse og-sidebar-submenu og-sidebar-submenu-level-2" aria-expanded="false">
 						{foreach $nv.child as $subnav}
-						<li>
+						<li class="og-sidebar-item og-sidebar-item-level-2 {if $subnav.child}og-sidebar-collapsible{/if}">
 							<a href="{if $subnav.child}javascript: ;{else}{$subnav.url}{/if}"
-								class="{if $subnav.child}has-arrow{/if} waves-effect">
-								{if $subnav.fa_icon}<i class="{$subnav.fa_icon}"></i>{/if}
+								class="og-sidebar-link og-sidebar-link-level-2 {if $subnav.child}has-arrow{/if} waves-effect" data-menu-level="2" {if $subnav.child}aria-expanded="false"{/if}>
+								{if $subnav.fa_icon}<i class="{$subnav.fa_icon}"></i>{else}<i class="bx bx-circle og-sidebar-fallback-icon"></i>{/if}
 								{if (isset($subnav.tag))}
 									{$subnav.tag}
 								{/if}
-								<span>{$subnav.name}</span>
+								<span class="og-sidebar-title">{$subnav.name}</span>
 							</a>
 							{if $subnav.child}
-							<ul class="sub-menu" aria-expanded="false">
+							<ul class="sub-menu og-sidebar-submenu og-sidebar-submenu-level-3" aria-expanded="false">
 								{foreach $subnav.child as $submenu}
-								<li>
+								<li class="og-sidebar-item og-sidebar-item-level-3">
 									<a href="{if $submenu.child}javascript: ;{else}{$submenu.url}{/if}"
-										class="{if $submenu.child}has-arrow{/if} waves-effect">
-										{if $submenu.fa_icon}<i class="{$submenu.fa_icon}"></i>{/if}
+										class="og-sidebar-link og-sidebar-link-level-3 {if $submenu.child}has-arrow{/if} waves-effect" data-menu-level="3" {if $submenu.child}aria-expanded="false"{/if}>
+										{if $submenu.fa_icon}<i class="{$submenu.fa_icon}"></i>{else}<i class="bx bx-circle og-sidebar-fallback-icon"></i>{/if}
 										{if (isset($submenu.tag))}
 											{$submenu.tag}
 										{/if}
-										<span>{$submenu.name}</span>
+										<span class="og-sidebar-title">{$submenu.name}</span>
 									</a>
 								</li>
 								<!-- Nav Level 3 -->
@@ -67,22 +67,22 @@
 	</div>
 </div>
 {else/}
-<div class="vertical-menu menu-js">
+<div class="vertical-menu menu-js og-sidebar">
 	<div data-simplebar class="h-100">
 		<!--- Sidemenu -->
 		<div id="sidebar-menu" class="menu-js">
 			<!-- Left Menu Start -->
-			<ul class="metismenu list-unstyled" id="side-menu">
-				<li>
-					<a href="/login" class="waves-effect">
+			<ul class="metismenu list-unstyled og-sidebar-menu" id="side-menu">
+				<li class="og-sidebar-item og-sidebar-item-level-1">
+					<a href="/login" class="og-sidebar-link og-sidebar-link-level-1 waves-effect" data-menu-level="1">
 						<i class="bx bx-user-check"></i>
-						<span>登录</span>
+						<span class="og-sidebar-title">登录</span>
 					</a>
 				</li>
-				<li>
-					<a href="/register" class="waves-effect">
+				<li class="og-sidebar-item og-sidebar-item-level-1">
+					<a href="/register" class="og-sidebar-link og-sidebar-link-level-1 waves-effect" data-menu-level="1">
 						<i class="bx bx-user-plus"></i> 
-						<span>注册</span>
+						<span class="og-sidebar-title">注册</span>
 					</a>
 				</li>
 			</ul>
