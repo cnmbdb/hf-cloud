@@ -687,3 +687,99 @@ body[data-topbar="dark"] .footer {
   color: hsl(var(--sidebar-accent-foreground)) !important;
   border-color: hsl(var(--border)) !important;
 }
+
+/* ================================================================
+   CRITICAL OVERRIDES — Fix Skote data-sidebar-size="small" layout
+   These rules MUST come last so they win the specificity battle.
+   ================================================================ */
+
+/* 1. Force sidebar to always occupy the correct width */
+body[data-sidebar-size="small"] .vertical-menu,
+body[data-sidebar-size="small"].vertical-collpsed .vertical-menu {
+  width: var(--sidebar-width) !important;
+  text-align: left !important;
+}
+
+/* 2. Force all sidebar menu buttons to horizontal flex layout */
+body[data-sidebar-size="small"] .sh-sidebar-menu-button,
+body[data-sidebar-size="small"] .sh-sidebar-menu-sub-button {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  text-align: left !important;
+}
+
+/* 3. Force icons to inline (not block) */
+body[data-sidebar-size="small"] .sh-sidebar-menu-button .s-icon,
+body[data-sidebar-size="small"] .sh-sidebar-menu-sub-button .s-icon {
+  display: inline-flex !important;
+  min-width: 18px !important;
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* 4. Force menu text spans to show inline */
+body[data-sidebar-size="small"] .sh-sidebar-menu-button span,
+body[data-sidebar-size="small"] .sh-sidebar-menu-sub-button span {
+  display: inline !important;
+}
+
+/* 5. Main content must respect the real sidebar width */
+body[data-sidebar-size="small"] .main-content {
+  margin-left: var(--sidebar-width) !important;
+}
+
+/* 6. Footer must expand */
+body[data-sidebar-size="small"] .footer {
+  left: var(--sidebar-width) !important;
+}
+
+/* 7. Top bar must respect the real sidebar width */
+@media (min-width: 992px) {
+  body[data-sidebar-size="small"] #page-topbar {
+    left: var(--sidebar-width) !important;
+    width: calc(100% - var(--sidebar-width)) !important;
+  }
+}
+
+/* 8. Hide the Skote native has-arrow::after chevron — we use our own .s-chevron */
+#sidebar-menu .has-arrow:after,
+.sh-sidebar-menu-button.has-arrow:after,
+.sh-sidebar-menu-sub-button.has-arrow:after {
+  display: none !important;
+  content: none !important;
+}
+
+/* 9. Remove native Skote sub-menu styles that interfere */
+body[data-sidebar-size="small"] #sidebar-menu ul li a i {
+  display: inline-flex !important;
+  min-width: auto !important;
+  vertical-align: middle !important;
+}
+
+/* 10. Ensure sidebar footer brand row stays horizontal */
+body[data-sidebar-size="small"] .sh-sidebar-brand-box,
+body[data-sidebar-size="small"] .sh-sidebar-user-card {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+}
+
+/* 11. Ensure sidebar info stays visible (not hidden by small mode) */
+body[data-sidebar-size="small"] .sh-sidebar-brand-info,
+body[data-sidebar-size="small"] .sh-sidebar-user-info,
+body[data-sidebar-size="small"] .sh-sidebar-switcher-icon,
+body[data-sidebar-size="small"] .sh-sidebar-user-chevron {
+  display: flex !important;
+}
+body[data-sidebar-size="small"] .sh-sidebar-brand-info {
+  flex-direction: column !important;
+}
+body[data-sidebar-size="small"] .sh-sidebar-user-info {
+  flex-direction: column !important;
+}
+
+/* 12. Remove text-align center from small mode */
+body[data-sidebar-size="small"] #sidebar-menu {
+  text-align: left !important;
+}
