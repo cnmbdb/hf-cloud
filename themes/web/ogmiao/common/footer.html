@@ -515,11 +515,14 @@ z-index: 9999;
 opacity: 1;
 transition: opacity 0.8s ease-out;
 pointer-events: none;
-/* Safety net: if header.js fails to add .fade-out within 2.5s,
-   CSS animation will fade out the overlay automatically to prevent
-   the dreaded white screen of death. JS path remains the priority
-   (its transition starts at 200ms; this only kicks in if JS is broken). */
-animation: sh-page-transition-fallback 0.8s ease-out 2.5s forwards;
+/* Anti-white-screen safety net v2:
+   - Normal path: header.js adds .fade-out at ~200ms → transition fades out
+   - Fallback path: CSS animation kicks in at 100ms, completes by 600ms
+   - 600ms is short enough that users don't see a "white screen"
+   - Long enough to give the marketing page-transition effect visibility
+   If header.js takes longer than 100ms to load (slow networks), the
+   CSS animation still ensures the page is revealed within 600ms. */
+animation: sh-page-transition-fallback 0.5s ease-out 0.1s forwards;
 }
 .page-transition.fade-out {
 opacity: 0;

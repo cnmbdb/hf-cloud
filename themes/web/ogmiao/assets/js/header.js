@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (pageTransition) {
+    // JS path: add .fade-out at 200ms (primary trigger)
     requestAnimationFrame(() => {
       setTimeout(() => {
         pageTransition.classList.add("fade-out")
@@ -61,6 +62,21 @@ document.addEventListener("DOMContentLoaded", () => {
         )
       }, 200)
     })
+    // Defense-in-depth: hard-kill the overlay after 1.2s in case CSS
+    // animation didn't fire (e.g., element is detached from DOM, or
+    // CSS is overridden by another stylesheet with higher specificity).
+    setTimeout(() => {
+      if (pageTransition && pageTransition.parentNode) {
+        pageTransition.style.transition = "none"
+        pageTransition.classList.add("fade-out")
+        // Force remove on next frame regardless of transition
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            if (pageTransition.parentNode) pageTransition.remove()
+          }, 100)
+        })
+      }
+    }, 1200)
   }
 
   const mobileMenuBtn = document.querySelector(".mobile-menu-btn")
