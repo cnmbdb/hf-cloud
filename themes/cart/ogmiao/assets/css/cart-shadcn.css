@@ -335,6 +335,14 @@ body,
   align-items: start;
 }
 
+.og-cart-header + .og-cart-page {
+  margin-top: 0 !important;
+}
+
+.og-cart-header ~ .og-cart-page {
+  transform: none !important;
+}
+
 .og-cart-sidebar {
   position: sticky;
   top: 96px;

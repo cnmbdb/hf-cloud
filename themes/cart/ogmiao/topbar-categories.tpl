@@ -1210,38 +1210,8 @@ to {
   }
 }
 </style>
-<div class="notice-box mb-3">
-  <div class="notice-icon">
-    <i class="fas fa-exclamation-triangle"></i>
-  </div>
-  <div class="notice-content">
-    <div class="notice-title">重要服务使用须知</div>
-    <div class="notice-item">
-      <div class="notice-item-icon">
-        <i class="fas fa-ban"></i>
-      </div>
-      <div class="notice-item-text">
-        <span class="notice-item-title">禁止用途：</span>
-        本服务严禁用于任何非法活动，包括但不限于：垃圾邮件发送、未经授权的扫描、分布式拒绝服务攻击、挖矿等。违规使用将导致账户立即终止且不予退款。
-      </div>
-    </div>
-    <div class="notice-item">
-      <div class="notice-item-icon">
-        <i class="fas fa-clock"></i>
-      </div>
-      <div class="notice-item-text">
-        <span class="notice-item-title">退款政策：</span>
-       具体退款政策根据不同产品有不同退款要求和计算，建议打开商品标题中链接或发工单咨询。
-      </div>
-    </div>
-    <a href="{$Setting.web_tos_url}" target="_blank" class="terms-btn">
-      查看完整用户条款 <i class="fas fa-arrow-right"></i>
-    </a>
-  </div>
-</div>
-
 <link rel="stylesheet" href="/themes/web/ogmiao/assets/css/header.css?v={$Ver}">
-<link rel="stylesheet" href="/themes/cart/ogmiao/assets/css/cart-shadcn.css?v={$Ver}">
+<link rel="stylesheet" href="/themes/cart/ogmiao/assets/css/cart-shadcn.css?v={$Ver}-20260627b">
 <header class="og-cart-header header-animate">
   <div class="container">
     <nav>

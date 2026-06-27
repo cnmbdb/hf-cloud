@@ -196,7 +196,7 @@
 </style>
 
 <link rel="stylesheet" href="/themes/web/ogmiao/assets/css/header.css?v={$Ver}">
-<link rel="stylesheet" href="/themes/cart/ogmiao/assets/css/cart-shadcn.css?v={$Ver}">
+<link rel="stylesheet" href="/themes/cart/ogmiao/assets/css/cart-shadcn.css?v={$Ver}-20260627b">
 <header class="og-cart-header header-animate">
 	<div class="container">
 		<nav>
