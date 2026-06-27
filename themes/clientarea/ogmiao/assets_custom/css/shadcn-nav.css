@@ -297,7 +297,7 @@ body[data-topbar="dark"] .og-client-nav-shell {
   display: grid;
   grid-template-columns: 190px minmax(0, 1fr) auto;
   align-items: center;
-  gap: 28px;
+  gap: 24px;
   height: 100%;
   width: 100%;
   max-width: 1760px;
@@ -330,16 +330,16 @@ body[data-topbar="dark"] .og-client-primary-nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 48px;
+  gap: 38px;
   min-width: 0;
 }
 
 body[data-topbar="dark"] .og-client-primary-nav a {
   position: relative;
   color: #a1a1aa !important;
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
   text-decoration: none !important;
   white-space: nowrap;
   transition: color .16s ease;
@@ -354,7 +354,7 @@ body[data-topbar="dark"] .og-client-actions {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 10px;
+  gap: 8px;
 }
 
 body[data-topbar="dark"] .og-client-icon-button,
@@ -363,7 +363,8 @@ body[data-topbar="dark"] .og-client-nav-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
+  height: 40px;
+  min-height: 40px;
   border: 1px solid #27272a;
   border-radius: 8px;
   background: #030303;
@@ -375,9 +376,22 @@ body[data-topbar="dark"] .og-client-nav-button {
 
 body[data-topbar="dark"] .og-client-icon-button,
 body[data-topbar="dark"] .og-client-menu-trigger {
-  width: 48px;
+  width: 40px;
+  min-width: 40px;
   padding: 0;
-  font-size: 20px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+body[data-topbar="dark"] .og-client-icon-button i,
+body[data-topbar="dark"] .og-client-menu-trigger i {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
 }
 
 body[data-topbar="dark"] .og-client-menu-trigger {
@@ -385,9 +399,11 @@ body[data-topbar="dark"] .og-client-menu-trigger {
 }
 
 body[data-topbar="dark"] .og-client-nav-button {
-  padding: 0 22px;
-  font-size: 15px;
+  min-width: 86px;
+  padding: 0 18px;
+  font-size: 14px;
   font-weight: 600;
+  line-height: 1;
 }
 
 body[data-topbar="dark"] .og-client-nav-button-solid {
@@ -931,8 +947,10 @@ body[data-sidebar="dark"] .og-sidebar-link-level-3.is-active::before {
   }
 
   body[data-topbar="dark"] .og-client-nav-button {
-    min-height: 42px;
-    padding: 0 16px;
+    height: 40px;
+    min-height: 40px;
+    min-width: 78px;
+    padding: 0 14px;
   }
 
   body[data-sidebar="dark"] .og-sidebar {
