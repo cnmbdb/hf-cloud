@@ -8,7 +8,7 @@
 <!-- 自定义全局样式 -->
 <link href="/themes/clientarea/ogmiao/assets_custom/css/global.css?v={$Ver}" rel="stylesheet" >
 <link href="/themes/clientarea/ogmiao/assets_custom/css/responsive.css?v={$Ver}" rel="stylesheet">
-<link href="/themes/clientarea/ogmiao/assets_custom/css/shadcn-nav.css?v={$Ver}-20260628a" rel="stylesheet">
+<link href="/themes/clientarea/ogmiao/assets_custom/css/shadcn-nav.css?v={$Ver}-20260628c" rel="stylesheet">
 <!-- shadcn/ui Sidebar - 官方设计令牌驱动 -->
 <link href="/themes/clientarea/ogmiao/assets_custom/css/shadcn-sidebar.css?v={$Ver}" rel="stylesheet">
 <!-- 字体图标 -->
