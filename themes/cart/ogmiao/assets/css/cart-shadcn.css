@@ -57,32 +57,58 @@ body,
 
 .og-cart-header {
   height: 72px !important;
+  min-height: 72px !important;
+  max-height: 72px !important;
+  margin: 0 !important;
+  padding: 0 !important;
   position: sticky !important;
   top: 0 !important;
   z-index: 1100 !important;
   background: #000 !important;
   border-bottom: 1px solid rgba(255,255,255,.1) !important;
+  box-shadow: none !important;
+  display: flex !important;
+  align-items: center !important;
+  transform: none !important;
+  opacity: 1 !important;
+  animation: none !important;
+}
+
+.og-cart-header.header-animate,
+.og-cart-header .nav-item-animate,
+.og-cart-header .logo-container,
+.og-cart-header .nav-links li,
+.og-cart-header .nav-buttons {
+  transform: none !important;
+  opacity: 1 !important;
+  animation: none !important;
 }
 
 .og-cart-header .container {
   width: min(100% - 48px, 1920px) !important;
   max-width: none !important;
   height: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
 }
 
 .og-cart-header nav {
+  width: 100% !important;
   height: 100% !important;
   display: grid !important;
-  grid-template-columns: max-content minmax(0, 1fr) max-content !important;
+  grid-template-columns: minmax(120px, 180px) minmax(0, 1fr) max-content !important;
   align-items: center !important;
-  gap: 24px !important;
+  gap: 18px !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .og-cart-header .logo-container {
-  min-width: 150px !important;
+  min-width: 0 !important;
   display: inline-flex !important;
   align-items: center !important;
   text-decoration: none !important;
+  margin: 0 !important;
 }
 
 .og-cart-header .logo-img {
@@ -110,23 +136,43 @@ body,
 .og-cart-header .nav-container {
   justify-content: center !important;
   min-width: 0 !important;
+  position: static !important;
+  width: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
 }
 
 .og-cart-header .nav-links {
-  gap: 4px !important;
+  gap: clamp(2px, .7vw, 10px) !important;
   margin: 0 !important;
   padding: 0 !important;
   list-style: none !important;
+  flex-direction: row !important;
+}
+
+.og-cart-header .nav-links li {
+  margin: 0 !important;
+  flex: 0 0 auto !important;
 }
 
 .og-cart-header .nav-links a {
   min-height: 36px !important;
-  padding: 8px 10px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 8px clamp(6px, .72vw, 10px) !important;
   border-radius: 6px !important;
   color: rgba(255,255,255,.58) !important;
   font-size: 14px !important;
   font-weight: 500 !important;
   text-decoration: none !important;
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  line-height: 1 !important;
 }
 
 .og-cart-header .nav-links a:hover,
@@ -282,7 +328,7 @@ body,
 .og-cart-page {
   width: min(100% - 48px, 1440px);
   margin: 0 auto;
-  padding: 32px 0 56px;
+  padding: 28px 0 56px;
   display: grid;
   grid-template-columns: 320px minmax(0, 1fr);
   gap: 24px;
@@ -997,7 +1043,7 @@ body,
   }
 
   .og-cart-page {
-    width: min(100% - 24px, 720px);
+    width: min(100% - 24px, 980px);
     grid-template-columns: 1fr;
     padding-top: 20px;
   }
