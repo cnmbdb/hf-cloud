@@ -55,6 +55,33 @@ body,
   padding: 0 !important;
 }
 
+body[data-topbar="dark"] .main-content,
+body[data-sidebar="dark"] .main-content,
+body[data-topbar="dark"][data-sidebar="dark"] .main-content {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  overflow: visible !important;
+}
+
+body[data-topbar="dark"] .page-content,
+body[data-sidebar="dark"] .page-content,
+body[data-topbar="dark"][data-sidebar="dark"] .page-content {
+  width: 100% !important;
+  max-width: none !important;
+  margin-top: 0 !important;
+  padding: 0 !important;
+}
+
+body[data-topbar="dark"] .container-fluid,
+body[data-sidebar="dark"] .container-fluid,
+body[data-topbar="dark"][data-sidebar="dark"] .container-fluid {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 .og-cart-header {
   height: 72px !important;
   min-height: 72px !important;
