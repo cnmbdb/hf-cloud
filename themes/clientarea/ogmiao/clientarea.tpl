@@ -2463,6 +2463,45 @@ thead th {
   color: #fafafa !important;
 }
 
+#sourceListBox .view-toggle-btn,
+#sourceListBox .view-toggle-btn.active {
+  background: #09090b !important;
+  border-color: #27272a !important;
+  color: #fafafa !important;
+  box-shadow: none !important;
+}
+
+#sourceListBox .view-toggle-btn.active {
+  background: #fafafa !important;
+  border-color: #fafafa !important;
+  color: #09090b !important;
+}
+
+#sourceListBox .scroll-hint,
+#sourceListBox .scroll-indicator {
+  background: #18181b !important;
+  border-color: #27272a !important;
+  color: #d4d4d8 !important;
+  box-shadow: none !important;
+}
+
+#sourceListBox .scroll-indicator-thumb {
+  background: #fafafa !important;
+  box-shadow: none !important;
+}
+
+#sourceListBox .resource-container,
+#sourceListBox .resource-container *,
+#sourceListBox .table-responsive,
+#sourceListBox .table-responsive *,
+#sourceListBox .custom-styled-table,
+#sourceListBox .custom-styled-table *,
+#sourceListBox table,
+#sourceListBox table * {
+  border-color: #27272a !important;
+  box-shadow: none !important;
+}
+
 .news-read-more,
 .news-read-more i,
 .news-card:hover .news-read-more,
