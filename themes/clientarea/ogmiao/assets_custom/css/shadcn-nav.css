@@ -787,6 +787,126 @@ body[data-sidebar="dark"] .og-sidebar-link-level-3.is-active::before {
   border-radius: 999px;
 }
 
+/* Always-open document outline: primary groups connected by one vertical rule */
+body[data-sidebar="dark"] .og-sidebar-menu {
+  position: relative;
+  gap: 16px;
+}
+
+body[data-sidebar="dark"] .og-sidebar-menu::before {
+  content: "";
+  position: absolute;
+  left: 23px;
+  top: 22px;
+  bottom: 22px;
+  width: 1px;
+  background: #243244;
+  pointer-events: none;
+}
+
+body[data-sidebar="dark"] .og-sidebar-item {
+  z-index: 1;
+}
+
+body[data-sidebar="dark"] .og-sidebar-link-level-1 {
+  min-height: 36px;
+  padding: 0 8px !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  color: #f8fafc !important;
+  font-size: 17px !important;
+  font-weight: 800 !important;
+}
+
+body[data-sidebar="dark"] .og-sidebar-link-level-1 i {
+  width: 30px !important;
+  height: 30px !important;
+  background: #050507;
+  border-color: transparent;
+  color: #f8fafc !important;
+  font-size: 22px !important;
+}
+
+body[data-sidebar="dark"] .og-sidebar-link-level-1:hover,
+body[data-sidebar="dark"] .og-sidebar-item-level-1.mm-active > .og-sidebar-link-level-1,
+body[data-sidebar="dark"] .og-sidebar-item-level-1[data-active="true"] > .og-sidebar-link-level-1,
+body[data-sidebar="dark"] .og-sidebar-link-level-1.is-active,
+body[data-sidebar="dark"] .og-sidebar-link-level-1.mm-active {
+  background: transparent !important;
+  border-color: transparent !important;
+  color: #ffffff !important;
+}
+
+body[data-sidebar="dark"] .og-sidebar-link-level-1:hover i,
+body[data-sidebar="dark"] .og-sidebar-item-level-1.mm-active > .og-sidebar-link-level-1 i,
+body[data-sidebar="dark"] .og-sidebar-item-level-1[data-active="true"] > .og-sidebar-link-level-1 i,
+body[data-sidebar="dark"] .og-sidebar-link-level-1.is-active i,
+body[data-sidebar="dark"] .og-sidebar-link-level-1.mm-active i {
+  background: #050507;
+  border-color: transparent;
+  color: #f8fafc !important;
+}
+
+body[data-sidebar="dark"] .og-sidebar-link.has-arrow::after,
+body[data-sidebar="dark"] .og-sidebar-link-level-1::after,
+body[data-sidebar="dark"] .og-sidebar-link-level-2::after,
+body[data-sidebar="dark"] .og-sidebar-link-level-3::after {
+  display: none !important;
+}
+
+body[data-sidebar="dark"] .og-sidebar-submenu {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+  margin: 8px 0 0 23px !important;
+  padding: 4px 0 2px 28px !important;
+  border-left: 1px solid #243244 !important;
+}
+
+body[data-sidebar="dark"] .og-sidebar-submenu::before {
+  display: none;
+}
+
+body[data-sidebar="dark"] .og-sidebar-submenu-level-3 {
+  margin: 2px 0 6px 0 !important;
+  padding-left: 18px !important;
+  border-left-color: #1f2937 !important;
+}
+
+body[data-sidebar="dark"] .og-sidebar-link-level-2,
+body[data-sidebar="dark"] .og-sidebar-link-level-3 {
+  min-height: 36px;
+  padding: 5px 4px !important;
+  color: #93a4ba !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
+}
+
+body[data-sidebar="dark"] .og-sidebar-link-level-3 {
+  min-height: 32px;
+  color: #7f8ea3 !important;
+  font-size: 14px !important;
+}
+
+body[data-sidebar="dark"] .og-sidebar-link-level-2:hover,
+body[data-sidebar="dark"] .og-sidebar-link-level-3:hover,
+body[data-sidebar="dark"] .og-sidebar-item-level-2.mm-active > .og-sidebar-link,
+body[data-sidebar="dark"] .og-sidebar-item-level-3.mm-active > .og-sidebar-link,
+body[data-sidebar="dark"] .og-sidebar-link-level-2.is-active,
+body[data-sidebar="dark"] .og-sidebar-link-level-3.is-active {
+  background: transparent !important;
+  color: #f8fafc !important;
+}
+
+body[data-sidebar="dark"] .og-sidebar-item-level-2.mm-active > .og-sidebar-link::before,
+body[data-sidebar="dark"] .og-sidebar-item-level-3.mm-active > .og-sidebar-link::before,
+body[data-sidebar="dark"] .og-sidebar-link-level-2.is-active::before,
+body[data-sidebar="dark"] .og-sidebar-link-level-3.is-active::before {
+  left: -29px;
+  height: 28px;
+}
+
 @media (max-width: 991.98px) {
   body[data-topbar="dark"] #page-topbar.og-client-web-header {
     height: 76px;

@@ -16,8 +16,8 @@
 				</li> -->
 				<!-- 临时菜单 -->
 				{foreach $Nav as $nv}
-				<li class="og-sidebar-item og-sidebar-item-level-1 {if $nv.child}og-sidebar-collapsible{/if}">
-					<a href="{if $nv.child}javascript: ;{else}{$nv.url}{/if}" class="og-sidebar-link og-sidebar-link-level-1 {if $nv.child}has-arrow{/if} waves-effect" data-menu-level="1" {if $nv.child}aria-expanded="false"{/if}>
+				<li class="og-sidebar-item og-sidebar-item-level-1 {if $nv.child}og-sidebar-has-children{/if}">
+					<a href="{if $nv.child}javascript: ;{else}{$nv.url}{/if}" class="og-sidebar-link og-sidebar-link-level-1 waves-effect" data-menu-level="1" {if $nv.child}aria-expanded="true"{/if}>
 						{if $nv.fa_icon}<i class="{$nv.fa_icon}"></i>{else}<i class="bx bx-circle og-sidebar-fallback-icon"></i>{/if}
 						{if (isset($nv.tag))}
 							{$nv.tag}
@@ -25,11 +25,11 @@
 						<span class="og-sidebar-title">{$nv.name}</span>
 					</a>
 					{if $nv.child}
-					<ul class="sub-menu mm-collapse og-sidebar-submenu og-sidebar-submenu-level-2" aria-expanded="false">
+					<ul class="sub-menu og-sidebar-submenu og-sidebar-submenu-level-2" aria-expanded="true">
 						{foreach $nv.child as $subnav}
-						<li class="og-sidebar-item og-sidebar-item-level-2 {if $subnav.child}og-sidebar-collapsible{/if}">
+						<li class="og-sidebar-item og-sidebar-item-level-2 {if $subnav.child}og-sidebar-has-children{/if}">
 							<a href="{if $subnav.child}javascript: ;{else}{$subnav.url}{/if}"
-								class="og-sidebar-link og-sidebar-link-level-2 {if $subnav.child}has-arrow{/if} waves-effect" data-menu-level="2" {if $subnav.child}aria-expanded="false"{/if}>
+								class="og-sidebar-link og-sidebar-link-level-2 waves-effect" data-menu-level="2" {if $subnav.child}aria-expanded="true"{/if}>
 								{if $subnav.fa_icon}<i class="{$subnav.fa_icon}"></i>{else}<i class="bx bx-circle og-sidebar-fallback-icon"></i>{/if}
 								{if (isset($subnav.tag))}
 									{$subnav.tag}
@@ -37,11 +37,11 @@
 								<span class="og-sidebar-title">{$subnav.name}</span>
 							</a>
 							{if $subnav.child}
-							<ul class="sub-menu og-sidebar-submenu og-sidebar-submenu-level-3" aria-expanded="false">
+							<ul class="sub-menu og-sidebar-submenu og-sidebar-submenu-level-3" aria-expanded="true">
 								{foreach $subnav.child as $submenu}
 								<li class="og-sidebar-item og-sidebar-item-level-3">
 									<a href="{if $submenu.child}javascript: ;{else}{$submenu.url}{/if}"
-										class="og-sidebar-link og-sidebar-link-level-3 {if $submenu.child}has-arrow{/if} waves-effect" data-menu-level="3" {if $submenu.child}aria-expanded="false"{/if}>
+										class="og-sidebar-link og-sidebar-link-level-3 waves-effect" data-menu-level="3">
 										{if $submenu.fa_icon}<i class="{$submenu.fa_icon}"></i>{else}<i class="bx bx-circle og-sidebar-fallback-icon"></i>{/if}
 										{if (isset($submenu.tag))}
 											{$submenu.tag}
