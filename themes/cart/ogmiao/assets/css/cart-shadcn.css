@@ -1932,6 +1932,14 @@ body[data-topbar="dark"][data-sidebar="dark"] .container-fluid {
   color: #09090b !important;
 }
 
+body[data-topbar="dark"][data-sidebar="dark"] .og-cart-main .og-cart-notice-card .og-notice-copy > a,
+body[data-topbar="dark"][data-sidebar="dark"] .og-cart-main .og-cart-notice-card .og-notice-copy > a:link,
+body[data-topbar="dark"][data-sidebar="dark"] .og-cart-main .og-cart-notice-card .og-notice-copy > a:visited,
+body[data-topbar="dark"][data-sidebar="dark"] .og-cart-main .og-cart-notice-card .og-notice-copy > a:hover,
+body[data-topbar="dark"][data-sidebar="dark"] .og-cart-main .og-cart-notice-card .og-notice-copy > a:focus {
+  color: #09090b !important;
+}
+
 .og-sidebar-card .firstgroup_item.active,
 .og-sidebar-card .firstgroup_item.active a,
 .og-sidebar-card .firstgroup_item.active a.text-white,
