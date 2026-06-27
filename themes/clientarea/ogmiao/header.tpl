@@ -31,182 +31,54 @@
 
 <body data-topbar="dark" data-sidebar="dark">
 	{if $TplName != 'login' && $TplName != 'register' && $TplName != 'pwreset' && $TplName != 'bind' && $TplName != 'loginaccesstoken' }
-	<header id="page-topbar">
-		<div class="navbar-header">
-			<div class="d-flex">
-				<!-- LOGO -->
-				<div class="navbar-brand-box">
-				    {if $Setting.web_logo_home||$Setting.logo_url_home_mini}
-					<a href="{$Setting.web_jump_url}" class="logo logo-dark">
-						{if $Setting.logo_url_home_mini !=''}
-						<span class="logo-sm">
-							<img src="{$Setting.logo_url_home_mini}" alt="" height="32">
-						</span>
-						{/if}
-						<span class="logo-lg">
-							<img src="{$Setting.web_logo_home}" alt="" height="17">
-						</span>
-					</a>
-
-					<a href="{$Setting.web_jump_url}" class="logo logo-light">
-						{if $Setting.logo_url_home_mini !=''}
-						<span class="logo-sm" style="overflow: hidden;">
-							<img src="{$Setting.logo_url_home_mini}" alt="" height="32">
-						</span>
-						{/if}
-						<span class="logo-lg">
-							<img src="{$Setting.web_logo_home}" alt="">
-						</span>
-					</a>
-					{else}
-					<h1 class="logo-lg">{$Setting.company_name}</h1>
-					{/if}
-				</div>
-
-				<button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+	<header id="page-topbar" class="og-client-web-header">
+		<div class="og-client-nav-shell">
+			<a href="{$Setting.web_jump_url}" class="og-client-logo" aria-label="{$Setting.company_name}首页">
+				{if $Setting.web_logo_home}
+				<img src="{$Setting.web_logo_home}" alt="{$Setting.company_name}logo" onerror="this.onerror=null;this.src='/themes/web/ogmiao/img/hfcloud-logo.png';">
+				{else}
+				<span>HF</span>
+				{/if}
+			</a>
+			<nav class="og-client-primary-nav" aria-label="主导航">
+				<a href="/">首页</a>
+				<a href="/cart">产品服务</a>
+				<a href="/solutions.html">解决方案</a>
+				<a href="/bt.html">宝塔面板</a>
+				<a href="/partner.html">合作伙伴</a>
+				<a href="/activity.html">活动中心</a>
+			</nav>
+			<div class="og-client-actions">
+				<button type="button" class="og-client-menu-trigger" id="vertical-menu-btn" aria-label="打开菜单">
 					<i class="fa fa-fw fa-bars"></i>
 				</button>
-
-
-			</div>
-
-			<div class="d-flex">
-
-
-				<div class="dropdown d-inline-block d-lg-none ml-2 phonehide">
-					<button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="mdi mdi-magnify"></i>
-					</button>
-					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
-						aria-labelledby="page-header-search-dropdown">
-
-						<form class="p-3">
-							<div class="form-group m-0">
-								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
-									<div class="input-group-append">
-										<button class="btn btn-primary" type="submit">
-											<i class="mdi mdi-magnify"></i>
-										</button>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-
-				<!-- 多语言 -->
 				{if $Setting.allow_user_language}
-				<div class="dropdown d-inline-block">
-					<button type="button" class="btn header-item waves-effect" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">
-						<img id="header-lang-img" src="/upload/common/country/{$LanguageCheck.display_flag}.png" alt="Header Language" height="16">
+				<div class="dropdown d-inline-block og-client-language">
+					<button type="button" class="og-client-icon-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="选择语言">
+						<i class="bx bx-globe"></i>
 					</button>
 					<div class="dropdown-menu dropdown-menu-right">
-						<!-- wyh 20210329 插件使用 -->
 						{php}
 							$parse = parse_url(request()->url());
 							$path=$parse['path'];
 							$query=$parse['query'];
 							$query = preg_replace('/&language=[a-zA-Z0-9_-]+/','',$query);
 						{/php}
-						<!-- item-->
-						{if $path=="/addons"}
-							{foreach $Language as $key=>$list}
-								<a href="?{if $query}{$query}&{/if}language={$key}" class="dropdown-item notify-item language" data-lang="zh-cn">
-									<img src="/upload/common/country/{$list.display_flag}.png" alt="user-image"
-										 class="mr-1" height="12"> <span class="align-middle">{$list.display_name}</span>
-								</a>
-							{/foreach}
-							{else/}
-							{foreach $Language as $key=>$list}
-								<a href="?{if $query}{$query}&{/if}language={$key}" class="dropdown-item notify-item language" data-lang="zh-cn">
-									<img src="/upload/common/country/{$list.display_flag}.png" alt="user-image"
-										 class="mr-1" height="12"> <span class="align-middle">{$list.display_name}</span>
-								</a>
-							{/foreach}
-						{/if}
-
+						{foreach $Language as $key=>$list}
+						<a href="?{if $query}{$query}&{/if}language={$key}" class="dropdown-item notify-item language" data-lang="zh-cn">
+							<img src="/upload/common/country/{$list.display_flag}.png" alt="" class="mr-1" height="12">
+							<span class="align-middle">{$list.display_name}</span>
+						</a>
+						{/foreach}
 					</div>
 				</div>
 				{/if}
-        
-				<!-- 购物车 -->
-				<div class="dropdown d-none d-lg-inline-block ml-1">
-					<button type="button" class="btn header-item noti-icon waves-effect">
-						<a href="cart?action=viewcart"><i class="bx bx-cart-alt" style="margin-top: 8px;"></i></a>
-							<!-- {if count($CartShopData) != '0'}
-							<span class="badge badge-danger badge-pill">{:count($CartShopData)}</span>
-							{/if} -->
-					</button>
-				</div> 
-
-				<!-- 消息 -->
-				<div class="dropdown d-none d-lg-inline-block ml-1">
-					<a href="message">
-						<button type="button" class="btn header-item noti-icon waves-effect">
-							<i class="bx bx-bell {if $Setting.unread_num}bx-tada{/if}" style="margin-top: 8px;"></i>
-							{if $Setting.unread_num != '0'}
-							<span class="badge badge-danger badge-pill">{$Setting.unread_num}</span>
-							{/if}
-						</button>
-					</a>
-				</div>
-
-				<!-- 个人中心 -->
+				<a href="/clientarea" class="og-client-nav-button og-client-nav-button-outline">用户中心</a>
 				{if $Userinfo}
-				<div class="dropdown d-inline-block">
-					<button type="button" class="btn header-item waves-effect d-inline-flex align-items-center"
-						id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						{if $Userinfo.user.qq}
-						<img src="https://q1.qlogo.cn/g?b=qq&nk={$Userinfo.user.qq}&s=640" class="user-center_header d-inline-flex" style="display: inline-block;width: 30px;height: 30px;font-size: 16px;" alt="user qq avatar">
-						{else}
-						<div class="user-center_header d-inline-flex align-items-center justify-content-center"
-							style="display: inline-block;width: 30px;height: 30px;font-size: 16px;">
-							{if preg_match("/^[0-9]*[A-Za-z]+$/is", substr($Userinfo.user.username,0,1))} 
-							  {$Userinfo.user.username|substr=0,1|upper} 
-							{elseif preg_match("/^[\x7f-\xff]*$/", substr($Userinfo.user.username,0,3))} 
-							  {$Userinfo.user.username|substr=0,3}
-							{else}
-							  {$Userinfo.user.username|substr=0,1|upper} 
-							{/if}
-						</div>
-						{/if}
-						<span class="d-none d-xl-inline-block ml-1" key="t-henry">{$Userinfo.user.username}</span>
-						<i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
-					</button>
-					<div class="dropdown-menu dropdown-menu-right">
-						<!-- item-->
-						<a class="dropdown-item" href="details">
-							<i class="bx bxs-user-detail font-size-16 align-middle mr-1"></i>
-							<span key="t-profile">{$Lang.personal_information}</span>
-						</a>
-						<a class="dropdown-item" href="security">
-							<i class="bx bx-cog font-size-16 align-middle mr-1"></i>
-							<span key="t-profile">{$Lang.security_center}</span>
-						</a>
-						<a class="dropdown-item" href="message">
-							<i class="bx bxl-messenger font-size-16 align-middle mr-1"></i>
-							<span key="t-profile">{$Lang.message_center}</span>
-						</a>
-						{if $Setting.certifi_open==1}
-						<a class="dropdown-item" href="verified"> 
-							<i class="bx bxs-id-card font-size-16 align-middle mr-1"></i>
-							<span key="t-profile">{$Lang.real_name_authentications}</span>
-						</a>
-						{/if}
-						<a class="dropdown-item text-danger" href="logout"><i
-								class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> <span
-								key="t-logout">{$Lang.log_out}</span></a>
-					</div>
-				</div>
+				<a href="/logout" class="og-client-nav-button og-client-nav-button-solid">退出</a>
 				{else}
-				<div class="pointer d-flex align-items-center">
-					<a href="/login" class="text-dark">{$Lang.please_login}</a>
-				</div>
+				<a href="/login" class="og-client-nav-button og-client-nav-button-solid">登录</a>
 				{/if}
-
 			</div>
 		</div>
 	</header>
