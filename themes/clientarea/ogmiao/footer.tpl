@@ -3,23 +3,6 @@
 </div>
 </div>
 
-<footer class="footer">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-6">
-			    {if $CustomDepot.yangcube_showhitokoto == "true"}
-			    <a href="#" id="hitokoto_text">获取一言中...</a><br>
-			    {/if}
-				&copy; {$Setting.company_name}.
-			</div>
-			<div class="col-sm-6">
-				<div class="text-sm-right d-none d-sm-block">
-					
-				</div>
-			</div>
-		</div>
-	</div>
-</footer>
 {/if}
 
 <script src="/themes/clientarea/default/assets/js/app.js?v={$Ver}"></script>
@@ -36,6 +19,7 @@ fetch('{if $CustomDepot.yangcube_hitokotoapi}{$CustomDepot.yangcube_hitokotoapi}
 .then(response => response.json())
 .then(data => {
   const hitokoto = document.getElementById('hitokoto_text')
+  if (!hitokoto) return
   hitokoto.href = 'https://hitokoto.cn/?uuid=' + data.uuid
   hitokoto.innerText = "【Hitokoto 一言】" + data.hitokoto
 })
