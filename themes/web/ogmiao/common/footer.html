@@ -10,9 +10,9 @@
 <link rel="icon" href="https://cloud.ogmiao.com/themes/web/ogmiao/img/1.ico">
 <link rel="apple-touch-icon" href="https://cloud.ogmiao.com/themes/web/ogmiao/img/1.ico">
 <link rel="shortcut icon" href="https://cloud.ogmiao.com/themes/web/ogmiao/img/1.ico">
-<link href="{$setting.web_view}/assets/fonts/Poppins-Regular-Medium-SemiBold-Bold.css" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="{$setting.web_view}/fonts/Poppins-Regular-Medium-SemiBold-Bold.css" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript>
- <link href="{$setting.web_view}/assets/fonts/Poppins-Regular-Medium-SemiBold-Bold.css" rel="stylesheet">
+ <link href="{$setting.web_view}/fonts/Poppins-Regular-Medium-SemiBold-Bold.css" rel="stylesheet">
 </noscript>
 <meta charset="UTF-8">
 <link rel="robots" href="https://cloud.ogmiao.com/themes/web/ogmiao/robots.txt" type="text/plain">
@@ -22,7 +22,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="{$setting.web_view}/assets/fonts/Poppins-Regular-Medium-SemiBold-Bold-ExtraBold.css" rel="stylesheet">
+<link href="{$setting.web_view}/fonts/Poppins-Regular-Medium-SemiBold-Bold-ExtraBold.css" rel="stylesheet">
 <style>
 :root {
 --primary: #171717;
@@ -515,9 +515,17 @@ z-index: 9999;
 opacity: 1;
 transition: opacity 0.8s ease-out;
 pointer-events: none;
+/* Safety net: if header.js fails to add .fade-out within 2.5s,
+   CSS animation will fade out the overlay automatically to prevent
+   the dreaded white screen of death. JS path remains the priority
+   (its transition starts at 200ms; this only kicks in if JS is broken). */
+animation: sh-page-transition-fallback 0.8s ease-out 2.5s forwards;
 }
 .page-transition.fade-out {
 opacity: 0;
+}
+@keyframes sh-page-transition-fallback {
+to { opacity: 0; visibility: hidden; }
 }
 .reduce-motion * {
 animation: none !important;
@@ -530,6 +538,11 @@ transform: none !important;
  animation-iteration-count: 1 !important;
  transition-duration: 0.001ms !important;
  scroll-behavior: auto !important;
+}
+/* Safety: for reduced-motion users, run the page-transition fallback
+   immediately if JS is broken (no 2.5s white-screen wait). */
+.page-transition {
+ animation-delay: 0s !important;
 }
 .header-animate,
 .nav-item-animate,
