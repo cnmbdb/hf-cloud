@@ -647,7 +647,7 @@ animation: productAppear 0.6s forwards;
 }
 </style>
 <link rel="stylesheet" href="/themes/cart/ogmiao/assets/fonts/iconfont.css?v={$Ver}">
-<link rel="stylesheet" href="/themes/cart/ogmiao/assets/css/cart-shadcn.css?v={$Ver}-20260628b">
+<link rel="stylesheet" href="/themes/cart/ogmiao/assets/css/cart-shadcn.css?v={$Ver}-20260628c">
 <div class="search-box">
 <input type="text" id="product-search" class="form-control" placeholder="搜索产品..." />
 </div>

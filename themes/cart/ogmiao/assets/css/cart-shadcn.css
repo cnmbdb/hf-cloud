@@ -1911,3 +1911,36 @@ body[data-topbar="dark"][data-sidebar="dark"] .container-fluid {
 .og-cart-header a[href="/activity.html"] {
   display: none !important;
 }
+
+/* White surface text contrast fixes */
+.og-cart-header .btn-nav.btn-register,
+.og-cart-header .btn-nav.btn-register:link,
+.og-cart-header .btn-nav.btn-register:visited,
+.og-cart-header .btn-nav.btn-register:hover,
+.og-cart-header .btn-nav.btn-register:focus,
+.og-cart-header .btn-nav.btn-register *,
+.og-notice-copy a,
+.og-notice-copy a:link,
+.og-notice-copy a:visited,
+.og-notice-copy a:hover,
+.og-notice-copy a:focus,
+.notice-box .terms-btn,
+.notice-box .terms-btn:link,
+.notice-box .terms-btn:visited,
+.notice-box .terms-btn:hover,
+.notice-box .terms-btn:focus {
+  color: #09090b !important;
+}
+
+.og-sidebar-card .firstgroup_item.active,
+.og-sidebar-card .firstgroup_item.active a,
+.og-sidebar-card .firstgroup_item.active a.text-white,
+.og-sidebar-card .secondgroup_item.active,
+.og-sidebar-card .secondgroup_item.active a,
+.og-sidebar-card .secondgroup_item.active a.text-white {
+  color: #09090b !important;
+}
+
+.og-sidebar-card .firstgroup_item.active::after {
+  border-color: #09090b !important;
+}
