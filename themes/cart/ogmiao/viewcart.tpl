@@ -211,10 +211,6 @@
 				<ul class="nav-links">
 					<li><a href="/">首页</a></li>
 					<li><a href="/cart" aria-current="page">产品服务</a></li>
-					<li><a href="/solutions.html">解决方案</a></li>
-					<li><a href="/bt.html">宝塔面板</a></li>
-					<li><a href="/partner.html">合作伙伴</a></li>
-					<li><a href="/activity.html">活动中心</a></li>
 				</ul>
 			</div>
 			<div class="nav-buttons">

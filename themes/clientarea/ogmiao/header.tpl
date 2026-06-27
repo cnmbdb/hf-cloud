@@ -43,10 +43,6 @@
 			<nav class="og-client-primary-nav" aria-label="主导航">
 				<a href="/">首页</a>
 				<a href="/cart">产品服务</a>
-				<a href="/solutions.html">解决方案</a>
-				<a href="/bt.html">宝塔面板</a>
-				<a href="/partner.html">合作伙伴</a>
-				<a href="/activity.html">活动中心</a>
 			</nav>
 			<div class="og-client-actions">
 				<button type="button" class="og-client-menu-trigger" id="vertical-menu-btn" aria-label="打开菜单">
