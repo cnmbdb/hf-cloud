@@ -1050,7 +1050,13 @@ body[data-topbar="dark"][data-sidebar="dark"] .table-responsive,
 body[data-topbar="dark"][data-sidebar="dark"] .resource-container,
 body[data-topbar="dark"][data-sidebar="dark"] .dataTables_wrapper,
 body[data-topbar="dark"][data-sidebar="dark"] .modal-content,
-body[data-topbar="dark"][data-sidebar="dark"] .swal2-popup {
+body[data-topbar="dark"][data-sidebar="dark"] .swal2-popup,
+body[data-topbar="dark"][data-sidebar="dark"] .balance-display,
+body[data-topbar="dark"][data-sidebar="dark"] .payment-method,
+body[data-topbar="dark"][data-sidebar="dark"] .pay-method,
+body[data-topbar="dark"][data-sidebar="dark"] .gateway-item,
+body[data-topbar="dark"][data-sidebar="dark"] .recharge-box,
+body[data-topbar="dark"][data-sidebar="dark"] .account-box {
   background: #09090b !important;
   border: 1px solid #27272a !important;
   border-radius: 8px !important;
@@ -1119,7 +1125,12 @@ body[data-topbar="dark"][data-sidebar="dark"] .news-read-more {
 body[data-topbar="dark"][data-sidebar="dark"] .btn-primary,
 body[data-topbar="dark"][data-sidebar="dark"] .btn-outline-primary:hover,
 body[data-topbar="dark"][data-sidebar="dark"] .btn-success,
+body[data-topbar="dark"][data-sidebar="dark"] .btn-addfunds,
+body[data-topbar="dark"][data-sidebar="dark"] .pay-now-btn,
 body[data-topbar="dark"][data-sidebar="dark"] .view-toggle-btn.active,
+body[data-topbar="dark"][data-sidebar="dark"] .payment-method.active,
+body[data-topbar="dark"][data-sidebar="dark"] .pay-method.active,
+body[data-topbar="dark"][data-sidebar="dark"] .gateway-item.active,
 body[data-topbar="dark"][data-sidebar="dark"] .page-item.active .page-link {
   background: #fafafa !important;
   border-color: #fafafa !important;
@@ -1129,6 +1140,8 @@ body[data-topbar="dark"][data-sidebar="dark"] .page-item.active .page-link {
 
 body[data-topbar="dark"][data-sidebar="dark"] .btn-primary:hover,
 body[data-topbar="dark"][data-sidebar="dark"] .btn-success:hover,
+body[data-topbar="dark"][data-sidebar="dark"] .btn-addfunds:hover,
+body[data-topbar="dark"][data-sidebar="dark"] .pay-now-btn:hover,
 body[data-topbar="dark"][data-sidebar="dark"] .view-toggle-btn.active:hover {
   background: #e5e5e5 !important;
   border-color: #e5e5e5 !important;
