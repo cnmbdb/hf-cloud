@@ -1896,3 +1896,15 @@ body[data-topbar="dark"][data-sidebar="dark"] .container-fluid {
     padding: 0 0 10px !important;
   }
 }
+
+/* Hide removed secondary top navigation links while stale template cache expires. */
+.og-cart-nav a[href="/solutions.html"],
+.og-cart-nav a[href="/bt.html"],
+.og-cart-nav a[href="/partner.html"],
+.og-cart-nav a[href="/activity.html"],
+.og-cart-header a[href="/solutions.html"],
+.og-cart-header a[href="/bt.html"],
+.og-cart-header a[href="/partner.html"],
+.og-cart-header a[href="/activity.html"] {
+  display: none !important;
+}

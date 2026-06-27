@@ -790,3 +790,15 @@ header {
     text-align: center;
   }
 }
+
+/* Hide removed secondary navigation links while old templates/cache expire. */
+.nav-links a[href="/solutions.html"],
+.nav-links a[href="/bt.html"],
+.nav-links a[href="/partner.html"],
+.nav-links a[href="/activity.html"],
+.responsive-nav a[href="/solutions.html"],
+.responsive-nav a[href="/bt.html"],
+.responsive-nav a[href="/partner.html"],
+.responsive-nav a[href="/activity.html"] {
+  display: none !important;
+}

@@ -1311,3 +1311,11 @@ body[data-topbar="dark"][data-sidebar="dark"] #sourceListBox th {
   border-color: #27272a !important;
   box-shadow: none !important;
 }
+
+/* Hide removed secondary top navigation links while stale template cache expires. */
+body[data-topbar="dark"] .og-client-primary-nav a[href="/solutions.html"],
+body[data-topbar="dark"] .og-client-primary-nav a[href="/bt.html"],
+body[data-topbar="dark"] .og-client-primary-nav a[href="/partner.html"],
+body[data-topbar="dark"] .og-client-primary-nav a[href="/activity.html"] {
+  display: none !important;
+}
