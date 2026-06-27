@@ -31,7 +31,7 @@
                {if $nv.child}aria-expanded="false"{/if}>
               {if $nv.fa_icon}<span class="s-icon"><i class="{$nv.fa_icon}"></i></span>{/if}
               {if isset($nv.tag)}{$nv.tag}{/if}
-              <span>{$nv.name|replace:'▼':''|replace:'▲':''|trim}</span>
+              <span>{$nv.name}</span>
               {if $nv.child}<span class="s-chevron">&#9660;</span>{/if}
             </a>
             {if $nv.child}
@@ -43,7 +43,7 @@
                    {if $subnav.child}aria-expanded="false"{/if}>
                   {if $subnav.fa_icon}<span class="s-icon"><i class="{$subnav.fa_icon}"></i></span>{/if}
                   {if isset($subnav.tag)}{$subnav.tag}{/if}
-                  <span>{$subnav.name|replace:'▼':''|replace:'▲':''|trim}</span>
+                  <span>{$subnav.name}</span>
                   {if $subnav.child}<span class="s-chevron">&#9660;</span>{/if}
                 </a>
                 {if $subnav.child}
@@ -55,7 +55,7 @@
                        {if $submenu.child}aria-expanded="false"{/if}>
                       {if $submenu.fa_icon}<span class="s-icon"><i class="{$submenu.fa_icon}"></i></span>{/if}
                       {if isset($submenu.tag)}{$submenu.tag}{/if}
-                      <span>{$submenu.name|replace:'▼':''|replace:'▲':''|trim}</span>
+                      <span>{$submenu.name}</span>
                     </a>
                   </li>
                   {/foreach}
