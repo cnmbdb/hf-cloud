@@ -1035,9 +1035,9 @@ weight: 600; padding: 4px 10px; border-radius: 12px; transition: all 0.3s ease; 
           <div style="margin: 1.5rem 0; position: relative; z-index: 5;">
             <div style="text-align: center; margin-bottom: 1rem;">
   {if $Userinfo.user.qq}
-    <img src="https://q1.qlogo.cn/g?b=qq&nk={$Userinfo.user.qq}&s=640" style="width: 62px; height: 62px; border-radius: 50%; object-fit: cover; box-shadow: 0 3px 10px rgba(240, 138, 93, 0.3); border: 2px solid rgba(255, 255, 255, 0.8); overflow: hidden;" alt="用户头像">
+    <img src="https://q1.qlogo.cn/g?b=qq&nk={$Userinfo.user.qq}&s=640" style="width: 62px; height: 62px; border-radius: 50%; object-fit: cover; box-shadow: none; border: 2px solid #fafafa; overflow: hidden;" alt="用户头像">
   {else}
-    <div style="width: 62px; height: 62px; border-radius: 50%; background: linear-gradient(135deg, #f08a5d, #e67e22); color: white; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 600; margin: 0 auto; box-shadow: 0 3px 10px rgba(240, 138, 93, 0.3); border: 2px solid rgba(255, 255, 255, 0.8);">
+    <div style="width: 62px; height: 62px; border-radius: 50%; background: #fafafa; color: #09090b; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 600; margin: 0 auto; box-shadow: none; border: 2px solid #fafafa;">
       {if preg_match("/^[0-9]*[A-Za-z]+$/is", substr($Userinfo.user.username,0,1))} 
         {$Userinfo.user.username|substr=0,1|upper} 
       {elseif preg_match("/^[\x7f-\xff]*$/", substr($Userinfo.user.username,0,3))} 
@@ -1069,19 +1069,19 @@ weight: 600; padding: 4px 10px; border-radius: 12px; transition: all 0.3s ease; 
           
           <div style="display: flex; justify-content: space-around; margin: 1.5rem 0; position: relative; z-index: 5;">
             <div style="display: flex; flex-direction: column; align-items: center;">
-              <a href="security" style="width: 40px; height: 40px; border-radius: 50%; background-color: {if $Userinfo.user.certifi.status!=1}#aaa{else}#f08a5d{/if}; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 0.5rem;">
+              <a href="security" style="width: 40px; height: 40px; border-radius: 50%; background-color: {if $Userinfo.user.certifi.status!=1}#aaa{else}#fafafa{/if}; color: {if $Userinfo.user.certifi.status!=1}white{else}#09090b{/if}; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 0.5rem;">
                 <i class="bx bx-check-shield"></i>
               </a>
               <div style="text-align: center; font-size: 0.75rem; color: #636e72;">实名认证</div>
             </div>
             <div style="display: flex; flex-direction: column; align-items: center;">
-              <a href="security" style="width: 40px; height: 40px; border-radius: 50%; background-color: {if !$Userinfo.user.phonenumber}#aaa{else}#f08a5d{/if}; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 0.5rem;">
+              <a href="security" style="width: 40px; height: 40px; border-radius: 50%; background-color: {if !$Userinfo.user.phonenumber}#aaa{else}#fafafa{/if}; color: {if !$Userinfo.user.phonenumber}white{else}#09090b{/if}; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 0.5rem;">
                 <i class="bx bx-phone-call"></i>
               </a>
               <div style="text-align: center; font-size: 0.75rem; color: #636e72;">手机绑定</div>
             </div>
             <div style="display: flex; flex-direction: column; align-items: center;">
-              <a href="security" style="width: 40px; height: 40px; border-radius: 50%; background-color: {if !$Userinfo.user.email}#aaa{else}#f08a5d{/if}; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 0.5rem;">
+              <a href="security" style="width: 40px; height: 40px; border-radius: 50%; background-color: {if !$Userinfo.user.email}#aaa{else}#fafafa{/if}; color: {if !$Userinfo.user.email}white{else}#09090b{/if}; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 0.5rem;">
                 <i class="bx bx-mail-send"></i>
               </a>
               <div style="text-align: center; font-size: 0.75rem; color: #636e72;">邮箱绑定</div>
@@ -1090,21 +1090,21 @@ weight: 600; padding: 4px 10px; border-radius: 12px; transition: all 0.3s ease; 
           
           <hr style="margin: 1rem 0; border-color: rgba(0, 0, 0, 0.05);">
           
-          <div style="display: flex; justify-content: space-around; align-items: center; position: relative; z-index: 5; margin-top: 1rem; padding: 1rem 0; background-color: rgba(240, 138, 93, 0.05); border-radius: 10px;">
+          <div style="display: flex; justify-content: space-around; align-items: center; position: relative; z-index: 5; margin-top: 1rem; padding: 1rem 0; background-color: #111113; border: 1px solid #27272a; border-radius: 10px;">
             <a href="supporttickets" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #2d3436; padding: 0.5rem 1rem; transition: all 0.3s;">
-              <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem; background-color: white; color: #f08a5d; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 3px 10px rgba(240, 138, 93, 0.2);">
+              <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem; background-color: #fafafa; color: #09090b; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: none;">
                 {$ClientArea.index.ticket_count}
               </div>
               <span style="font-size: 0.85rem; color: #2d3436; text-align: center; font-weight: 500;">{$Lang.pending_work_order}</span>
             </a>
             <a href="billing" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #2d3436; padding: 0.5rem 1rem; transition: all 0.3s;">
-              <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem; background-color: white; color: #f08a5d; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 3px 10px rgba(240, 138, 93, 0.2);">
+              <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem; background-color: #fafafa; color: #09090b; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: none;">
                 {$ClientArea.index.order_count}
               </div>
               <span style="font-size: 0.85rem; color: #2d3436; text-align: center; font-weight: 500;">{$Lang.unpaid_order}</span>
             </a>
             <a href="service" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #2d3436; padding: 0.5rem 1rem; transition: all 0.3s;">
-              <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem; background-color: white; color: #f08a5d; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 3px 10px rgba(240, 138, 93, 0.2);">
+              <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem; background-color: #fafafa; color: #09090b; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: none;">
                 {$ClientArea.index.host}
               </div>
               <span style="font-size: 0.85rem; color: #2d3436; text-align: center; font-weight: 500;">{$Lang.number_of_products}</span>
@@ -2268,6 +2268,11 @@ h4, h5 {
 .view-more-link:hover {
   background: #e5e5e5 !important;
   border-color: #e5e5e5 !important;
+}
+
+.welcome-card [style*="#f08a5d"],
+.welcome-card [style*="240, 138, 93"] {
+  box-shadow: none !important;
 }
 
 a {
