@@ -1027,7 +1027,6 @@ weight: 600; padding: 4px 10px; border-radius: 12px; transition: all 0.3s ease; 
     <section>
       <div class="card welcome-card">
         <div class="card-body">
-          <img src="https://cloud.ogmiao.com/themes/web/ogmiao/img/jxw.webp" alt="橘喵云吉祥物" style="position: absolute; bottom: -10px; right: -10px; width: 100px; height: auto; opacity: 0.3; z-index: 0;">
           <div style="position: relative; z-index: 2;">
             <h4 style="font-size: 1.25rem; font-weight: 700; color: #2d3436; margin-bottom: 1.25rem;">欢迎回来，喵喵</h4>
             <p style="font-size: 0.9rem; color: #636e72; margin-bottom: 1.5rem;">橘喵云为您提供专业的IDC服务，随时随地管理您的云资源。</p>
