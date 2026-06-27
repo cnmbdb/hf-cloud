@@ -647,7 +647,7 @@ animation: productAppear 0.6s forwards;
 }
 </style>
 <link rel="stylesheet" href="/themes/cart/ogmiao/assets/fonts/iconfont.css?v={$Ver}">
-<link rel="stylesheet" href="/themes/cart/ogmiao/assets/css/cart-shadcn.css?v={$Ver}-20260628a">
+<link rel="stylesheet" href="/themes/cart/ogmiao/assets/css/cart-shadcn.css?v={$Ver}-20260628b">
 <div class="search-box">
 <input type="text" id="product-search" class="form-control" placeholder="搜索产品..." />
 </div>
@@ -669,12 +669,9 @@ animation: productAppear 0.6s forwards;
         <div class="card-body">
           <h5 class="product-name">{$list.name}</h5>
           <div class="product-description-container">
-            <div class="product-description collapsed">
+            <div class="product-description expanded">
               {$list.description}
             </div>
-            <button class="toggle-description" data-action="expand">
-              查看详情 <i class="iconfont icon-arrow-down"></i>
-            </button>
           </div>
 <div class="stock-indicator">
  {if isset($list.stock_control) && $list.stock_control==1}
@@ -769,11 +766,9 @@ function checkSelectedGroupHasYes() {
     $('.product-description').each(function() {
       const description = $(this);
       const container = description.parent();
-      
+
       description.removeClass('collapsed').addClass('expanded');
-      if (container.find('.toggle-description').length > 0) {
-        container.find('.toggle-description').data('action', 'collapse').html('收起详情 <i class="iconfont icon-arrow-up"></i>');
-      }
+      container.find('.toggle-description').remove();
     });
     
     // 重新计算布局
@@ -818,12 +813,8 @@ function initMasonry(animate = true) {
   // --- 修正版：仅第一行顺序，后续根据高度差决定是否瀑布流 ---
   const containerWidth = container.width();
   let columns;
-  if ($(window).width() > 1200) {
-    columns = 4;
-  } else if ($(window).width() > 992) {
-    columns = 3;
-  } else if ($(window).width() > 768) {
-    columns = 3;
+  if ($(window).width() > 768) {
+    columns = 2;
   } else {
     columns = 2;
   }
@@ -903,25 +894,16 @@ $('.cartitem').on('mouseleave', function () {
   $(this).removeClass('active');
 });
 $(document).on('click', '.toggle-description', function() {
-  const btn = $(this);
-  const description = btn.siblings('.product-description');
-  const action = btn.data('action');
-  if (action === 'expand') {
-    description.removeClass('collapsed').addClass('expanded');
-    btn.data('action', 'collapse');
-    btn.html('收起详情 <i class="iconfont icon-arrow-up"></i>');
-  } else {
-    description.removeClass('expanded').addClass('collapsed');
-    btn.data('action', 'expand');
-    btn.html('查看详情 <i class="iconfont icon-arrow-down"></i>');
-  }
-    setTimeout(function() {
+  $(this).siblings('.product-description').removeClass('collapsed').addClass('expanded');
+  $(this).remove();
+  setTimeout(function() {
     initMasonry(false);
-  }, 500);
+  }, 100);
 });
 $('.product-description').each(function() {
   const description = $(this);
-  description.addClass('collapsed');
+  description.removeClass('collapsed').addClass('expanded');
+  description.parent().find('.toggle-description').remove();
 });
 
 // 修改处理商品名称的逻辑，将国旗显示和展开功能分开处理
@@ -946,9 +928,7 @@ $(document).ready(function() {
       const container = description.parent();
       
       description.removeClass('collapsed').addClass('expanded');
-      if (container.find('.toggle-description').length > 0) {
-        container.find('.toggle-description').data('action', 'collapse').html('收起详情 <i class="iconfont icon-arrow-up"></i>');
-      }
+      container.find('.toggle-description').remove();
     } else {
       $this.attr('data-has-yes', 'false');
     }
@@ -999,11 +979,9 @@ function checkSelectedGroupHasYes() {
     $('.product-description').each(function() {
       const description = $(this);
       const container = description.parent();
-      
+
       description.removeClass('collapsed').addClass('expanded');
-      if (container.find('.toggle-description').length > 0) {
-        container.find('.toggle-description').data('action', 'collapse').html('收起详情 <i class="iconfont icon-arrow-up"></i>');
-      }
+      container.find('.toggle-description').remove();
     });
     
     // 重新计算布局
@@ -1021,22 +999,8 @@ $('.product-description').each(function() {
   const productName = productItem.find('.product-name').text();
   const hasYes = productItem.find('.product-name').attr('data-has-yes') === 'true';
   
-  // 检查商品名称是否标记为自动展开
-  if (hasYes) {
-    description.removeClass('collapsed').addClass('expanded');
-    if (container.find('.toggle-description').length === 0 && (description.height() > 60 || description.text().length > 120)) {
-      container.append('<button class="toggle-description" data-action="collapse">收起详情 <i class="iconfont icon-arrow-up"></i></button>');
-    } else if (container.find('.toggle-description').length > 0) {
-      container.find('.toggle-description').data('action', 'collapse').html('收起详情 <i class="iconfont icon-arrow-up"></i>');
-    }
-  } else {
-    if (description.height() > 60 || description.text().length > 120) {
-      description.addClass('collapsed');
-      if (container.find('.toggle-description').length === 0) {
-        container.append('<button class="toggle-description" data-action="expand">查看详情 <i class="iconfont icon-arrow-down"></i></button>');
-      }
-    }
-  }
+  description.removeClass('collapsed').addClass('expanded');
+  container.find('.toggle-description').remove();
 });
 
 let searchTimeout;
@@ -1216,11 +1180,9 @@ $(document).ready(function() {
       const productItem = $this.closest('.product-item');
       const description = productItem.find('.product-description');
       const container = description.parent();
-      
+
       description.removeClass('collapsed').addClass('expanded');
-      if (container.find('.toggle-description').length > 0) {
-        container.find('.toggle-description').data('action', 'collapse').html('收起详情 <i class="iconfont icon-arrow-up"></i>');
-      }
+      container.find('.toggle-description').remove();
     }
   });
   
