@@ -24,13 +24,13 @@
 (function (root, factory) {
   'use strict';
   if (typeof define === 'function' && define.amd) {
-    define([], factory);
+    define([], function () { return factory(root); });
   } else if (typeof module === 'object' && module.exports) {
-    module.exports = factory();
+    module.exports = factory(root);
   } else {
-    root.Sidebar = factory();
+    root.Sidebar = factory(root);
   }
-})(typeof window !== 'undefined' ? window : this, function () {
+})(typeof window !== 'undefined' ? window : this, function (root) {
   'use strict';
 
   /* ---------------- Constants ---------------- */
@@ -139,11 +139,16 @@
   /* ---------------- Init ---------------- */
   function init(opts) {
     opts = opts || {};
-    _dom.root = opts.root || root.document.querySelector('.sh-sidebar');
+    _dom.root = opts.root || root.document.querySelector('.sh-sidebar') || root.document.querySelector('.og-sidebar');
     if (!_dom.root) return false;
 
     _dom.backdrop = opts.backdrop || root.document.querySelector('.sh-sidebar-backdrop');
-    _dom.toggle = opts.toggle || root.document.querySelector('#shSidebarToggle');
+    if (!_dom.backdrop && _dom.root.classList.contains('og-sidebar')) {
+      _dom.backdrop = root.document.createElement('div');
+      _dom.backdrop.className = 'sh-sidebar-backdrop og-sidebar-backdrop';
+      root.document.body.appendChild(_dom.backdrop);
+    }
+    _dom.toggle = opts.toggle || root.document.querySelector('#shSidebarToggle') || root.document.querySelector('#vertical-menu-btn');
     _dom.search = opts.search || root.document.querySelector('#shSidebarSearch');
 
     // Apply initial state
@@ -232,21 +237,21 @@
   function bindSubmenuToggle() {
     if (!_dom.root) return;
     _dom.root.addEventListener('click', function (e) {
-      var btn = e.target.closest('.sh-sidebar-menu-button.has-arrow, .sh-sidebar-menu-sub-button.has-arrow');
+      var btn = e.target.closest('.sh-sidebar-menu-button.has-arrow, .sh-sidebar-menu-sub-button.has-arrow, .og-sidebar-link.has-arrow');
       if (!btn) return;
       // Only intercept if it is a "has-arrow" toggle (i.e., href is # or empty)
       var href = btn.getAttribute('href') || '';
-      if (href !== '' && href !== '#' && !href.endsWith('#')) return;
+      if (href !== '' && href !== '#' && !href.endsWith('#') && href.indexOf('javascript') !== 0) return;
 
       e.preventDefault();
-      var item = btn.closest('.sh-sidebar-menu-item, .sh-sidebar-menu-sub-item');
+      var item = btn.closest('.sh-sidebar-menu-item, .sh-sidebar-menu-sub-item, .og-sidebar-item');
       if (!item) return;
       var open = item.getAttribute('data-state') === 'open';
       // Sibling collapse
       var parent = item.parentElement;
       if (parent) {
         Array.prototype.forEach.call(parent.children, function (sib) {
-          if (sib !== item && sib.classList && (sib.classList.contains('sh-sidebar-menu-item') || sib.classList.contains('sh-sidebar-menu-sub-item'))) {
+          if (sib !== item && sib.classList && (sib.classList.contains('sh-sidebar-menu-item') || sib.classList.contains('sh-sidebar-menu-sub-item') || sib.classList.contains('og-sidebar-item'))) {
             sib.setAttribute('data-state', 'closed');
             sib.querySelectorAll('[data-state="open"]').forEach(function (sub) {
               sub.setAttribute('data-state', 'closed');
@@ -265,7 +270,7 @@
     var hash = root.location.hash;
     var search = root.location.search;
     var fullHref = root.location.href;
-    var links = _dom.root.querySelectorAll('.sh-sidebar-menu-button, .sh-sidebar-menu-sub-button');
+    var links = _dom.root.querySelectorAll('.sh-sidebar-menu-button, .sh-sidebar-menu-sub-button, .og-sidebar-link');
     Array.prototype.forEach.call(links, function (a) {
       if (a.classList.contains('has-arrow')) return;
       var href = a.getAttribute('href') || '';
@@ -290,15 +295,17 @@
 
       if (matches) {
         a.classList.add('is-active');
-        var item = a.closest('.sh-sidebar-menu-item, .sh-sidebar-menu-sub-item');
+        var item = a.closest('.sh-sidebar-menu-item, .sh-sidebar-menu-sub-item, .og-sidebar-item');
         if (item) {
           item.setAttribute('data-active', 'true');
+          item.classList.add('mm-active');
           // Expand parent submenus
           var parent = item.parentElement;
           while (parent && parent !== _dom.root) {
-            if (parent.classList && (parent.classList.contains('sh-sidebar-menu-item') || parent.classList.contains('sh-sidebar-menu-sub-item'))) {
+            if (parent.classList && (parent.classList.contains('sh-sidebar-menu-item') || parent.classList.contains('sh-sidebar-menu-sub-item') || parent.classList.contains('og-sidebar-item'))) {
               parent.setAttribute('data-state', 'open');
-              var btn = parent.querySelector(':scope > .sh-sidebar-menu-button, :scope > .sh-sidebar-menu-sub-button');
+              parent.classList.add('mm-active');
+              var btn = parent.querySelector(':scope > .sh-sidebar-menu-button, :scope > .sh-sidebar-menu-sub-button, :scope > .og-sidebar-link');
               if (btn) btn.setAttribute('aria-expanded', 'true');
             }
             parent = parent.parentElement;

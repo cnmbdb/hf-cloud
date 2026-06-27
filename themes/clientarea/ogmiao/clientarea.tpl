@@ -509,8 +509,6 @@ function initBalanceChart() {
           }
         }
       });
-      
-      adjustAvatarSizes();
     }
     
     function adjustAvatarSizes() {

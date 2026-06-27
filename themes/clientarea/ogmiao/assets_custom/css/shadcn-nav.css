@@ -281,7 +281,7 @@ body[data-topbar="dark"] .footer {
 }
 
 /* ========== Clientarea web-style top navigation ========== */
-body[data-topbar="dark"] .og-client-web-header {
+body[data-topbar="dark"] #page-topbar.og-client-web-header {
   position: fixed;
   top: 0;
   right: 0;
@@ -557,7 +557,8 @@ body[data-sidebar="dark"] .og-sidebar-link.has-arrow::after {
 }
 
 body[data-sidebar="dark"] .og-sidebar-item.mm-active > .og-sidebar-link.has-arrow::after,
-body[data-sidebar="dark"] .og-sidebar-link.has-arrow[aria-expanded="true"]::after {
+body[data-sidebar="dark"] .og-sidebar-link.has-arrow[aria-expanded="true"]::after,
+body[data-sidebar="dark"] .og-sidebar-item[data-state="open"] > .og-sidebar-link.has-arrow::after {
   border-color: #09090b !important;
   transform: rotate(-135deg) translateY(-50%) !important;
 }
@@ -568,6 +569,11 @@ body[data-sidebar="dark"] .og-sidebar-submenu {
   padding: 4px 0 4px 14px !important;
   border-left: 1px solid #27272a !important;
   background: transparent !important;
+}
+
+body[data-sidebar="dark"] .og-sidebar-item[data-state="open"] > .og-sidebar-submenu {
+  display: block !important;
+  height: auto !important;
 }
 
 body[data-sidebar="dark"] .og-sidebar-link-level-2,
@@ -627,7 +633,7 @@ body[data-sidebar="dark"].vertical-collpsed .og-sidebar-link.has-arrow::after {
 }
 
 @media (max-width: 991.98px) {
-  body[data-topbar="dark"] .og-client-web-header {
+  body[data-topbar="dark"] #page-topbar.og-client-web-header {
     height: 76px;
   }
 
@@ -659,6 +665,21 @@ body[data-sidebar="dark"].vertical-collpsed .og-sidebar-link.has-arrow::after {
     left: 12px !important;
     width: min(320px, calc(100vw - 24px)) !important;
     max-height: calc(100vh - 104px);
+    transform: translateX(calc(-100% - 24px));
+    transition: transform .22s ease;
+  }
+
+  body[data-sidebar="dark"] .og-sidebar[data-mobile-state="open"],
+  body[data-sidebar="dark"].sidebar-enable .og-sidebar {
+    transform: translateX(0);
+  }
+
+  body[data-sidebar="dark"] .og-sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, .56);
+    backdrop-filter: blur(2px);
   }
 
   body[data-sidebar="dark"] .og-sidebar #sidebar-menu {
