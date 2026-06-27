@@ -1,0 +1,926 @@
+/* ================================================================
+   shadcn/ui Sidebar - Pure CSS Implementation for PHP/HTML
+   Based on official shadcn Sidebar design tokens (oklch)
+   Converted from React/Tailwind to vanilla CSS variables
+
+   Reference: https://ui.shadcn.com/docs/components/sidebar
+   Components implemented:
+     - SidebarProvider (state via localStorage)
+     - Sidebar (root container)
+     - SidebarHeader / SidebarContent / SidebarFooter
+     - SidebarGroup / SidebarGroupLabel / SidebarGroupContent / SidebarGroupAction
+     - SidebarMenu / SidebarMenuItem / SidebarMenuButton
+     - SidebarMenuSub / SidebarMenuSubItem / SidebarMenuSubButton
+     - SidebarMenuBadge / SidebarMenuAction
+     - SidebarMenuSkeleton
+     - SidebarSeparator
+     - SidebarTrigger / SidebarRail
+     - SidebarInput (search)
+   ================================================================ */
+
+:root {
+  /* shadcn design tokens - Light mode (oklch -> hex approximation) */
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Layout tokens (mirroring shadcn sidebar.tsx) */
+  --sidebar-width: 16rem;
+  --sidebar-width-icon: 3rem;
+  --sidebar-width-mobile: 18rem;
+  --sidebar-spacing: calc(var(--sidebar-width) + 12px);
+  --sidebar-transition-duration: 200ms;
+  --sidebar-transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* z-index */
+  --z-sidebar: 50;
+  --z-sidebar-trigger: 50;
+  --z-sidebar-rail: 40;
+  --z-sidebar-backdrop: 40;
+}
+
+/* Dark mode (default for HFCloud - matching zinc-900/950 spec) */
+.dark,
+[data-theme="dark"],
+body[data-sidebar="dark"] {
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+/* ====================== SidebarProvider (state) ====================== */
+:root {
+  --sidebar-state: expanded;       /* expanded | collapsed */
+  --sidebar-mobile-state: closed;  /* closed | open */
+}
+
+/* ====================== Sidebar Root ====================== */
+.sh-sidebar {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--z-sidebar);
+  width: var(--sidebar-width);
+  height: 100vh;
+  background-color: var(--sidebar);
+  color: var(--sidebar-foreground);
+  border-right: 1px solid var(--sidebar-border);
+  transition:
+    width var(--sidebar-transition-duration) var(--sidebar-transition-ease),
+    left var(--sidebar-transition-duration) var(--sidebar-transition-ease),
+    transform var(--sidebar-transition-duration) var(--sidebar-transition-ease);
+  font-family: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  contain: layout style;
+}
+
+/* Sidebar variants: sidebar (default), floating, inset */
+.sh-sidebar[data-variant="floating"] {
+  margin: 8px;
+  height: calc(100vh - 16px);
+  border-radius: 12px;
+  border: 1px solid var(--sidebar-border);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+}
+
+.sh-sidebar[data-variant="inset"] {
+  background-color: transparent;
+  border-right: none;
+}
+
+/* Sidebar sides: left (default) or right */
+.sh-sidebar[data-side="right"] {
+  left: auto;
+  right: 0;
+  border-right: none;
+  border-left: 1px solid var(--sidebar-border);
+}
+
+/* ====================== Collapsed (icon mode) ====================== */
+.sh-sidebar[data-state="collapsed"] {
+  width: var(--sidebar-width-icon);
+}
+
+/* Pre-collapsed state (anti-FOUC)
+   This selector is applied at HTML parse time by the inline boot script
+   in menu.tpl, BEFORE the sidebar DOM is rendered. By reusing the same
+   rules as data-state="collapsed" via :where() (zero specificity), we
+   prevent the flash-of-expanded-sidebar on initial page load. */
+:where(html.sh-sidebar-pre-collapsed) .sh-sidebar {
+  width: var(--sidebar-width-icon);
+}
+
+/* In collapsed mode, hide labels/badges and center icons */
+.sh-sidebar[data-state="collapsed"] .sh-sidebar-menu-label,
+.sh-sidebar[data-state="collapsed"] .sh-sidebar-menu-badge,
+.sh-sidebar[data-state="collapsed"] .sh-sidebar-menu-arrow,
+.sh-sidebar[data-state="collapsed"] .sh-sidebar-group-label,
+.sh-sidebar[data-state="collapsed"] .sh-sidebar-search,
+.sh-sidebar[data-state="collapsed"] .sh-sidebar-user-info,
+.sh-sidebar[data-state="collapsed"] .sh-sidebar-user-chevron,
+.sh-sidebar[data-state="collapsed"] .sh-sidebar-brand-info,
+.sh-sidebar[data-state="collapsed"] .sh-sidebar-toggle .toggle-text {
+  display: none;
+}
+
+.sh-sidebar[data-state="collapsed"] .sh-sidebar-menu-button,
+.sh-sidebar[data-state="collapsed"] .sh-sidebar-menu-sub-button {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sh-sidebar[data-state="collapsed"] .sh-sidebar-menu-sub {
+  display: none; /* submenus hidden in icon mode, use flyout */
+}
+
+/* Flyout submenu when sidebar is collapsed (hover to reveal) */
+.sh-sidebar[data-state="collapsed"] .sh-sidebar-menu-item:hover > .sh-sidebar-menu-sub {
+  display: block;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  min-width: 12rem;
+  background-color: var(--sidebar);
+  border: 1px solid var(--sidebar-border);
+  border-radius: 6px;
+  padding: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: calc(var(--z-sidebar) + 1);
+  margin-left: 4px;
+}
+
+.sh-sidebar[data-state="collapsed"] .sh-sidebar-user-card {
+  justify-content: center;
+}
+
+/* Pre-collapsed: mirror ALL collapsed-mode visual rules.
+   :where() keeps specificity at zero, so once the JS sidebar takes over
+   and sets data-state="collapsed", identical rules apply without conflict. */
+:where(html.sh-sidebar-pre-collapsed) .sh-sidebar-menu-label,
+:where(html.sh-sidebar-pre-collapsed) .sh-sidebar-menu-badge,
+:where(html.sh-sidebar-pre-collapsed) .sh-sidebar-menu-arrow,
+:where(html.sh-sidebar-pre-collapsed) .sh-sidebar-group-label,
+:where(html.sh-sidebar-pre-collapsed) .sh-sidebar-search,
+:where(html.sh-sidebar-pre-collapsed) .sh-sidebar-user-info,
+:where(html.sh-sidebar-pre-collapsed) .sh-sidebar-user-chevron,
+:where(html.sh-sidebar-pre-collapsed) .sh-sidebar-brand-info {
+  display: none;
+}
+
+:where(html.sh-sidebar-pre-collapsed) .sh-sidebar-menu-button,
+:where(html.sh-sidebar-pre-collapsed) .sh-sidebar-menu-sub-button {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+:where(html.sh-sidebar-pre-collapsed) .sh-sidebar-user-card {
+  justify-content: center;
+}
+
+/* Toggle icon should be rotated in pre-collapsed state, matching runtime behavior */
+:where(html.sh-sidebar-pre-collapsed) .sh-sidebar-toggle i {
+  transform: rotate(180deg);
+}
+
+/* ====================== Header / Content / Footer ====================== */
+.sh-sidebar-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  flex-shrink: 0;
+}
+
+.sh-sidebar-content {
+  display: flex;
+  flex: 1 1 0%;
+  min-height: 0;
+  flex-direction: column;
+  overflow: hidden auto;
+  overscroll-behavior: contain;
+  /* Hide scrollbar visually but keep scrollable */
+  scrollbar-width: thin;
+  scrollbar-color: var(--sidebar-border) transparent;
+  padding: 4px;
+}
+
+.sh-sidebar-content::-webkit-scrollbar {
+  width: 6px;
+}
+.sh-sidebar-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sh-sidebar-content::-webkit-scrollbar-thumb {
+  background-color: var(--sidebar-border);
+  border-radius: 3px;
+}
+
+.sh-sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  flex-shrink: 0;
+  border-top: 1px solid var(--sidebar-border);
+}
+
+/* ====================== Brand / Switcher ====================== */
+.sh-sidebar-brand-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 120ms ease;
+  outline: none;
+}
+.sh-sidebar-brand-box:hover,
+.sh-sidebar-brand-box:focus-visible {
+  background-color: var(--sidebar-accent);
+  color: var(--sidebar-accent-foreground);
+}
+
+.sh-sidebar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  background-color: var(--sidebar-accent);
+  color: var(--sidebar-accent-foreground);
+  font-weight: 600;
+  font-size: 13px;
+  overflow: hidden;
+}
+.sh-sidebar-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.sh-sidebar-brand-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  min-width: 0;
+  flex: 1;
+}
+.sh-sidebar-brand-name {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sh-sidebar-brand-sub {
+  font-size: 11px;
+  color: color-mix(in oklab, var(--sidebar-foreground) 60%, transparent);
+  white-space: nowrap;
+}
+
+/* ====================== Toggle (SidebarTrigger) ====================== */
+.sh-sidebar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  position: absolute;
+  right: -14px;
+  top: 24px;
+  background-color: var(--sidebar);
+  border: 1px solid var(--sidebar-border);
+  transition: background-color 120ms ease, transform 200ms ease;
+  z-index: calc(var(--z-sidebar) + 1);
+}
+.sh-sidebar-toggle:hover {
+  background-color: var(--sidebar-accent);
+  color: var(--sidebar-accent-foreground);
+}
+.sh-sidebar-toggle i {
+  font-size: 16px;
+  transition: transform 200ms ease;
+}
+.sh-sidebar[data-state="collapsed"] .sh-sidebar-toggle i {
+  transform: rotate(180deg);
+}
+
+/* ====================== Search (SidebarInput) ====================== */
+.sh-sidebar-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  margin: 0 0 6px 0;
+  border-radius: 6px;
+  background-color: var(--sidebar-accent);
+  transition: background-color 120ms ease;
+}
+.sh-sidebar-search:focus-within {
+  background-color: var(--sidebar-accent);
+  box-shadow: 0 0 0 2px var(--sidebar-ring);
+}
+.sh-sidebar-search > i {
+  font-size: 14px;
+  color: color-mix(in oklab, var(--sidebar-foreground) 60%, transparent);
+  margin-right: 6px;
+}
+.sh-sidebar-search > input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  color: inherit;
+  min-width: 0;
+  font-family: inherit;
+}
+.sh-sidebar-search > input::placeholder {
+  color: color-mix(in oklab, var(--sidebar-foreground) 50%, transparent);
+}
+.sh-sidebar-kbd {
+  display: inline-flex;
+  align-items: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  border: 1px solid var(--sidebar-border);
+  color: color-mix(in oklab, var(--sidebar-foreground) 70%, transparent);
+  background: transparent;
+}
+
+/* ====================== Group ====================== */
+.sh-sidebar-group {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex-direction: column;
+  padding: 4px 0;
+}
+.sh-sidebar-group + .sh-sidebar-group {
+  border-top: 1px solid var(--sidebar-border);
+  margin-top: 4px;
+  padding-top: 8px;
+}
+
+.sh-sidebar-group-label {
+  display: flex;
+  height: 28px;
+  align-items: center;
+  padding: 0 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: color-mix(in oklab, var(--sidebar-foreground) 60%, transparent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  user-select: none;
+}
+
+.sh-sidebar-group-content {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.sh-sidebar-group-action {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  color: color-mix(in oklab, var(--sidebar-foreground) 70%, transparent);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 120ms ease;
+}
+.sh-sidebar-group-action:hover {
+  background-color: var(--sidebar-accent);
+  color: var(--sidebar-accent-foreground);
+}
+
+/* ====================== Menu ====================== */
+.sh-sidebar-menu {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex-direction: column;
+  gap: 1px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sh-sidebar-menu-item {
+  position: relative;
+  list-style: none;
+}
+
+.sh-sidebar-menu-button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--sidebar-foreground);
+  background: transparent;
+  border: none;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+  outline: none;
+  font-family: inherit;
+  min-height: 28px;
+}
+.sh-sidebar-menu-button:hover {
+  background-color: var(--sidebar-accent);
+  color: var(--sidebar-accent-foreground);
+  text-decoration: none;
+}
+.sh-sidebar-menu-button:focus-visible {
+  background-color: var(--sidebar-accent);
+  color: var(--sidebar-accent-foreground);
+  box-shadow: 0 0 0 2px var(--sidebar-ring);
+}
+.sh-sidebar-menu-button.is-active,
+.sh-sidebar-menu-item[data-active="true"] > .sh-sidebar-menu-button {
+  background-color: var(--sidebar-accent);
+  color: var(--sidebar-accent-foreground);
+  font-weight: 600;
+}
+
+.sh-sidebar-menu-button .s-icon {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 15px;
+  color: color-mix(in oklab, var(--sidebar-foreground) 70%, transparent);
+  transition: color 120ms ease;
+}
+.sh-sidebar-menu-button:hover .s-icon,
+.sh-sidebar-menu-item[data-active="true"] > .sh-sidebar-menu-button .s-icon {
+  color: var(--sidebar-accent-foreground);
+}
+
+.sh-sidebar-menu-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sh-sidebar-menu-arrow {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 12px;
+  color: color-mix(in oklab, var(--sidebar-foreground) 60%, transparent);
+  transition: transform 200ms var(--sidebar-transition-ease);
+}
+.sh-sidebar-menu-item[data-state="open"] > .sh-sidebar-menu-button > .sh-sidebar-menu-arrow {
+  transform: rotate(90deg);
+}
+
+/* Quick access marker (hot/star indicator) */
+.sh-sidebar-menu-button[data-quick="1"]::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 14px;
+  border-radius: 0 2px 2px 0;
+  background: linear-gradient(180deg, var(--sidebar-primary), color-mix(in oklab, var(--sidebar-primary) 60%, transparent));
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+.sh-sidebar-menu-button[data-quick="1"]:hover::before,
+.sh-sidebar-menu-item[data-active="true"] > .sh-sidebar-menu-button[data-quick="1"]::before {
+  opacity: 1;
+}
+
+/* Badge (count, e.g. unread messages) */
+.sh-sidebar-menu-badge {
+  display: inline-flex;
+  min-width: 20px;
+  height: 18px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 9999px;
+  background-color: var(--sidebar-primary);
+  color: var(--sidebar-primary-foreground);
+  margin-left: auto;
+}
+.sh-sidebar-menu-badge--count {
+  background-color: var(--sidebar-primary);
+}
+.sh-sidebar-menu-badge--dot {
+  min-width: 6px;
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  background-color: var(--sidebar-primary);
+}
+
+/* Tag (NEW / HOT / BETA) */
+.sh-sidebar-menu-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 16px;
+  padding: 0 5px;
+  font-size: 9px;
+  font-weight: 700;
+  border-radius: 3px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-left: auto;
+  line-height: 1;
+}
+.sh-sidebar-menu-tag--new {
+  background-color: color-mix(in oklab, var(--sidebar-primary) 15%, transparent);
+  color: var(--sidebar-primary);
+  border: 1px solid color-mix(in oklab, var(--sidebar-primary) 30%, transparent);
+}
+.sh-sidebar-menu-tag--hot {
+  background-color: color-mix(in oklab, oklch(0.7 0.18 30) 18%, transparent);
+  color: oklch(0.65 0.20 30);
+  border: 1px solid color-mix(in oklab, oklch(0.7 0.18 30) 35%, transparent);
+}
+.sh-sidebar-menu-tag--beta {
+  background-color: color-mix(in oklab, oklch(0.7 0.15 280) 18%, transparent);
+  color: oklch(0.6 0.18 280);
+  border: 1px solid color-mix(in oklab, oklch(0.7 0.15 280) 35%, transparent);
+}
+
+/* ====================== Submenu (Collapsible) ====================== */
+.sh-sidebar-menu-sub {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 1px;
+  padding: 2px 0 2px 16px;
+  margin: 0;
+  list-style: none;
+  border-left: 1px solid var(--sidebar-border);
+  margin-left: 16px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 200ms var(--sidebar-transition-ease);
+}
+.sh-sidebar-menu-item[data-state="open"] > .sh-sidebar-menu-sub {
+  max-height: 1000px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.sh-sidebar-menu-sub-item {
+  list-style: none;
+  position: relative;
+}
+
+.sh-sidebar-menu-sub-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  color: color-mix(in oklab, var(--sidebar-foreground) 80%, transparent);
+  background: transparent;
+  border: none;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+  outline: none;
+  min-height: 26px;
+}
+.sh-sidebar-menu-sub-button:hover {
+  background-color: var(--sidebar-accent);
+  color: var(--sidebar-accent-foreground);
+}
+.sh-sidebar-menu-sub-button:focus-visible {
+  box-shadow: 0 0 0 2px var(--sidebar-ring);
+}
+.sh-sidebar-menu-sub-button.is-active,
+.sh-sidebar-menu-sub-item[data-active="true"] > .sh-sidebar-menu-sub-button {
+  color: var(--sidebar-accent-foreground);
+  font-weight: 600;
+  background-color: transparent;
+}
+.sh-sidebar-menu-sub-button .s-icon {
+  display: inline-flex;
+  width: 14px;
+  height: 14px;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+/* ====================== SidebarSeparator ====================== */
+.sh-sidebar-separator {
+  width: 100%;
+  height: 1px;
+  background-color: var(--sidebar-border);
+  margin: 6px 0;
+}
+
+/* ====================== User Card / Dropdown ====================== */
+.sh-sidebar-user-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  text-align: left;
+  transition: background-color 120ms ease;
+  outline: none;
+  font-family: inherit;
+  color: inherit;
+}
+.sh-sidebar-user-card:hover,
+.sh-sidebar-user-card:focus-visible {
+  background-color: var(--sidebar-accent);
+  color: var(--sidebar-accent-foreground);
+}
+
+.sh-sidebar-avatar,
+.sh-sidebar-avatar-placeholder {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  object-fit: cover;
+  background-color: var(--sidebar-accent);
+  color: var(--sidebar-accent-foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--sidebar-border);
+}
+
+.sh-sidebar-user-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  line-height: 1.25;
+  min-width: 0;
+}
+.sh-sidebar-username {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sh-sidebar-userid {
+  font-size: 11px;
+  color: color-mix(in oklab, var(--sidebar-foreground) 60%, transparent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sh-sidebar-user-chevron {
+  font-size: 14px;
+  color: color-mix(in oklab, var(--sidebar-foreground) 60%, transparent);
+  flex-shrink: 0;
+}
+
+.sh-sidebar-dropdown-menu {
+  width: 100%;
+  background-color: var(--sidebar);
+  border: 1px solid var(--sidebar-border);
+  border-radius: 6px;
+  padding: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  margin-bottom: 4px;
+}
+.sh-sidebar-dropdown-menu .dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
+  font-size: 13px;
+  border-radius: 4px;
+  color: var(--sidebar-foreground);
+  text-decoration: none;
+  transition: background-color 120ms ease;
+}
+.sh-sidebar-dropdown-menu .dropdown-item:hover {
+  background-color: var(--sidebar-accent);
+  color: var(--sidebar-accent-foreground);
+}
+.sh-sidebar-dropdown-menu .dropdown-item i {
+  width: 16px;
+  font-size: 14px;
+  margin-right: 8px;
+  color: color-mix(in oklab, var(--sidebar-foreground) 60%, transparent);
+}
+.sh-sidebar-dropdown-menu .dropdown-item.text-danger {
+  color: oklch(0.65 0.22 25);
+}
+.sh-sidebar-dropdown-menu .dropdown-item.text-danger i {
+  color: oklch(0.65 0.22 25);
+}
+.sh-sidebar-dropdown-header {
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+.sh-sidebar-dropdown-username {
+  font-size: 13px;
+  font-weight: 600;
+}
+.sh-sidebar-dropdown-email {
+  font-size: 11px;
+  color: color-mix(in oklab, var(--sidebar-foreground) 60%, transparent);
+  word-break: break-all;
+}
+
+/* ====================== Skeleton ====================== */
+.sh-sidebar-skeleton {
+  display: flex;
+  height: 28px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px;
+  border-radius: 6px;
+}
+.sh-sidebar-skeleton-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background-color: var(--sidebar-accent);
+  animation: sh-sidebar-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.sh-sidebar-skeleton-text {
+  height: 10px;
+  flex: 1;
+  border-radius: 4px;
+  background-color: var(--sidebar-accent);
+  animation: sh-sidebar-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes sh-sidebar-pulse {
+  50% { opacity: 0.5; }
+}
+
+/* ====================== Backdrop (Mobile) ====================== */
+.sh-sidebar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: calc(var(--z-sidebar) - 1);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms ease, visibility 200ms ease;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+.sh-sidebar-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ====================== Mobile Drawer (≤ 991.98px) ====================== */
+@media (max-width: 991.98px) {
+  .sh-sidebar {
+    width: var(--sidebar-width-mobile);
+    transform: translateX(-100%);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  }
+  .sh-sidebar[data-mobile-state="open"] {
+    transform: translateX(0);
+  }
+  .sh-sidebar[data-state="collapsed"] {
+    width: var(--sidebar-width-mobile);
+    transform: translateX(-100%);
+  }
+  .sh-sidebar[data-state="collapsed"][data-mobile-state="open"] {
+    transform: translateX(0);
+  }
+  .sh-sidebar[data-state="collapsed"] .sh-sidebar-menu-label,
+  .sh-sidebar[data-state="collapsed"] .sh-sidebar-group-label,
+  .sh-sidebar[data-state="collapsed"] .sh-sidebar-search,
+  .sh-sidebar[data-state="collapsed"] .sh-sidebar-user-info,
+  .sh-sidebar[data-state="collapsed"] .sh-sidebar-user-chevron,
+  .sh-sidebar[data-state="collapsed"] .sh-sidebar-brand-info,
+  .sh-sidebar[data-state="collapsed"] .sh-sidebar-toggle .toggle-text {
+    display: flex;
+  }
+  .sh-sidebar[data-state="collapsed"] .sh-sidebar-menu-button,
+  .sh-sidebar[data-state="collapsed"] .sh-sidebar-menu-sub-button {
+    justify-content: flex-start;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .sh-sidebar-toggle {
+    display: none;
+  }
+}
+
+/* Layout main-content offsets (matches shadcn's main padding) */
+@media (min-width: 992px) {
+  .sh-main-content {
+    margin-left: var(--sidebar-width);
+    transition: margin-left var(--sidebar-transition-duration) var(--sidebar-transition-ease);
+  }
+  .sh-sidebar[data-state="collapsed"] ~ .sh-main-content,
+  body.sidebar-collapsed .sh-main-content,
+  :where(html.sh-sidebar-pre-collapsed) .sh-main-content {
+    margin-left: var(--sidebar-width-icon);
+  }
+}
+
+@media (max-width: 991.98px) {
+  .sh-main-content {
+    margin-left: 0;
+  }
+}
+
+/* ====================== Touch / Accessibility ====================== */
+@media (hover: none) {
+  .sh-sidebar-menu-button:active,
+  .sh-sidebar-menu-sub-button:active {
+    background-color: var(--sidebar-accent);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .sh-sidebar,
+  .sh-sidebar-menu-sub,
+  .sh-sidebar-menu-arrow,
+  .sh-sidebar-toggle i {
+    transition: none;
+  }
+}
+
+/* ====================== Legacy / Compatibility Aliases ====================== */
+/* Map old class names to new shadcn-compatible names so existing markup still works */
+.vertical-menu { /* legacy root */ }
+.sh-sidebar-content-scroll { /* legacy alias for .sh-sidebar-content */
+  flex: 1 1 0% !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px 4px;
+}

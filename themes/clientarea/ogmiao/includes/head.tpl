@@ -9,6 +9,8 @@
 <link href="/themes/clientarea/ogmiao/assets_custom/css/global.css?v={$Ver}" rel="stylesheet" >
 <link href="/themes/clientarea/ogmiao/assets_custom/css/responsive.css?v={$Ver}" rel="stylesheet">
 <link href="/themes/clientarea/ogmiao/assets_custom/css/shadcn-nav.css?v={$Ver}" rel="stylesheet">
+<!-- shadcn/ui Sidebar - 官方设计令牌驱动 -->
+<link href="/themes/clientarea/ogmiao/assets_custom/css/shadcn-sidebar.css?v={$Ver}" rel="stylesheet">
 <!-- 字体图标 -->
 
 
@@ -25,6 +27,8 @@
 <!-- <script src="/themes/clientarea/ogmiao/assets/libs/error-all/solve-error.js" type="text/javascript"></script> -->
 <!-- 自定义js -->
 <script src="/themes/clientarea/ogmiao/assets_custom/js/throttle.js?v={$Ver}"></script>
+<!-- shadcn Sidebar 行为层 (defer: 不阻塞渲染) -->
+<script src="/themes/clientarea/ogmiao/assets_custom/js/shadcn-sidebar.js?v={$Ver}" defer></script>
 
 <link type="text/css" href="/themes/clientarea/ogmiao/assets/libs/toastr/build/toastr.min.css?v={$Ver}" rel="stylesheet" />
 <script src="/themes/clientarea/ogmiao/assets/libs/toastr/build/toastr.min.js?v={$Ver}"></script>
