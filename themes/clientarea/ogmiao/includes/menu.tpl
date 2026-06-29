@@ -6,8 +6,29 @@
 		<div id="sidebar-menu" class="menu-js">
 			<!-- Left Menu Start -->
 			<ul class="metismenu list-unstyled og-sidebar-menu" id="side-menu">
-			
-				<!-- 临时菜单 -->
+				<li class="og-sidebar-mobile-account">
+					<a href="/clientarea" class="og-sidebar-mobile-user" title="{$Userinfo.user.username}">
+						<span class="og-sidebar-mobile-avatar" aria-hidden="true">
+							{if preg_match("/^[0-9]*[A-Za-z]+$/is", substr($Userinfo.user.username,0,1))}
+							{$Userinfo.user.username|substr=0,1|upper}
+							{elseif preg_match("/^[\x7f-\xff]*$/", substr($Userinfo.user.username,0,3))}
+							{$Userinfo.user.username|substr=0,3}
+							{else}
+							{$Userinfo.user.username|substr=0,1|upper}
+							{/if}
+						</span>
+						<span class="og-sidebar-mobile-meta">
+							<span class="og-sidebar-mobile-label">个人中心</span>
+							<span class="og-sidebar-mobile-name">{$Userinfo.user.username}</span>
+						</span>
+					</a>
+					<div class="og-sidebar-mobile-actions">
+						<a href="/clientarea" class="og-sidebar-mobile-action">用户中心</a>
+						<a href="/logout" class="og-sidebar-mobile-action og-sidebar-mobile-action-solid">退出</a>
+					</div>
+				</li>
+
+					<!-- 临时菜单 -->
 				<!-- <li>
 					<a href="/credit" class="waves-effect">
 						<i class="bx bx-home-circle"></i>

@@ -85,7 +85,7 @@
 							<span class="og-client-user-name">{$Userinfo.user.username}</span>
 						</span>
 					</a>
-					<a href="/logout" class="og-client-nav-button og-client-nav-button-solid">退出</a>
+					<a href="/logout" class="og-client-nav-button og-client-nav-button-solid og-client-logout-button">退出</a>
 					{else}
 					<a href="/clientarea" class="og-client-nav-button og-client-nav-button-outline">用户中心</a>
 					<a href="/login" class="og-client-nav-button og-client-nav-button-solid">登录</a>
