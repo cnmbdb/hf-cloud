@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8" />
 	<title>{$Title} - {$Setting.company_name}</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 	<meta content="{$Setting.web_seo_desc}" name="description" />
 	<meta content="{$Setting.web_seo_keywords}" name="keywords" />
 	<meta content="{$Setting.company_name}" name="author" />

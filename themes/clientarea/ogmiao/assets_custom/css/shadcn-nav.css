@@ -1097,6 +1097,13 @@ body[data-topbar="dark"][data-sidebar="dark"] .page-wrapper {
   color: #fafafa !important;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+}
+
 body[data-topbar="dark"][data-sidebar="dark"] .page-title-box,
 body[data-topbar="dark"][data-sidebar="dark"] .page-title-box h4,
 body[data-topbar="dark"][data-sidebar="dark"] .page-title,
@@ -1379,6 +1386,55 @@ body[data-topbar="dark"][data-sidebar="dark"] #sourceListBox td,
 body[data-topbar="dark"][data-sidebar="dark"] #sourceListBox th {
   border-color: #27272a !important;
   box-shadow: none !important;
+}
+
+body[data-topbar="dark"][data-sidebar="dark"] #sourceListBox .card-view,
+body[data-topbar="dark"][data-sidebar="dark"] #sourceListBox .resource-card {
+  background: #09090b !important;
+  border: 1px solid #27272a !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  color: #fafafa !important;
+}
+
+body[data-topbar="dark"][data-sidebar="dark"] #sourceListBox .resource-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+body[data-topbar="dark"][data-sidebar="dark"] #sourceListBox .resource-card .card-header {
+  background: transparent !important;
+  border-bottom: 1px solid #27272a !important;
+  color: #fafafa !important;
+}
+
+body[data-topbar="dark"][data-sidebar="dark"] #sourceListBox .resource-card .card-hostname,
+body[data-topbar="dark"][data-sidebar="dark"] #sourceListBox .resource-card .card-status,
+body[data-topbar="dark"][data-sidebar="dark"] #sourceListBox .resource-card .card-detail-value {
+  color: #fafafa !important;
+}
+
+body[data-topbar="dark"][data-sidebar="dark"] #sourceListBox .resource-card .card-detail-label,
+body[data-topbar="dark"][data-sidebar="dark"] #sourceListBox .resource-card .ip-badge {
+  color: #a1a1aa !important;
+}
+
+body[data-topbar="dark"][data-sidebar="dark"] #sourceListBox .resource-card .ip-badge {
+  background: #18181b !important;
+  border: 1px solid #27272a !important;
+  border-radius: 6px !important;
+}
+
+body[data-topbar="dark"][data-sidebar="dark"] #sourceListBox .resource-card .view-details-btn {
+  background: #18181b !important;
+  border: 1px solid #27272a !important;
+  color: #fafafa !important;
+}
+
+body[data-topbar="dark"][data-sidebar="dark"] #sourceListBox .resource-card .view-details-btn:hover {
+  background: #27272a !important;
+  border-color: #3f3f46 !important;
+  color: #fafafa !important;
 }
 
 /* Hide removed secondary top navigation links while stale template cache expires. */

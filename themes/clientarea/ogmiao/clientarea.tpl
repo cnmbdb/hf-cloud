@@ -1914,8 +1914,11 @@ body,
 .main-content,
 .page-content,
 .container-fluid {
+  max-width: 100%;
+  overflow-x: hidden;
   background: #000 !important;
   color: #fafafa;
+  overscroll-behavior-x: none;
 }
 
 .card,
@@ -2321,6 +2324,55 @@ thead th {
 #sourceListBox table * {
   border-color: #27272a !important;
   box-shadow: none !important;
+}
+
+#sourceListBox .card-view,
+#sourceListBox .resource-card {
+  background: #09090b !important;
+  border: 1px solid #27272a !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  color: #fafafa !important;
+}
+
+#sourceListBox .resource-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+#sourceListBox .resource-card .card-header {
+  background: transparent !important;
+  border-bottom: 1px solid #27272a !important;
+  color: #fafafa !important;
+}
+
+#sourceListBox .resource-card .card-hostname,
+#sourceListBox .resource-card .card-status,
+#sourceListBox .resource-card .card-detail-value {
+  color: #fafafa !important;
+}
+
+#sourceListBox .resource-card .card-detail-label,
+#sourceListBox .resource-card .ip-badge {
+  color: #a1a1aa !important;
+}
+
+#sourceListBox .resource-card .ip-badge {
+  background: #18181b !important;
+  border: 1px solid #27272a !important;
+  border-radius: 6px !important;
+}
+
+#sourceListBox .resource-card .view-details-btn {
+  background: #18181b !important;
+  border: 1px solid #27272a !important;
+  color: #fafafa !important;
+}
+
+#sourceListBox .resource-card .view-details-btn:hover {
+  background: #27272a !important;
+  border-color: #3f3f46 !important;
+  color: #fafafa !important;
 }
 
 .news-read-more,
