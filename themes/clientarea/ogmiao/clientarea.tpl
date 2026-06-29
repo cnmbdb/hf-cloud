@@ -3,7 +3,7 @@
 /* 手机端优化样式 */
 @media (max-width: 767px) {
   /* 强制单列布局 */
-  .row {
+  .clientarea-dashboard-row {
     display: flex;
     flex-direction: column;
   }
@@ -827,7 +827,7 @@ function initBalanceChart() {
     
     
     
-    <div class="row">
+    <div class="row clientarea-dashboard-row">
     <!-- 手机端导航菜单 -->
 <div class="mobile-quick-nav">
   <a href="/cart" class="quick-nav-item">
@@ -1581,232 +1581,56 @@ weight: 600; padding: 4px 10px; border-radius: 12px; transition: all 0.3s ease; 
 </style>
 
 <script>
-// 替换之前的重排序脚本为以下内容：
-
-// 响应式内容排序解决方案 - 同时兼顾移动端和PC端布局
+// 响应式内容排序只使用 CSS，不移动服务端渲染出的资源 DOM。
 (function() {
-  // 立即执行函数，避免全局变量污染
-  
-  // 定义我们想要的移动端顺序（从上到下）
-  const mobileDesiredOrder = [
-    { name: 'welcome', selector: '.welcome-card' },
-    { name: 'instances', selector: '.instances-title' },
-    { name: 'todo', selector: '.todo-card' },
-    { name: 'asset', selector: '.asset-card' },
-    { name: 'resource', selector: '#sourceListBox' },
-    { name: 'announcement', selector: '.user-center_notice' }
-  ];
-  
-  // 定义PC端的列布局
-  const pcColumns = {
-    left: ['instances', 'resource', 'announcement'], // 左列内容
-    right: ['welcome', 'asset', 'todo']              // 右列内容
-  };
-  
-  // 强制重排序函数
-  function forceReorder() {
-    
-    // 获取主容器
-    const mainRow = document.querySelector('.row');
-    if (!mainRow) {
-      return;
-    }
-    
-    // 获取所有section元素
-    const allSections = Array.from(mainRow.querySelectorAll('section'));
-    
-    if (allSections.length < 6) {
-      return;
-    }
-    
-    // 创建一个映射来存储每个section
-    const sectionMap = {};
-    
-    // 尝试通过内容特征识别各个section
-    mobileDesiredOrder.forEach(item => {
-      const section = findSectionByContent(allSections, item.selector);
-      if (section) {
-        sectionMap[item.name] = section;
-      } else {
-      }
-    });
-    
-    // 如果没有找到所有section，尝试通过位置识别
-    if (Object.keys(sectionMap).length < 6) {
-      
-      // 基于当前顺序的映射关系
-      const positionMap = {
-        'instances': 0,    // 已激活实例
-        'resource': 1,     // 资源列表
-        'announcement': 2, // 公告
-        'welcome': 3,      // 欢迎卡片
-        'asset': 4,        // 账户资产
-        'todo': 5          // 待办事项
-      };
-      
-      // 填充未找到的section
-      mobileDesiredOrder.forEach(item => {
-        if (!sectionMap[item.name] && positionMap[item.name] !== undefined && allSections[positionMap[item.name]]) {
-          sectionMap[item.name] = allSections[positionMap[item.name]];
-        }
-      });
-    }
-    
-    // 检查是否找到了所有section
-    const missingItems = mobileDesiredOrder.filter(item => !sectionMap[item.name]);
-    if (missingItems.length > 0) {
-      return;
-    }
-    
-    // 应用内联样式以确保正确显示
-    Object.values(sectionMap).forEach(section => {
-      section.style.display = 'block';
-      section.style.width = '100%';
-      section.style.opacity = '1';
-      section.style.visibility = 'visible';
-      
-      // 移除可能干扰的类和样式
-      section.classList.remove('d-none', 'hidden');
-      section.removeAttribute('hidden');
-    });
-    
-    // 清空容器
-    while (mainRow.firstChild) {
-      mainRow.removeChild(mainRow.firstChild);
-    }
-    
-    // 检查当前屏幕宽度
-    const isMobile = window.innerWidth <= 767;
-    
-    if (isMobile) {
-      // 移动端：单列布局，按照mobileDesiredOrder排序
-      
-      mobileDesiredOrder.forEach(item => {
-        const section = sectionMap[item.name];
-        if (section) {
-          // 添加标记，以便于调试
-          section.setAttribute('data-section-type', item.name);
-          section.style.order = mobileDesiredOrder.indexOf(item) + 1;
-          
-          // 确保所有section都是全宽的
-          section.className = section.className.replace(/col-xl-\d+/g, '');
-          section.classList.add('col-md-12');
-          
-          mainRow.appendChild(section);
-        }
-      });
-    } else {
-      // PC端：双列布局
-      
-      // 创建左列容器
-      const leftColumn = document.createElement('section');
-      leftColumn.className = 'col-md-12 col-xl-8';
-      
-      // 创建右列容器
-      const rightColumn = document.createElement('section');
-      rightColumn.className = 'col-md-12 col-xl-4';
-      
-      // 填充左列
-      pcColumns.left.forEach(itemName => {
-        const section = sectionMap[itemName];
-        if (section) {
-          section.setAttribute('data-section-type', itemName);
-          section.className = section.className.replace(/col-xl-\d+|col-md-12/g, '');
-          leftColumn.appendChild(section);
-        }
-      });
-      
-      // 填充右列
-      pcColumns.right.forEach(itemName => {
-        const section = sectionMap[itemName];
-        if (section) {
-          section.setAttribute('data-section-type', itemName);
-          section.className = section.className.replace(/col-xl-\d+|col-md-12/g, '');
-          rightColumn.appendChild(section);
-        }
-      });
-      
-      // 将两列添加到主容器
-      mainRow.appendChild(leftColumn);
-      mainRow.appendChild(rightColumn);
-    }
-    
-    // 添加标记，防止重复执行
-    mainRow.setAttribute('data-reordered', 'true');
-    
-    // 强制浏览器重新计算布局
-    void mainRow.offsetHeight;
-  }
-  
-  // 辅助函数：根据内容特征找到对应的section
-  function findSectionByContent(sections, selector) {
-    return sections.find(section => section.querySelector(selector));
-  }
-  
-  // 性能优化：使用requestAnimationFrame
-  function optimizedReorder() {
-    // 首先应用CSS样式，确保即使JavaScript失败也能正确排序
-    applyCssOrder();
-    
-    // 然后使用requestAnimationFrame进行DOM操作
-    requestAnimationFrame(() => {
-      try {
-        forceReorder();
-      } catch (error) {
-        // 出错时应用备用方法
-        applyFallbackMethod();
-      }
-    });
-  }
-  
   // CSS排序方法 - 只应用于移动端
   function applyCssOrder() {
     const style = document.createElement('style');
     style.textContent = `
       @media (max-width: 767px) {
-        .row {
+        .clientarea-dashboard-row {
           display: flex !important;
           flex-direction: column !important;
         }
         
         /* 欢迎卡片 */
-        .row > section:nth-of-type(4) {
+        .clientarea-dashboard-row > section:nth-of-type(4) {
           order: 1 !important;
           margin-bottom: 15px !important;
         }
         
         /* 已激活实例 */
-        .row > section:nth-of-type(1) {
+        .clientarea-dashboard-row > section:nth-of-type(1) {
           order: 2 !important;
           margin-bottom: 15px !important;
         }
         
         /* 待办事项 */
-        .row > section:nth-of-type(6) {
+        .clientarea-dashboard-row > section:nth-of-type(6) {
           order: 3 !important;
           margin-bottom: 15px !important;
         }
         
         /* 账户资产 */
-        .row > section:nth-of-type(5) {
+        .clientarea-dashboard-row > section:nth-of-type(5) {
           order: 4 !important;
           margin-bottom: 15px !important;
         }
         
         /* 资源列表 */
-        .row > section:nth-of-type(2) {
+        .clientarea-dashboard-row > section:nth-of-type(2) {
           order: 5 !important;
           margin-bottom: 15px !important;
         }
         
         /* 公告 */
-        .row > section:nth-of-type(3) {
+        .clientarea-dashboard-row > section:nth-of-type(3) {
           order: 6 !important;
           margin-bottom: 15px !important;
         }
         
         /* 确保所有section都是可见的 */
-        .row > section {
+        .clientarea-dashboard-row > section {
           display: block !important;
           width: 100% !important;
           max-width: 100% !important;
@@ -1816,72 +1640,6 @@ weight: 600; padding: 4px 10px; border-radius: 12px; transition: all 0.3s ease; 
       }
     `;
     document.head.appendChild(style);
-  }
-  
-  // 备用方法
-  function applyFallbackMethod() {
-    
-    const mainRow = document.querySelector('.row');
-    if (!mainRow) return;
-    
-    const sections = Array.from(mainRow.querySelectorAll('section'));
-    if (sections.length < 6) return;
-    
-    // 检查当前屏幕宽度
-    const isMobile = window.innerWidth <= 767;
-    
-    if (isMobile) {
-      // 移动端：直接基于位置重排序
-      const newOrder = [
-        sections[3], // 欢迎卡片
-        sections[0], // 已激活实例
-        sections[5], // 待办事项
-        sections[4], // 账户资产
-        sections[1], // 资源列表
-        sections[2]  // 公告
-      ];
-      
-      // 清空容器
-      while (mainRow.firstChild) {
-        mainRow.removeChild(mainRow.firstChild);
-      }
-      
-      // 按新顺序添加元素
-      newOrder.forEach((section, index) => {
-        if (section) {
-          section.style.order = index + 1;
-          mainRow.appendChild(section);
-        }
-      });
-    } else {
-      // PC端：恢复双列布局
-      // 清空容器
-      while (mainRow.firstChild) {
-        mainRow.removeChild(mainRow.firstChild);
-      }
-      
-      // 创建左列容器
-      const leftColumn = document.createElement('section');
-      leftColumn.className = 'col-md-12 col-xl-8';
-      
-      // 创建右列容器
-      const rightColumn = document.createElement('section');
-      rightColumn.className = 'col-md-12 col-xl-4';
-      
-      // 左列内容
-      [sections[0], sections[1], sections[2]].forEach(section => {
-        if (section) leftColumn.appendChild(section.cloneNode(true));
-      });
-      
-      // 右列内容
-      [sections[3], sections[4], sections[5]].forEach(section => {
-        if (section) rightColumn.appendChild(section.cloneNode(true));
-      });
-      
-      // 将两列添加到主容器
-      mainRow.appendChild(leftColumn);
-      mainRow.appendChild(rightColumn);
-    }
   }
   
   // 性能优化：延迟加载非关键资源
@@ -1941,49 +1699,9 @@ weight: 600; padding: 4px 10px; border-radius: 12px; transition: all 0.3s ease; 
   
   // 执行优化和排序
   function init() {
-    // 首先应用CSS排序
+    // 只使用 CSS 做移动端排序，避免清空/克隆 DOM 导致服务端变量和资源列表丢失。
     applyCssOrder();
-    
-    // 优化页面加载
     optimizePageLoad();
-    
-    // 等待DOM完全加载
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(optimizedReorder, 500);
-      });
-    } else {
-      setTimeout(optimizedReorder, 500);
-    }
-    
-    // 再次尝试，以防第一次失败
-    setTimeout(optimizedReorder, 1000);
-    setTimeout(optimizedReorder, 2000);
-    
-    // 监听窗口大小变化
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        const mainRow = document.querySelector('.row');
-        if (mainRow) {
-          // 重置标记，允许重新排序
-          mainRow.removeAttribute('data-reordered');
-          optimizedReorder();
-        }
-      }, 300);
-    });
-    
-    // 使用MutationObserver监听DOM变化
-    const observer = new MutationObserver((mutations) => {
-      const mainRow = document.querySelector('.row');
-      if (mainRow && !mainRow.getAttribute('data-reordered')) {
-        optimizedReorder();
-      }
-    });
-    
-    // 开始观察document.body的子树变化
-    observer.observe(document.body, { childList: true, subtree: true });
   }
   
   // 初始化
@@ -2044,49 +1762,49 @@ weight: 600; padding: 4px 10px; border-radius: 12px; transition: all 0.3s ease; 
 /* 强制排序样式 - 只应用于移动端 */
 @media (max-width: 767px) {
   /* 使用!important确保这些样式优先级最高 */
-  .row {
+  .clientarea-dashboard-row {
     display: flex !important;
     flex-direction: column !important;
   }
   
   /* 欢迎卡片 */
-  .row > section:nth-of-type(4) {
+  .clientarea-dashboard-row > section:nth-of-type(4) {
     order: 1 !important;
     margin-bottom: 15px !important;
   }
   
   /* 已激活实例 */
-  .row > section:nth-of-type(1) {
+  .clientarea-dashboard-row > section:nth-of-type(1) {
     order: 2 !important;
     margin-bottom: 15px !important;
   }
   
   /* 待办事项 */
-  .row > section:nth-of-type(6) {
+  .clientarea-dashboard-row > section:nth-of-type(6) {
     order: 3 !important;
     margin-bottom: 15px !important;
   }
   
   /* 账户资产 */
-  .row > section:nth-of-type(5) {
+  .clientarea-dashboard-row > section:nth-of-type(5) {
     order: 4 !important;
     margin-bottom: 15px !important;
   }
   
   /* 资源列表 */
-  .row > section:nth-of-type(2) {
+  .clientarea-dashboard-row > section:nth-of-type(2) {
     order: 5 !important;
     margin-bottom: 15px !important;
   }
   
   /* 公告 */
-  .row > section:nth-of-type(3) {
+  .clientarea-dashboard-row > section:nth-of-type(3) {
     order: 6 !important;
     margin-bottom: 15px !important;
   }
   
   /* 确保所有section都是可见的 */
-  .row > section {
+  .clientarea-dashboard-row > section {
     display: block !important;
     width: 100% !important;
     max-width: 100% !important;
