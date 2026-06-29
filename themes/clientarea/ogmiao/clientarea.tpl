@@ -324,6 +324,7 @@ function initBalanceChart() {
         timeout: 15000,
         success: function (data) {
           $('#sourceListBox').html(data);
+          syncActiveInstancesFromResourceList(data);
           requestAnimationFrame(function() {
             applyResourceListStyles();
           });
@@ -333,7 +334,59 @@ function initBalanceChart() {
         }
       });
     }
-    
+
+    function syncActiveInstancesFromResourceList(data) {
+      const $grid = $('#activeInstancesGrid');
+      if (!$grid.length || !data) return;
+
+      const $parsed = $('<div>').append($.parseHTML(data, document, true));
+      const resources = [];
+
+      $parsed.find('.resource-card').each(function() {
+        const $card = $(this);
+        const title = $.trim($card.find('.card-hostname').text());
+        const status = $.trim($card.find('.card-status').text());
+        const ip = $.trim($card.find('.ip-badge').text());
+        const href = $card.find('.view-details-btn').attr('href') || '#';
+        if (title) {
+          resources.push({ title: title, status: status, ip: ip, href: href });
+        }
+      });
+
+      if (!resources.length) {
+        $parsed.find('.tablelist tbody tr').each(function() {
+          const $row = $(this);
+          if ($row.find('.no-data').length) return;
+          const $cells = $row.find('td');
+          const $hostLink = $row.find('a[href*="servicedetail"]');
+          const title = $.trim($hostLink.text() || $cells.eq(1).text());
+          const status = $.trim($cells.eq(0).text());
+          const ip = $.trim($cells.eq(4).text());
+          const href = $hostLink.attr('href') || '#';
+          if (title) {
+            resources.push({ title: title, status: status, ip: ip, href: href });
+          }
+        });
+      }
+
+      if (!resources.length) return;
+
+      $grid.empty();
+      resources.forEach(function(resource) {
+        const $item = $('<a>', {
+          href: resource.href,
+          class: 'user-center_product active-instance-card'
+        });
+        const $icon = $('<div>', { class: 'product-icon' }).append($('<i>', { class: 'bx bx-server' }));
+        const $info = $('<div>', { class: 'product-info' })
+          .append($('<span>', { class: 'product-name', text: resource.title }))
+          .append($('<span>', { class: 'product-count', text: resource.status || '实例' }));
+        const $meta = $('<div>', { class: 'product-arrow active-instance-ip', text: resource.ip || '-' });
+        $item.append($icon, $info, $meta);
+        $grid.append($item);
+      });
+    }
+
     function applyResourceListStyles() {
       $('.table').addClass('custom-styled-table');
       $('.pagination .page-item.active .page-link').addClass('active-page-link');
@@ -860,7 +913,7 @@ function initBalanceChart() {
                 <h4 class="card-title instances-title">已激活实例</h4>
                 
 
-<div class="user-center_product_grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; width: 100%; margin-top: 15px; padding: 0; overflow: visible;">
+<div class="user-center_product_grid" id="activeInstancesGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; width: 100%; margin-top: 15px; padding: 0; overflow: visible;">
   {if $ClientArea.index.host_nav}
   {foreach $ClientArea.index.host_nav as $list}
   <a href="service?groupid={$list.id}" class="user-center_product" style="display: flex; align-items: center; padding: 16px; background-color: rgba(240, 138, 93, 0.03); border-radius: 12px; transition: all 0.3s ease; text-decoration: none; position: relative; overflow: hidden; border: none; box-shadow: 0 2px 8px rgba(240, 138, 93, 0.05); width: 100%; box-sizing: border-box;">
@@ -1941,6 +1994,56 @@ h4, h5 {
   border: 1px solid #27272a !important;
   box-shadow: none !important;
   color: #fafafa !important;
+}
+
+.active-instance-card {
+  display: flex !important;
+  align-items: center;
+  gap: 14px;
+  padding: 16px !important;
+  min-width: 0;
+  text-decoration: none !important;
+}
+
+.active-instance-card .product-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 10px;
+}
+
+.active-instance-card .product-info {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.active-instance-card .product-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.active-instance-card .product-count {
+  width: fit-content;
+  max-width: 100%;
+}
+
+.active-instance-card .active-instance-ip {
+  width: auto;
+  max-width: 120px;
+  padding: 6px 8px;
+  border-radius: 9999px;
+  overflow: hidden;
+  color: #a1a1aa !important;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .todo-warning .todo-icon,
