@@ -1211,7 +1211,7 @@ to {
 }
 </style>
 <link rel="stylesheet" href="/themes/web/ogmiao/assets/css/header.css?v={$Ver}">
-<link rel="stylesheet" href="/themes/cart/ogmiao/assets/css/cart-shadcn.css?v={$Ver}-20260629a">
+<link rel="stylesheet" href="/themes/cart/ogmiao/assets/css/cart-shadcn.css?v={$Ver}-20260629b">
 <header class="og-cart-header header-animate">
   <div class="container">
     <nav class="og-cart-nav" aria-label="主导航">
@@ -1227,6 +1227,45 @@ to {
           <li><a href="/">首页</a></li>
           <li><a href="/cart" aria-current="page">产品服务</a></li>
         </ul>
+        <div class="og-cart-mobile-client-menu" aria-label="用户中心导航">
+          {if $Userinfo && isset($Nav)}
+          <div class="og-cart-mobile-menu-title">用户中心</div>
+          {foreach $Nav as $nv}
+          <div class="og-cart-mobile-menu-group">
+            <a href="{if $nv.child}javascript: ;{else}{$nv.url}{/if}" class="og-cart-mobile-menu-parent">
+              {if $nv.fa_icon}<i class="{$nv.fa_icon}"></i>{/if}
+              <span>{$nv.name}</span>
+            </a>
+            {if $nv.child}
+            <div class="og-cart-mobile-submenu">
+              {foreach $nv.child as $subnav}
+              <a href="{if $subnav.child}javascript: ;{else}{$subnav.url}{/if}">
+                {if $subnav.fa_icon}<i class="{$subnav.fa_icon}"></i>{/if}
+                <span>{$subnav.name}</span>
+              </a>
+              {if $subnav.child}
+              <div class="og-cart-mobile-submenu og-cart-mobile-submenu-nested">
+                {foreach $subnav.child as $submenu}
+                <a href="{if $submenu.child}javascript: ;{else}{$submenu.url}{/if}">
+                  {if $submenu.fa_icon}<i class="{$submenu.fa_icon}"></i>{/if}
+                  <span>{$submenu.name}</span>
+                </a>
+                {/foreach}
+              </div>
+              {/if}
+              {/foreach}
+            </div>
+            {/if}
+          </div>
+          {/foreach}
+          {else}
+          <div class="og-cart-mobile-menu-title">账户</div>
+          <div class="og-cart-mobile-menu-group">
+            <a href="/login" class="og-cart-mobile-menu-parent">登录</a>
+            <a href="/register" class="og-cart-mobile-menu-parent">注册</a>
+          </div>
+          {/if}
+        </div>
       </div>
       <div class="nav-buttons">
         <div class="nav-buttons-container">
