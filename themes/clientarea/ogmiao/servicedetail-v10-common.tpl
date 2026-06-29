@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title></title>
   <link rel="stylesheet" href="/themes/clientarea/default/v10/resource/element.css">
   <link rel="stylesheet" href="/themes/clientarea/default/v10/css/cloudTop.css">
@@ -13,6 +13,13 @@
   <script src="/themes/clientarea/default/v10/utils/pagination.js"></script>
   <script src="/themes/clientarea/default/v10/components/flowPacket/flowPacket.js"></script>
   <style>
+    html,
+    body {
+      max-width: 100%;
+      overflow-x: hidden;
+      overscroll-behavior-x: none;
+    }
+
     [v-cloak] {
       display: none;
     }

@@ -2,6 +2,13 @@
 	--blue(#007bfc);
 }
 
+html,
+body {
+	max-width: 100%;
+	overflow-x: hidden;
+	overscroll-behavior-x: none;
+}
+
 .page-content {
 	/* max-width: 1170px; */
 }

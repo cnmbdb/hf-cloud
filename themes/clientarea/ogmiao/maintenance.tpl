@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>维护中</title>
 
 </head>
@@ -11,6 +11,9 @@
 <style>
     html,
     body {
+        max-width: 100%;
+        overflow-x: hidden;
+        overscroll-behavior-x: none;
         background-color: #fff;
         height: 100%;
         padding: 0;

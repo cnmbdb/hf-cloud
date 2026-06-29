@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <title>{$title}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta content="香港主机性价比低" name="description" />
   <meta content="idc,香港主机" name="keywords" />
   <meta content="顺戴财务" name="author" />
@@ -15,6 +15,13 @@
   <script src="/themes/clientarea/default/assets/libs/moment/moment.js?v={$Ver}"></script>
 
   <style>
+    html,
+    body {
+      max-width: 100%;
+      overflow-x: hidden;
+      overscroll-behavior-x: none;
+    }
+
     .seeInformationDiv {
       margin: 10px 0px;
     }
