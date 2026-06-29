@@ -176,7 +176,7 @@
 									status-{$list.domainstatus|strtolower}"">{$Service['domainstatus'][$list['domainstatus']]['name']}</span>
 								</td>
 								<td>
-									<a href=" servicedetail?id={$list.id}" class="text-dark">
+									<a href="servicedetail?id={$list.id}" class="text-dark">
 										<strong>{$list.productname}</strong>
 									</a><br />
 									<small class="text-muted">{$list.domain}</small>

@@ -7,28 +7,25 @@
 			<!-- Left Menu Start -->
 			<ul class="metismenu list-unstyled og-sidebar-menu" id="side-menu">
 				<li class="og-sidebar-mobile-account">
-					<a href="/clientarea" class="og-sidebar-mobile-user" title="{$Userinfo.user.username}">
-						<span class="og-sidebar-mobile-avatar" aria-hidden="true">
-							{if preg_match("/^[0-9]*[A-Za-z]+$/is", substr($Userinfo.user.username,0,1))}
-							{$Userinfo.user.username|substr=0,1|upper}
-							{elseif preg_match("/^[\x7f-\xff]*$/", substr($Userinfo.user.username,0,3))}
-							{$Userinfo.user.username|substr=0,3}
-							{else}
-							{$Userinfo.user.username|substr=0,1|upper}
-							{/if}
-						</span>
-						<span class="og-sidebar-mobile-meta">
-							<span class="og-sidebar-mobile-label">个人中心</span>
-							<span class="og-sidebar-mobile-name">{$Userinfo.user.username}</span>
-						</span>
+					<a href="javascript:;" class="og-sidebar-link og-sidebar-link-level-1 waves-effect" data-menu-level="1" aria-expanded="true">
+						<i class="bx bx-user-circle"></i>
+						<span class="og-sidebar-title">个人中心</span>
 					</a>
-					<div class="og-sidebar-mobile-actions">
-						<a href="/clientarea" class="og-sidebar-mobile-action">用户中心</a>
-						<a href="/logout" class="og-sidebar-mobile-action og-sidebar-mobile-action-solid">退出</a>
-					</div>
+					<ul class="sub-menu og-sidebar-submenu og-sidebar-submenu-level-2" aria-expanded="true">
+						<li class="og-sidebar-item og-sidebar-item-level-2">
+							<a href="/clientarea" class="og-sidebar-link og-sidebar-link-level-2 waves-effect" data-menu-level="2">
+								<span class="og-sidebar-title">用户中心</span>
+							</a>
+						</li>
+						<li class="og-sidebar-item og-sidebar-item-level-2">
+							<a href="/logout" class="og-sidebar-link og-sidebar-link-level-2 waves-effect" data-menu-level="2">
+								<span class="og-sidebar-title">退出</span>
+							</a>
+						</li>
+					</ul>
 				</li>
 
-					<!-- 临时菜单 -->
+				<!-- 临时菜单 -->
 				<!-- <li>
 					<a href="/credit" class="waves-effect">
 						<i class="bx bx-home-circle"></i>

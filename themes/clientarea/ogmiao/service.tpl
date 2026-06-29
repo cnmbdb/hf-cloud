@@ -541,7 +541,7 @@ select:focus {
 									status-{$list.domainstatus|strtolower}">{$Lang['domainstatus_select_'.strtolower($list.domainstatus)]}</span>
 							</td>
 							<td>
-								<a href=" servicedetail?id={$list.id}" class="text-dark">
+								<a href="servicedetail?id={$list.id}" class="text-dark">
 									<strong>{$list.productname}</strong>
 									</a><br />
 									<small class="text-muted">{$list.domain}</small>

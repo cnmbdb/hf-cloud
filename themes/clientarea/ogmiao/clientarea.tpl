@@ -341,6 +341,7 @@ function initBalanceChart() {
 
       const $parsed = $('<div>').append($.parseHTML(data, document, true));
       const resources = [];
+      const emptyHtml = '<div class="empty-instances" style="grid-column: 1 / -1; background-color: rgba(240, 138, 93, 0.03); border-radius: 12px; padding: 25px; text-align: center; box-shadow: 0 2px 8px rgba(240, 138, 93, 0.05);"><div class="empty-instances-content" style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 15px;"><i class="bx bx-server" style="font-size: 28px; color: #f08a5d; margin-right: 5px;"></i><span style="font-size: 16px; color: #2d3436; font-weight: 500;">暂无已激活实例</span><a href="/cart" class="btn btn-primary" style="margin-left: 15px; padding: 8px 20px; white-space: nowrap; background-color: #f08a5d; border-color: #f08a5d; color: white; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 15px rgba(240, 138, 93, 0.3);">立即选购</a></div></div>';
 
       $parsed.find('.resource-card').each(function() {
         const $card = $(this);
@@ -359,9 +360,10 @@ function initBalanceChart() {
           if ($row.find('.no-data').length) return;
           const $cells = $row.find('td');
           const $hostLink = $row.find('a[href*="servicedetail"]');
-          const title = $.trim($hostLink.text() || $cells.eq(1).text());
-          const status = $.trim($cells.eq(0).text());
-          const ip = $.trim($cells.eq(4).text());
+          const hasCheckbox = $row.find('.row-checkbox').length > 0;
+          const title = $.trim($hostLink.text() || $cells.eq(hasCheckbox ? 2 : 1).text());
+          const status = $.trim($cells.eq(hasCheckbox ? 1 : 0).text());
+          const ip = $.trim($cells.eq(hasCheckbox ? 3 : 4).text());
           const href = $hostLink.attr('href') || '#';
           if (title) {
             resources.push({ title: title, status: status, ip: ip, href: href });
@@ -369,9 +371,13 @@ function initBalanceChart() {
         });
       }
 
-      if (!resources.length) return;
-
       $grid.empty();
+      if (!resources.length) {
+        $grid.html(emptyHtml);
+        enhanceEmptyStates();
+        return;
+      }
+
       resources.forEach(function(resource) {
         const $item = $('<a>', {
           href: resource.href,
@@ -914,7 +920,22 @@ function initBalanceChart() {
                 
 
 <div class="user-center_product_grid" id="activeInstancesGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; width: 100%; margin-top: 15px; padding: 0; overflow: visible;">
-  {if $ClientArea.index.host_nav}
+  {if $ClientArea.hostlist}
+  {foreach $ClientArea.hostlist as $list}
+  <a href="servicedetail?id={$list.id}" class="user-center_product active-instance-card">
+    <div class="product-icon">
+      <i class="bx bx-server"></i>
+    </div>
+    <div class="product-info">
+      <span class="product-name">{$list.productname}({$list.domain})</span>
+      <span class="product-count">{$list.domainstatus_desc}</span>
+    </div>
+    <div class="product-arrow active-instance-ip">
+      {if $list.dedicatedip}{$list.dedicatedip}{else}-{/if}
+    </div>
+  </a>
+  {/foreach}
+  {elseif $ClientArea.index.host_nav}
   {foreach $ClientArea.index.host_nav as $list}
   <a href="service?groupid={$list.id}" class="user-center_product" style="display: flex; align-items: center; padding: 16px; background-color: rgba(240, 138, 93, 0.03); border-radius: 12px; transition: all 0.3s ease; text-decoration: none; position: relative; overflow: hidden; border: none; box-shadow: 0 2px 8px rgba(240, 138, 93, 0.05); width: 100%; box-sizing: border-box;">
     <div class="product-icon" style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; min-width: 42px; min-height: 42px; border-radius: 10px; background-color: rgba(240, 138, 93, 0.1); margin-right: 15px; flex-shrink: 0; position: relative; box-shadow: 0 3px 8px rgba(240, 138, 93, 0.1); border: 1px solid rgba(240, 138, 93, 0.1);">

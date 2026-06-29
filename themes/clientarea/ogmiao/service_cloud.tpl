@@ -169,7 +169,7 @@
 									status-{$list.domainstatus|strtolower}">{$Lang['domainstatus_select_'.strtolower($list.domainstatus)]}</span>
 								</td>
 								<td>
-									<a href=" servicedetail?id={$list.id}" class="text-dark">
+									<a href="servicedetail?id={$list.id}" class="text-dark">
 										<strong>{if $list.notes}{$list.notes}{else}我的云服务器{/if}</strong>
 									</a><i class="bx bx-edit-alt pointer text-primary"
 									   onclick="editNotesHandleClick('{$list.id}', '{$list.notes}')" data-toggle="tooltip" data-placement="top" title="修改实例备注"></i><br />
