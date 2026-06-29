@@ -28,7 +28,7 @@
 <!-- 自定义js -->
 <script src="/themes/clientarea/ogmiao/assets_custom/js/throttle.js?v={$Ver}"></script>
 <!-- shadcn Sidebar 行为层 (defer: 不阻塞渲染) -->
-<script src="/themes/clientarea/ogmiao/assets_custom/js/shadcn-sidebar.js?v={$Ver}" defer></script>
+<script src="/themes/clientarea/ogmiao/assets_custom/js/shadcn-sidebar.js?v={$Ver}-20260629a" defer></script>
 
 <link type="text/css" href="/themes/clientarea/ogmiao/assets/libs/toastr/build/toastr.min.css?v={$Ver}" rel="stylesheet" />
 <script src="/themes/clientarea/ogmiao/assets/libs/toastr/build/toastr.min.js?v={$Ver}"></script>

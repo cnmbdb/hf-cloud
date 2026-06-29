@@ -7,18 +7,18 @@
 			<!-- Left Menu Start -->
 			<ul class="metismenu list-unstyled og-sidebar-menu" id="side-menu">
 				<li class="og-sidebar-mobile-account">
-					<a href="javascript:;" class="og-sidebar-link og-sidebar-link-level-1 waves-effect" data-menu-level="1" aria-expanded="true">
+					<a href="/clientarea" onclick="window.location.href=this.href; return false;" class="og-sidebar-link og-sidebar-link-level-1 waves-effect" data-menu-level="1" aria-expanded="true">
 						<i class="bx bx-user-circle"></i>
 						<span class="og-sidebar-title">个人中心</span>
 					</a>
 					<ul class="sub-menu og-sidebar-submenu og-sidebar-submenu-level-2" aria-expanded="true">
 						<li class="og-sidebar-item og-sidebar-item-level-2">
-							<a href="/clientarea" class="og-sidebar-link og-sidebar-link-level-2 waves-effect" data-menu-level="2">
+							<a href="/clientarea" onclick="window.location.href=this.href; return false;" class="og-sidebar-link og-sidebar-link-level-2 waves-effect" data-menu-level="2">
 								<span class="og-sidebar-title">用户中心</span>
 							</a>
 						</li>
 						<li class="og-sidebar-item og-sidebar-item-level-2">
-							<a href="/logout" class="og-sidebar-link og-sidebar-link-level-2 waves-effect" data-menu-level="2">
+							<a href="/logout" onclick="window.location.href=this.href; return false;" class="og-sidebar-link og-sidebar-link-level-2 waves-effect" data-menu-level="2">
 								<span class="og-sidebar-title">退出</span>
 							</a>
 						</li>
