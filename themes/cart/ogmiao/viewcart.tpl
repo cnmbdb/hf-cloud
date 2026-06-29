@@ -196,10 +196,10 @@
 </style>
 
 <link rel="stylesheet" href="/themes/web/ogmiao/assets/css/header.css?v={$Ver}">
-<link rel="stylesheet" href="/themes/cart/ogmiao/assets/css/cart-shadcn.css?v={$Ver}-20260628d">
+<link rel="stylesheet" href="/themes/cart/ogmiao/assets/css/cart-shadcn.css?v={$Ver}-20260629a">
 <header class="og-cart-header header-animate">
 	<div class="container">
-		<nav>
+		<nav class="og-cart-nav" aria-label="主导航">
 			<a href="/" class="logo-container nav-item-animate" aria-label="{$Setting.company_name}首页">
 				{if $Setting.web_logo_home}
 				<img src="{$Setting.web_logo_home}" alt="{$Setting.company_name}logo" class="logo-img" onerror="this.onerror=null;this.src='/themes/web/ogmiao/img/hfcloud-logo.png';">
@@ -215,6 +215,11 @@
 			</div>
 			<div class="nav-buttons">
 				<div class="nav-buttons-container">
+					<button type="button" class="og-cart-menu-trigger" aria-label="打开菜单" aria-expanded="false">
+						<span></span>
+						<span></span>
+						<span></span>
+					</button>
 					<div class="og-language-switcher">
 						<button type="button" class="og-language-toggle" aria-label="选择语言" aria-expanded="false">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
@@ -249,6 +254,40 @@
 		</nav>
 	</div>
 </header>
+<script>
+	(function () {
+		if (window.__ogCartHeaderReady) return;
+		window.__ogCartHeaderReady = true;
+		document.addEventListener('click', function (event) {
+			var header = event.target.closest('.og-cart-header');
+			var openHeader = document.querySelector('.og-cart-header[data-mobile-menu="open"]');
+			var trigger = event.target.closest('.og-cart-menu-trigger');
+
+			if (trigger && header) {
+				var isOpen = header.getAttribute('data-mobile-menu') === 'open';
+				header.setAttribute('data-mobile-menu', isOpen ? 'closed' : 'open');
+				trigger.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+				return;
+			}
+
+			if (openHeader && !event.target.closest('.og-cart-header')) {
+				openHeader.setAttribute('data-mobile-menu', 'closed');
+				var openTrigger = openHeader.querySelector('.og-cart-menu-trigger');
+				if (openTrigger) openTrigger.setAttribute('aria-expanded', 'false');
+			}
+		});
+
+		window.addEventListener('resize', function () {
+			if (window.innerWidth > 1024) {
+				document.querySelectorAll('.og-cart-header[data-mobile-menu="open"]').forEach(function (header) {
+					header.setAttribute('data-mobile-menu', 'closed');
+					var trigger = header.querySelector('.og-cart-menu-trigger');
+					if (trigger) trigger.setAttribute('aria-expanded', 'false');
+				});
+			}
+		});
+	})();
+</script>
 
 <div class="og-checkout-page">
 	<div class="og-checkout-head">
