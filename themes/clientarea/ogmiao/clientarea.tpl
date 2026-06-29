@@ -2412,7 +2412,7 @@ thead th {
 }
 
 @media (max-width: 767px) {
-  .page-content { padding: 12px 0 76px !important; }
+  .page-content { padding: 88px 0 76px !important; }
   .container-fluid { padding-left: 12px !important; padding-right: 12px !important; }
   .user-center_product_grid, .news-grid { grid-template-columns: 1fr !important; gap: 10px !important; }
   .todo-description, .product-name, .news-title { height: auto !important; overflow-wrap: anywhere !important; white-space: normal !important; }
@@ -2420,6 +2420,24 @@ thead th {
 
   .instances-title {
     margin-bottom: 12px !important;
+  }
+
+  #activeInstancesGrid {
+    min-height: 0 !important;
+    padding-top: 2px !important;
+  }
+
+  #activeInstancesGrid,
+  #activeInstancesGrid *,
+  #activeInstancesGrid .user-center_product {
+    box-sizing: border-box;
+  }
+
+  .clientarea-dashboard-row > section:nth-of-type(1) .card,
+  .clientarea-dashboard-row > section:nth-of-type(1) .card-body {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
   }
 
   #activeInstancesGrid {

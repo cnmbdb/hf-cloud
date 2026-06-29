@@ -70,7 +70,7 @@
 				</div>
 				{/if}
 					{if $Userinfo}
-					<a href="/clientarea" class="og-client-user-chip" title="{$Userinfo.user.username}">
+					<a href="/clientarea" class="og-client-user-chip d-none d-lg-inline-flex" title="{$Userinfo.user.username}">
 						<span class="og-client-user-avatar" aria-hidden="true">
 							{if preg_match("/^[0-9]*[A-Za-z]+$/is", substr($Userinfo.user.username,0,1))}
 							{$Userinfo.user.username|substr=0,1|upper}
@@ -85,7 +85,7 @@
 							<span class="og-client-user-name">{$Userinfo.user.username}</span>
 						</span>
 					</a>
-					<a href="/logout" class="og-client-nav-button og-client-nav-button-solid og-client-logout-button">退出</a>
+					<a href="/logout" class="og-client-nav-button og-client-nav-button-solid og-client-logout-button d-none d-lg-inline-flex">退出</a>
 					{else}
 					<a href="/clientarea" class="og-client-nav-button og-client-nav-button-outline">用户中心</a>
 					<a href="/login" class="og-client-nav-button og-client-nav-button-solid">登录</a>
