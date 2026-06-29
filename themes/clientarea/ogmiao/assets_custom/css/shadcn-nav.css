@@ -406,6 +406,70 @@ body[data-topbar="dark"] .og-client-nav-button {
   line-height: 1;
 }
 
+body[data-topbar="dark"] .og-client-user-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  max-width: 210px;
+  height: 40px;
+  min-height: 40px;
+  padding: 0 12px 0 8px;
+  border: 1px solid #27272a;
+  border-radius: 8px;
+  background: #030303;
+  color: #fff !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  transition: background-color .16s ease, border-color .16s ease, color .16s ease;
+}
+
+body[data-topbar="dark"] .og-client-user-chip:hover {
+  background: #18181b;
+  border-color: #3f3f46;
+  color: #fff !important;
+}
+
+body[data-topbar="dark"] .og-client-user-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  border-radius: 9999px;
+  background: #fff;
+  color: #09090b;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  overflow: hidden;
+}
+
+body[data-topbar="dark"] .og-client-user-meta {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1;
+}
+
+body[data-topbar="dark"] .og-client-user-label {
+  color: #a1a1aa;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+body[data-topbar="dark"] .og-client-user-name {
+  overflow: hidden;
+  color: #fafafa;
+  font-size: 13px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 body[data-topbar="dark"] .og-client-nav-button-solid {
   background: #fff;
   border-color: #fff;
@@ -951,6 +1015,11 @@ body[data-sidebar="dark"] .og-sidebar-link-level-3.is-active::before {
     min-height: 40px;
     min-width: 78px;
     padding: 0 14px;
+  }
+
+  body[data-topbar="dark"] .og-client-user-chip {
+    max-width: min(42vw, 160px);
+    padding-right: 10px;
   }
 
   body[data-sidebar="dark"] .og-sidebar {

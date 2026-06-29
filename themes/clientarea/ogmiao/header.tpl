@@ -69,12 +69,27 @@
 					</div>
 				</div>
 				{/if}
-				<a href="/clientarea" class="og-client-nav-button og-client-nav-button-outline">用户中心</a>
-				{if $Userinfo}
-				<a href="/logout" class="og-client-nav-button og-client-nav-button-solid">退出</a>
-				{else}
-				<a href="/login" class="og-client-nav-button og-client-nav-button-solid">登录</a>
-				{/if}
+					{if $Userinfo}
+					<a href="/clientarea" class="og-client-user-chip" title="{$Userinfo.user.username}">
+						<span class="og-client-user-avatar" aria-hidden="true">
+							{if preg_match("/^[0-9]*[A-Za-z]+$/is", substr($Userinfo.user.username,0,1))}
+							{$Userinfo.user.username|substr=0,1|upper}
+							{elseif preg_match("/^[\x7f-\xff]*$/", substr($Userinfo.user.username,0,3))}
+							{$Userinfo.user.username|substr=0,3}
+							{else}
+							{$Userinfo.user.username|substr=0,1|upper}
+							{/if}
+						</span>
+						<span class="og-client-user-meta">
+							<span class="og-client-user-label">个人中心</span>
+							<span class="og-client-user-name">{$Userinfo.user.username}</span>
+						</span>
+					</a>
+					<a href="/logout" class="og-client-nav-button og-client-nav-button-solid">退出</a>
+					{else}
+					<a href="/clientarea" class="og-client-nav-button og-client-nav-button-outline">用户中心</a>
+					<a href="/login" class="og-client-nav-button og-client-nav-button-solid">登录</a>
+					{/if}
 			</div>
 		</div>
 	</header>
