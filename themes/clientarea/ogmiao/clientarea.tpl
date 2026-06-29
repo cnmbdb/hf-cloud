@@ -2417,6 +2417,104 @@ thead th {
   .user-center_product_grid, .news-grid { grid-template-columns: 1fr !important; gap: 10px !important; }
   .todo-description, .product-name, .news-title { height: auto !important; overflow-wrap: anywhere !important; white-space: normal !important; }
   .card .btn, .card .btn-primary, .view-more-link { width: 100% !important; }
+
+  .instances-title {
+    margin-bottom: 12px !important;
+  }
+
+  #activeInstancesGrid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    margin-top: 12px !important;
+  }
+
+  #activeInstancesGrid .active-instance-card {
+    display: grid !important;
+    grid-template-columns: 38px minmax(0, 1fr);
+    grid-template-areas:
+      "icon info"
+      "meta meta";
+    align-items: flex-start !important;
+    gap: 10px 12px !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 12px !important;
+    overflow: visible !important;
+  }
+
+  #activeInstancesGrid > .user-center_product:not(.active-instance-card) {
+    align-items: flex-start !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 12px !important;
+    overflow: visible !important;
+  }
+
+  #activeInstancesGrid > .user-center_product:not(.active-instance-card) .product-info {
+    min-width: 0 !important;
+  }
+
+  #activeInstancesGrid > .user-center_product:not(.active-instance-card) .product-name {
+    display: -webkit-box !important;
+    overflow: hidden !important;
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+    text-overflow: ellipsis !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  #activeInstancesGrid .active-instance-card .product-icon {
+    grid-area: icon;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    margin: 0 !important;
+  }
+
+  #activeInstancesGrid .active-instance-card .product-info {
+    grid-area: info;
+    min-width: 0 !important;
+    gap: 7px !important;
+  }
+
+  #activeInstancesGrid .active-instance-card .product-name {
+    display: -webkit-box !important;
+    overflow: hidden !important;
+    color: #fafafa !important;
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+    text-overflow: ellipsis !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  #activeInstancesGrid .active-instance-card .product-count {
+    max-width: 100% !important;
+    padding: 4px 9px !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
+  }
+
+  #activeInstancesGrid .active-instance-card .active-instance-ip {
+    grid-area: meta;
+    justify-self: stretch;
+    max-width: none !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 7px 10px !important;
+    border-radius: 8px !important;
+    text-align: left;
+  }
 }
 
 </style>
